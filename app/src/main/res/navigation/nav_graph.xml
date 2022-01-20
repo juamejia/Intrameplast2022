@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fragmentHome">
+
+    <fragment
+        android:id="@+id/fragmentHome"
+        android:name="com.example.intrameplast2022.ui.fragment.FragmentHome"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_fragmentHome_to_fragmentHomeMenu"
+            app:destination="@id/fragmentHomeMenu" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentHomeMenu"
+        android:name="com.example.intrameplast2022.ui.fragment.FragmentHomeMenu"
+        android:label="fragment_home_menu"
+        tools:layout="@layout/fragment_home_menu" >
+        <action
+            android:id="@+id/action_fragmentHomeMenu_to_fragmentMenu1"
+            app:destination="@id/fragmentMenu1" />
+        <action
+            android:id="@+id/action_fragmentHomeMenu_to_fragmentMenu2"
+            app:destination="@id/fragmentMenu2" />
+        <action
+            android:id="@+id/action_fragmentHomeMenu_to_fragmentMenu3"
+            app:destination="@id/fragmentMenu3" />
+        <action
+            android:id="@+id/action_fragmentHomeMenu_to_fragmentMenu4"
+            app:destination="@id/fragmentMenu4" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentMenu1"
+        android:name="com.example.intrameplast2022.ui.fragment.FragmentMenu1"
+        android:label="fragment_menu1"
+        tools:layout="@layout/fragment_menu1" />
+    <fragment
+        android:id="@+id/fragmentMenu2"
+        android:name="com.example.intrameplast2022.ui.fragment.FragmentMenu2"
+        android:label="fragment_menu2"
+        tools:layout="@layout/fragment_menu2" />
+    <fragment
+        android:id="@+id/fragmentMenu3"
+        android:name="com.example.intrameplast2022.ui.fragment.FragmentMenu3"
+        android:label="fragment_menu3"
+        tools:layout="@layout/fragment_menu3" />
+    <fragment
+        android:id="@+id/fragmentMenu4"
+        android:name="com.example.intrameplast2022.ui.fragment.FragmentMenu4"
+        android:label="fragment_menu4"
+        tools:layout="@layout/fragment_menu4" />
+</navigation>
