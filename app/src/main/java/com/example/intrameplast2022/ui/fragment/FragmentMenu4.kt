@@ -5,8 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.intrameplast2022.databinding.FragmentHomeBinding
 import com.example.intrameplast2022.databinding.FragmentMenu4Binding
+import kotlin.system.exitProcess
 
 class FragmentMenu4 : Fragment() {
 
@@ -18,6 +20,11 @@ class FragmentMenu4 : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentMenu4Binding.inflate(inflater, container, false)
+        // Back and Exit buttons, always the same in all fragments
+        binding.btExit.setOnClickListener { exitProcess(0) }
+        binding.btBack.setOnClickListener{
+            findNavController().popBackStack() // Return to the preview fragment, in this case, always homeFragment
+        }
 
         return binding.root
     }
