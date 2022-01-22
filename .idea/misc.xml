@@ -7,20 +7,24 @@
         <entry key="app/src/main/res/drawable/ic_add_24dp.xml" value="0.38385416666666666" />
         <entry key="app/src/main/res/drawable/ic_back_24.xml" value="0.3921875" />
         <entry key="app/src/main/res/drawable/ic_back_44.xml" value="0.3921875" />
+        <entry key="app/src/main/res/drawable/ic_close_24.xml" value="0.3921875" />
         <entry key="app/src/main/res/drawable/ic_exit_44.xml" value="0.3921875" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.38385416666666666" />
         <entry key="app/src/main/res/drawable/ic_print_44.xml" value="0.38385416666666666" />
         <entry key="app/src/main/res/drawable/ic_proof_24.xml" value="0.38385416666666666" />
         <entry key="app/src/main/res/drawable/ic_proof_44.xml" value="0.38385416666666666" />
         <entry key="app/src/main/res/drawable/ic_reviews_44.xml" value="0.38385416666666666" />
+        <entry key="app/src/main/res/drawable/ic_search_24.xml" value="0.3921875" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.3385416666666667" />
         <entry key="app/src/main/res/layout/card_layout.xml" value="0.36770833333333336" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.3260416666666667" />
         <entry key="app/src/main/res/layout/fragment_home_menu.xml" value="0.3260416666666667" />
         <entry key="app/src/main/res/layout/fragment_menu1.xml" value="0.3260416666666667" />
         <entry key="app/src/main/res/layout/fragment_menu2.xml" value="0.37604166666666666" />
+        <entry key="app/src/main/res/layout/fragment_menu2_1.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/fragment_menu3.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/fragment_menu4.xml" value="0.37604166666666666" />
+        <entry key="app/src/main/res/menu/top_app_bar.xml" value="0.37604166666666666" />
       </map>
     </option>
   </component>

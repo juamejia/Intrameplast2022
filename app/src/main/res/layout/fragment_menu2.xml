@@ -35,7 +35,7 @@
             android:id="@+id/tv_menu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/revision_de_registros"
+            android:text="@string/registros"
             android:textAlignment="center"
             android:textColor="@color/black_500"
             android:textSize="24sp"
