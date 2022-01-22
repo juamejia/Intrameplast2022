@@ -16,8 +16,7 @@
     <string name="salir">Salir</string>
     <string name="registros">Registros</string>
     <!--    Exportation text info-->
-    <string name="info_de_exportacion">
-        Al presionar el botón <b>"Exportar"</b> Se creará un archivo <b>datos.db</b> el cual contendrá todos los registros actuales del dispositivo.<br /> <br />La nueva ubicación de este archivo y su información correspondiente se almacenará en la ruta: <b>/ SD_card / Admin /</b>
+    <string name="info_de_exportacion">Al presionar el botón <b>"Exportar"</b> Se creará un archivo <b>datos.db</b> el cual contendrá todos los registros actuales del dispositivo.<br /> <br />La nueva ubicación de este archivo y su información correspondiente se almacenará en la ruta: <b>/ SD_card / Admin /</b>
 </string>
     <string name="exportar">Exportar</string>
     <string name="ingrese_registro">Ingrese registro de la BD:</string>
