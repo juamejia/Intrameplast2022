@@ -20,4 +20,8 @@
 </string>
     <string name="exportar">Exportar</string>
     <string name="ingrese_registro">Ingrese registro de la BD:</string>
+    <string name="fecha">Fecha</string>
+    <string name="operador">Operador</string>
+    <string name="direccion">Dirección</string>
+    <string name="usuario">Usuario</string>
 </resources>
