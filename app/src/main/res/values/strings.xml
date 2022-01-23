@@ -16,8 +16,7 @@
     <string name="salir">Salir</string>
     <string name="registros">Registros</string>
     <!--    Exportation text info-->
-    <string name="info_de_exportacion">Al presionar el botón <b>"Exportar"</b> Se creará un archivo <b>datos.db</b> el cual contendrá todos los registros actuales del dispositivo.<br /> <br />La nueva ubicación de este archivo y su información correspondiente se almacenará en la ruta: <b>/ SD_card / Admin /</b>
-</string>
+    <string name="info_de_exportacion">Al presionar el botón <b>"Exportar"</b> Se creará un archivo <b>datos.db</b> el cual contendrá todos los registros actuales del dispositivo.<br /> <br />La nueva ubicación de este archivo y su información correspondiente se almacenará en la ruta: <b>/ SD_card / Admin /</b></string>
     <string name="exportar">Exportar</string>
     <string name="ingrese_registro">Ingrese nombre del registro:</string>
     <string name="fecha">Fecha</string>
@@ -32,11 +31,15 @@
     <string name="foto">Foto</string>
     <string name="q1">Q1</string>
     <string name="q2">q2</string>
-    <string name="lectura_final_l">Lectura final [L]</string>
-    <string name="tiempo_seg">Tiempo [Seg]</string>
-    <string name="temp_agua_c">Temp agua [cº]</string>
-    <string name="temp_ambiente_c">Temp ambiente [cº]</string>
-    <string name="presi_n_de_trabajo_kpa">Presión de trabajo [Kpa]</string>
-    <string name="lectura_inicial_l">Lectura inicial [L]</string>
     <string name="nueva_prueba">Nueva prueba</string>
+
+    <!--    Measures table-->
+    <string name="lectura_final_l">Lectura final <br/> <b>[L]</b></string>
+    <string name="tiempo_seg">Tiempo <br/> <b>[Seg]</b></string>
+    <string name="temp_agua_c">Temp agua <br/> <b>[Cº]</b></string>
+    <string name="temp_ambiente_c">Temp ambiente <br/> <b>[Cº]</b></string>
+    <string name="presi_n_de_trabajo_kpa">Presión de trabajo <br /> <b>[Kpa]</b></string>
+    <string name="lectura_inicial_l">Lectura inicial <br/> <b>[L]</b></string>
+    <string name="resultado_q2">Resultado Q2</string>
+    <string name="resultado_q1">Resultado Q1</string>
 </resources>

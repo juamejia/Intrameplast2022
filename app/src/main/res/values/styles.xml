@@ -23,4 +23,9 @@
         <!-- The hint text that appears when the user has not typed anything -->
 <!--        <item name="queryHint">@string/ingrese_registro</item>-->
     </style>
+
+    <style name="textInputStyle">
+        <item name="backgroundTint">@color/transparent</item>
+<!--        <item name="colorControlActivated">#FF9800</item>-->
+    </style>
 </resources>
