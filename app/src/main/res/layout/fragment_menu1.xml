@@ -108,14 +108,16 @@
                         android:id="@+id/tv_operator"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="60dp"
                         android:layout_marginTop="5dp"
                         android:hint="@string/operador"
                         app:endIconMode="clear_text"
+                        app:errorEnabled="true"
                         app:layout_constraintTop_toBottomOf="@+id/tv_date"
                         app:startIconDrawable="@drawable/ic_operator_24">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/tv_operator2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="textPersonName" />
@@ -181,16 +183,17 @@
                 android:id="@+id/tv_mark"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="18dp"
                 android:hint="@string/marca"
-                app:endIconMode="clear_text"
+                app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="@id/gl_0.33_vertical1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/cv_table">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tv_mark2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textShortMessage" />
@@ -201,17 +204,18 @@
                 android:id="@+id/tv_serial"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="18dp"
                 android:layout_marginEnd="5dp"
                 android:hint="@string/serial"
-                app:endIconMode="clear_text"
+                app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="@id/gl_0.33_vertical2"
                 app:layout_constraintStart_toStartOf="@id/gl_0.33_vertical1"
                 app:layout_constraintTop_toBottomOf="@id/cv_table">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tv_serial2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textShortMessage" />
@@ -226,12 +230,12 @@
                 android:layout_marginTop="18dp"
                 android:layout_marginEnd="5dp"
                 android:hint="@string/calibre"
-                app:endIconMode="clear_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/gl_0.33_vertical2"
                 app:layout_constraintTop_toBottomOf="@id/cv_table">
 
                 <AutoCompleteTextView
+                    android:id="@+id/dd_caliber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="none" />
@@ -239,39 +243,41 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tv_methodological_class"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/tv_metrological_class"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="180dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:hint="@string/clase_metodologica"
-                app:endIconMode="clear_text"
+                android:hint="@string/clase_metrologica"
                 app:layout_constraintEnd_toStartOf="@+id/gl_0.33_vertical1"
                 app:layout_constraintStart_toStartOf="@+id/gl_0.33_vertical1"
                 app:layout_constraintTop_toBottomOf="@id/tv_mark">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <AutoCompleteTextView
+                    android:id="@+id/dd_metrological"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:inputType="none" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tv_new_old"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="5dp"
                 android:hint="@string/nuevo_o_usado"
-                app:endIconMode="clear_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/gl_0.33_vertical2"
                 app:layout_constraintTop_toBottomOf="@id/tv_serial">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <AutoCompleteTextView
+                    android:id="@+id/dd_new_old"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:inputType="none" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -286,7 +292,7 @@
                 app:cardCornerRadius="15dp"
                 app:cardElevation="6dp"
                 app:contentPadding="4dp"
-                app:layout_constraintTop_toBottomOf="@+id/tv_methodological_class">
+                app:layout_constraintTop_toBottomOf="@+id/tv_metrological_class">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -356,6 +362,7 @@
                         android:gravity="center_vertical"
                         android:text="@string/lectura_inicial_l"
                         android:textAlignment="center"
+                        android:textColor="@color/black_500"
                         app:layout_constraintEnd_toStartOf="@+id/glt_0.33_vertical1"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/bt_photo"
@@ -368,6 +375,7 @@
                         android:gravity="center_vertical"
                         android:text="@string/lectura_final_l"
                         android:textAlignment="center"
+                        android:textColor="@color/black_500"
                         app:layout_constraintEnd_toStartOf="@+id/glt_0.33_vertical1"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tv_lectura_i"
@@ -392,6 +400,7 @@
                         android:gravity="center_vertical"
                         android:text="@string/temp_agua_c"
                         android:textAlignment="center"
+                        android:textColor="@color/black_500"
                         app:layout_constraintEnd_toStartOf="@+id/glt_0.33_vertical1"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tv_tiempo"
@@ -404,6 +413,7 @@
                         android:gravity="center_vertical"
                         android:text="@string/temp_ambiente_c"
                         android:textAlignment="center"
+                        android:textColor="@color/black_500"
                         app:layout_constraintEnd_toStartOf="@+id/glt_0.33_vertical1"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tv_Tepm_agua"
@@ -416,6 +426,7 @@
                         android:gravity="center_vertical"
                         android:text="@string/presi_n_de_trabajo_kpa"
                         android:textAlignment="center"
+                        android:textColor="@color/black_500"
                         app:layout_constraintEnd_toStartOf="@+id/glt_0.33_vertical1"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tv_Tepm_ambiente"
@@ -474,6 +485,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/bt_q2">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/ti_q2_l_i0"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:inputType="numberDecimal"
@@ -494,6 +506,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/ti_q2_l_i">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/ti_q2_l_f0"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:inputType="numberDecimal"
@@ -514,6 +527,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/ti_q2_l_f">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/ti_q2_time0"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:inputType="numberDecimal"
@@ -534,6 +548,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/ti_q2_time">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/ti_q2_t_water0"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:inputType="numberDecimal"
@@ -554,6 +569,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/ti_q2_t_water">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/ti_q2_t_environment0"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:inputType="numberDecimal"
@@ -573,6 +589,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/ti_q2_t_environment">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/ti_q2_work_pressure0"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:inputType="numberDecimal"
@@ -595,6 +612,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/bt_q2">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/ti_q1_l_i0"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:inputType="numberDecimal"
@@ -615,6 +633,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/ti_q2_l_i">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/ti_q1_l_f0"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:inputType="numberDecimal"
@@ -635,6 +654,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/ti_q2_l_f">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/ti_q1_time0"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:inputType="numberDecimal"
@@ -655,6 +675,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/ti_q2_time">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/ti_q1_t_water0"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:inputType="numberDecimal"
@@ -675,6 +696,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/ti_q2_t_water">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/ti_q1_t_environment0"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:inputType="numberDecimal"
@@ -695,6 +717,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/ti_q2_t_environment">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/ti_q1_work_pressure0"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:inputType="numberDecimal"
