@@ -17,4 +17,5 @@
     <color name="text_shadow_white">#FFFFFF</color>
     <color name="red_500">#E46565</color>
     <color name="transparent">#00FFFFFF</color>
+    <color name="green">#4CAF50</color>
 </resources>

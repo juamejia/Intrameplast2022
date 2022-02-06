@@ -431,6 +431,20 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tv_Tepm_ambiente"
                         tools:ignore="RtlCompat" />
+
+                    <TextView
+                        android:id="@+id/tv_result"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/resultado"
+                        android:textStyle="bold"
+                        android:textAlignment="center"
+                        android:textColor="@color/green"
+                        app:layout_constraintEnd_toStartOf="@+id/glt_0.33_vertical1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_p_trabajo"
+                        tools:ignore="RtlCompat" />
                     <!--A single line-->
                     <TextView
                         android:id="@+id/tv_line2"

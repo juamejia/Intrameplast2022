@@ -42,4 +42,5 @@
     <string name="lectura_inicial_l">Lectura inicial <br/> <b>[L]</b></string>
     <string name="resultado_q2">Resultado Q2</string>
     <string name="resultado_q1">Resultado Q1</string>
+    <string name="resultado">Resultado</string>
 </resources>

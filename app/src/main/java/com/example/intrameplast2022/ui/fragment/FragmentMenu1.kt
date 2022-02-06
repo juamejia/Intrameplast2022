@@ -7,10 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.core.view.get
+import androidx.core.widget.doAfterTextChanged
+import androidx.core.widget.doOnTextChanged
 import androidx.navigation.fragment.findNavController
 import com.example.intrameplast2022.R
 import com.example.intrameplast2022.databinding.FragmentMenu1Binding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
+import kotlin.math.roundToInt
+import kotlin.math.roundToLong
 import kotlin.system.exitProcess
 
 class FragmentMenu1 : Fragment() {
@@ -34,8 +41,6 @@ class FragmentMenu1 : Fragment() {
     private val PTR_ = 0.0
 
     //  Presión en el tanque de recolección
-    // Another serial constants
-    private val aforo = 99.9
 
     override fun onResume() {
         super.onResume()
@@ -63,6 +68,30 @@ class FragmentMenu1 : Fragment() {
             findNavController().popBackStack() // Return to the preview fragment, in this case, always homeFragment
         }
 
+        // Ask to Kevin :D
+        // Measure observer q1
+        binding.tiQ1WorkPressure0.doOnTextChanged { text, start, before, count ->
+            if (text?.isNotEmpty() == true) {
+                binding.tvQ1Process.text = measureProcessQ1()
+            } else {
+                binding.tvQ1Process.text = getString(R.string.resultado_q2)
+            }
+        }
+
+//      Copy to create Q2 measures
+        binding.tiQ2WorkPressure0.doOnTextChanged { text, start, before, count ->
+            if (text?.isNotEmpty() == true) {
+                binding.tvQ2Process.text = measureProcessQ2()
+            } else {
+                binding.tvQ2Process.text = getString(R.string.resultado_q2)
+            }
+        }
+
+        showAlerts()
+        return binding.root
+    }
+
+    private fun showAlerts() {
         binding.btQ1.setOnClickListener {
             toast("Caudal (1)")
         }
@@ -70,7 +99,8 @@ class FragmentMenu1 : Fragment() {
             toast("Caudal (2)")
         }
         binding.btPhoto.setOnClickListener {
-            toast("Fotografía")
+//            toast("Fotografía")
+            toast(measureProcessQ2().toString())
         }
         binding.btReload.setOnClickListener {
             reloadFields()
@@ -84,15 +114,7 @@ class FragmentMenu1 : Fragment() {
         binding.btPrint.setOnClickListener {
             textFieldsCheck()
             toast("Imprimir")
-//            toast(binding.tiQ2TWater0.text.toString())
-
         }
-        return binding.root
-    }
-
-    private fun toast(text: String) {
-        // To use Toast inside fragment replace this by context
-        Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
     }
 
     private fun textFieldsCheck(): Boolean {
@@ -131,13 +153,31 @@ class FragmentMenu1 : Fragment() {
         binding.tiQ2WorkPressure0.setText("")
     }
 
-    private fun measureProcess(): Double {
-        var Q2Water_ = binding.tiQ2TWater0.text.toString().toDouble()
-        var Q2WPressure_ = binding.tiQ2WorkPressure0.text.toString().toDouble()
-        var vCorreg =
-            (aforo + CVI_) * (1 + CETM_ * (Q2Water_ - 20)) * (1 + CETV_ * (20 - Q2Water_) * (1 + CCA_ * (Q2WPressure_ - PTR_)))
-        return vCorreg
+    private fun measureProcessQ1(): String {
+        val aforo = 99.9
+        var resultQ1 = 0.0
+        var q1WPressure = binding.tiQ1WorkPressure0.text.toString().toFloat()
+        var q1Water = binding.tiQ1TWater0.text.toString().toFloat()
+        if (q1WPressure > 0.0 && q1Water > 0.0) {
+            resultQ1 =
+                (aforo + CVI_) * (1 + CETM_ * (q1Water - 20)) * (1 + CETV_ * (20 - q1Water) * (1 + CCA_ * (q1WPressure - PTR_))) // to code review
+        }
+        return ((resultQ1 * 1000.0).roundToInt() / 1000.0).toString() // To return double with 3 decimal digits only
+    }
 
+    private fun measureProcessQ2(): String {
+        val aforo = 9.9
+        var resultQ2 = 0.0
+        val q2Water = binding.tiQ2TWater0.text.toString().toDouble()
+        val q2WPressure = binding.tiQ2WorkPressure0.text.toString().toDouble()
+        resultQ2 =
+            (aforo + CVI_) * (1 + CETM_ * (q2Water - 20)) * (1 + CETV_ * (20 - q2Water) * (1 + CCA_ * (q2WPressure - PTR_))) // to code review
+        return ((resultQ2 * 1000.0).roundToInt() / 1000.0).toString() // To return double with 3 decimal digits only
+    }
+
+    private fun toast(text: String) {
+        // To use Toast inside fragment replace this by context
+        Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
     }
 
 }
