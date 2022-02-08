@@ -73,10 +73,14 @@ class FragmentMenu1 : Fragment() {
         binding.tiQ1WorkPressure0.doOnTextChanged { text, start, before, count ->
             if (text?.isNotEmpty() == true) {
                 binding.tvQ1Process.text = measureProcessQ1()
+                binding.tvResult.visibility = View.VISIBLE
             } else {
                 binding.tvQ1Process.text = getString(R.string.resultado_q2)
+                binding.tvResult.visibility = View.GONE
             }
         }
+
+
 
 //      Copy to create Q2 measures
         binding.tiQ2WorkPressure0.doOnTextChanged { text, start, before, count ->
@@ -99,8 +103,7 @@ class FragmentMenu1 : Fragment() {
             toast("Caudal (2)")
         }
         binding.btPhoto.setOnClickListener {
-//            toast("Fotografía")
-            toast(measureProcessQ2().toString())
+            toast("Fotografía")
         }
         binding.btReload.setOnClickListener {
             reloadFields()
