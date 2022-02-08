@@ -156,41 +156,37 @@ class FragmentMenu1 : Fragment() {
         with(binding) {
             val q1WPressure = tiQ1WorkPressure0.text.toString().toDouble()   //  Presión de trabajo
             val q1Water = tiQ1TWater0.text.toString().toDouble()             //  Temp agua
-            val q1FinalR = tiQ1LI0.text.toString().toDouble()                //  Lectura final
-            val q1InitialR = tiQ1LF0.text.toString().toDouble()              //  Lectura inicial
+            val q1FinalR = tiQ1LF0.text.toString().toDouble()                //  Lectura final
+            val q1InitialR = tiQ1LI0.text.toString().toDouble()              //  Lectura inicial
             val q1ProofTime = tiQ1Time0.text.toString().toDouble()           //  Tiempo
             // Measure Q1
             if (q1WPressure > 0.0 && q1Water > 0.0) {
                 vCorregQ1 =
                     (aforo + CVI_) * (1 + CETM_ * (q1Water - 20)) * (1 + CETV_ * (20 - q1Water) * (1 + CCA_ * (q1WPressure - PTR_))) // to code review
             }
-            vCorregQ1 =
-                ((vCorregQ1 * 1000.0).roundToInt() / 1000.0)        // To return double with 3 decimal digits only
             val realFlowQ1 = (vCorregQ1 / q1ProofTime) * 3600       // Consult functionality
             val errorQ1 = (((q1FinalR - q1InitialR) - vCorregQ1) / vCorregQ1) * 100
-            return errorQ1.toString()
+            return ((errorQ1 * 1000.0).roundToInt() / 1000.0).toString() // To return double with 3 decimal digits only
         }
     }
 
     private fun measureProcessQ2(): String {
-        val aforo = 9.9
+        val aforo = 9.99
         var vCorregQ2 = 0.0
         with(binding) {
             val q2WPressure = tiQ2WorkPressure0.text.toString().toDouble()  //  Presión de trabajo
             val q2Water = tiQ2TWater0.text.toString().toDouble()            //  Temp agua
-            val q2FinalR = tiQ2LI0.text.toString().toDouble()               //  Lectura final
-            val q2InitialR = tiQ2LF0.text.toString().toDouble()             //  Lectura inicial
+            val q2FinalR = tiQ2LF0.text.toString().toDouble()               //  Lectura final
+            val q2InitialR = tiQ2LI0.text.toString().toDouble()             //  Lectura inicial
             val q2ProofTime = tiQ2Time0.text.toString().toDouble()          //  Tiempo
             // Measure Q2
             if (q2WPressure > 0.0 && q2Water > 0.0) {
                 vCorregQ2 =
                     (aforo + CVI_) * (1 + CETM_ * (q2Water - 20)) * (1 + CETV_ * (20 - q2Water) * (1 + CCA_ * (q2WPressure - PTR_))) // to code review
             }
-            vCorregQ2 =
-                ((vCorregQ2 * 1000.0).roundToInt() / 1000.0)        // To return double with 3 decimal digits only
             val realFlowQ2 = (vCorregQ2 / q2ProofTime) * 3600       // Consult functionality
             val errorQ2 = (((q2FinalR - q2InitialR) - vCorregQ2) / vCorregQ2) * 100
-            return errorQ2.toString()
+            return ((errorQ2 * 1000.0).roundToInt() / 1000.0).toString() // To return double with 3 decimal digits only
         }
     }
 
