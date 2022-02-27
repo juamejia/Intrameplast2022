@@ -9,7 +9,9 @@ import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.intrameplast2022.MainActivity.Companion.prefs
 import com.example.intrameplast2022.R
+import com.example.intrameplast2022.dataSource.Prefs
 import com.example.intrameplast2022.databinding.FragmentMenu1Binding
 import kotlin.math.roundToInt
 import kotlin.system.exitProcess
@@ -74,7 +76,6 @@ class FragmentMenu1 : Fragment() {
             }
         }
 
-
 //      Copy to create Q2 measures
         binding.tiQ2WorkPressure0.doOnTextChanged { text, start, before, count ->
             if (text?.isNotEmpty() == true) {
@@ -83,7 +84,6 @@ class FragmentMenu1 : Fragment() {
                 binding.tvQ2Process.text = getString(R.string.resultado_q2)
             }
         }
-
         showAlerts()
         return binding.root
     }
@@ -96,7 +96,8 @@ class FragmentMenu1 : Fragment() {
             toast("Caudal (2)")
         }
         binding.btPhoto.setOnClickListener {
-            toast("Fotografía")
+            //toast("Fotografía")
+            toast(prefs.getName())
         }
         binding.btReload.setOnClickListener {
             reloadFields()
@@ -166,7 +167,7 @@ class FragmentMenu1 : Fragment() {
             }
             val realFlowQ1 = (vCorregQ1 / q1ProofTime) * 3600       // Consult functionality
             val errorQ1 = (((q1FinalR - q1InitialR) - vCorregQ1) / vCorregQ1) * 100
-            return ((errorQ1 * 1000.0).roundToInt() / 1000.0).toString() // To return double with 3 decimal digits only
+            return ((errorQ1 * 100.0).roundToInt() / 100.0).toString() // To return double with 3 decimal digits only
         }
     }
 
@@ -186,7 +187,9 @@ class FragmentMenu1 : Fragment() {
             }
             val realFlowQ2 = (vCorregQ2 / q2ProofTime) * 3600       // Consult functionality
             val errorQ2 = (((q2FinalR - q2InitialR) - vCorregQ2) / vCorregQ2) * 100
-            return ((errorQ2 * 1000.0).roundToInt() / 1000.0).toString() // To return double with 3 decimal digits only
+            val errorQ2Final = ((errorQ2 * 100.0).roundToInt() / 100.0).toString() // To return double with 2 decimal digits only
+            prefs.saveName(errorQ2Final)
+            return errorQ2Final
         }
     }
 
