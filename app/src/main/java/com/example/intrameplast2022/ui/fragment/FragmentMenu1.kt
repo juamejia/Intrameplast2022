@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.intrameplast2022.MainActivity.Companion.prefs
 import com.example.intrameplast2022.R
-import com.example.intrameplast2022.dataSource.Prefs
 import com.example.intrameplast2022.databinding.FragmentMenu1Binding
 import kotlin.math.roundToInt
 import kotlin.system.exitProcess
@@ -97,7 +96,7 @@ class FragmentMenu1 : Fragment() {
         }
         binding.btPhoto.setOnClickListener {
             //toast("Fotografía")
-            toast(prefs.getName())
+            toast(prefs.getResult())
         }
         binding.btReload.setOnClickListener {
             reloadFields()
@@ -188,7 +187,7 @@ class FragmentMenu1 : Fragment() {
             val realFlowQ2 = (vCorregQ2 / q2ProofTime) * 3600       // Consult functionality
             val errorQ2 = (((q2FinalR - q2InitialR) - vCorregQ2) / vCorregQ2) * 100
             val errorQ2Final = ((errorQ2 * 100.0).roundToInt() / 100.0).toString() // To return double with 2 decimal digits only
-            prefs.saveName(errorQ2Final)
+            prefs.saveResult(errorQ2Final)
             return errorQ2Final
         }
     }
