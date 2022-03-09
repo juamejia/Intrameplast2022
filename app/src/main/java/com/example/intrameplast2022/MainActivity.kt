@@ -16,7 +16,6 @@ class MainActivity : AppCompatActivity() {
     companion object{ // Todos podrán acceder a este método con companion object
         lateinit var prefs: Prefs
         lateinit var load: MainActivity
-        // Proof functions
         var courseModalArrayList: ArrayList<CourseModal>? = null
     }
 
@@ -25,9 +24,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         prefs = Prefs(applicationContext)
+        loadData()
     }
 
-    fun loadData() {
+    private fun loadData() {
         // method to load arraylist from shared prefs
         // initializing our shared prefs with name as
         // shared preferences.

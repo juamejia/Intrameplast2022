@@ -12,6 +12,7 @@ import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.intrameplast2022.MainActivity.Companion.courseModalArrayList
+import com.example.intrameplast2022.MainActivity.Companion.load
 import com.example.intrameplast2022.R
 import com.example.intrameplast2022.databinding.FragmentMenu1Binding
 import com.google.gson.Gson
@@ -29,16 +30,12 @@ class FragmentMenu1 : Fragment() {
 
     // Constants table
     private val CVI_ = 0.0
-
     //  Corrección del volumen indicado en el RVM, debido a la resolución de la escala
     private val CETM_ = 0.000051
-
     //  Coeficiente de expansión térmico volumétrico para el material del R.V.M.
     private val CETV_ = 0.00015
-
     //  Coeficiente de expansión térmico volumétrico del agua
     private val CCA_ = 0.00000046
-
     //  coeficiente de Compresibilidad del agua
     private val PTR_ = 0.0
     //  Presión en el tanque de recolección
@@ -53,9 +50,11 @@ class FragmentMenu1 : Fragment() {
             ArrayAdapter(requireContext(), R.layout.dropdown_item, listOf("B", "C", "R160"))
         val newOldAdapter =
             ArrayAdapter(requireContext(), R.layout.dropdown_item, listOf("Nuevo", "Usado"))
-        binding.ddCaliber.setAdapter(caliberAdapter)
-        binding.ddMetrological.setAdapter(metrologicalAdapter)
-        binding.ddNewOld.setAdapter(newOldAdapter)
+        with(binding){
+            ddCaliber.setAdapter(caliberAdapter)
+            ddMetrological.setAdapter(metrologicalAdapter)
+            ddNewOld.setAdapter(newOldAdapter)
+        }
     }
 
     override fun onCreateView(
@@ -70,7 +69,7 @@ class FragmentMenu1 : Fragment() {
             findNavController().popBackStack() // Return to the preview fragment, in this case, always homeFragment
         }
         Logger.addLogAdapter(AndroidLogAdapter())
-        loadData()
+
 
         // Measure observer q1
         binding.tiQ1WorkPressure0.doOnTextChanged { text, start, before, count ->
@@ -122,6 +121,7 @@ class FragmentMenu1 : Fragment() {
                     )
                 )
                 // notifying adapter when new data added.
+                // load.saveData()
                 saveData()
             } else toast("¡Complete los campos requeridos!")
         }

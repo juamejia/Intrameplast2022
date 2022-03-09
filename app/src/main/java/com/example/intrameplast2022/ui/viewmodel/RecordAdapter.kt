@@ -33,8 +33,8 @@ class RecordAdapter(
 
         fun render(recordModel: CourseModal, onClickListener: (CourseModal) -> Unit) {
             with(binding){
-                tvSuperheroName.text = recordModel.getCourseName().toString()
-                tvRealName.text = recordModel.getCourseDescription().toString()
+                tvTitle.text = recordModel.getCourseName().toString()
+                tvDescription.text = recordModel.getCourseDescription().toString()
                 itemView.setOnClickListener { onClickListener(recordModel) }
             }
         }

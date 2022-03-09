@@ -7,7 +7,7 @@ data class CourseModal     // creating constructor for our variables.
 
 ) {
     fun getCourseName(): Any {
-        return courseName.toString()
+        return courseName
     }
     fun getCourseDescription(): Any {
         return  courseDescription

@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.intrameplast2022.MainActivity.Companion.courseModalArrayList
@@ -37,12 +39,16 @@ class FragmentMenu2 : Fragment() {
 
     private fun initRecyclerView() {
         with(binding) {
-            var temp = arrayListOf<CourseModal>()
-            temp.addAll(courseModalArrayList!!)
             rvFilesList.layoutManager = LinearLayoutManager(context)
-            rvFilesList.adapter = RecordAdapter(
-                temp
-            ) { onItemSelected(it) } // Verification process
+            if (courseModalArrayList?.isEmpty()!!){
+                Toast.makeText(context, "Empty list", Toast.LENGTH_SHORT).show()
+                emptyList.isVisible = true
+            }else{
+                emptyList.isVisible = false
+                rvFilesList.adapter = RecordAdapter(
+                    courseModalArrayList!!
+                ) { onItemSelected(it) } // Verification process
+            }
         }
     }
 
