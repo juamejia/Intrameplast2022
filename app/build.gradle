@@ -69,5 +69,9 @@ dependencies {
 
     // Materials
     implementation 'com.google.android.material:material:1.5.0'
+    // Gson
+    implementation 'com.google.code.gson:gson:2.8.5'
+    // Logger
+    implementation 'com.orhanobut:logger:2.2.0'
 
 }

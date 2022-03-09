@@ -1,19 +1,26 @@
 package com.example.intrameplast2022.ui.fragment
 
+import CourseModal
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.intrameplast2022.MainActivity.Companion.prefs
+import com.example.intrameplast2022.MainActivity.Companion.courseModalArrayList
 import com.example.intrameplast2022.R
 import com.example.intrameplast2022.databinding.FragmentMenu1Binding
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import com.orhanobut.logger.AndroidLogAdapter
+import com.orhanobut.logger.Logger
 import kotlin.math.roundToInt
 import kotlin.system.exitProcess
+
 
 class FragmentMenu1 : Fragment() {
 
@@ -34,8 +41,8 @@ class FragmentMenu1 : Fragment() {
 
     //  coeficiente de Compresibilidad del agua
     private val PTR_ = 0.0
-
     //  Presión en el tanque de recolección
+
 
     override fun onResume() {
         super.onResume()
@@ -62,8 +69,9 @@ class FragmentMenu1 : Fragment() {
         binding.btBack.setOnClickListener {
             findNavController().popBackStack() // Return to the preview fragment, in this case, always homeFragment
         }
+        Logger.addLogAdapter(AndroidLogAdapter())
+        loadData()
 
-        // Ask to Kevin :D
         // Measure observer q1
         binding.tiQ1WorkPressure0.doOnTextChanged { text, start, before, count ->
             if (text?.isNotEmpty() == true) {
@@ -95,8 +103,10 @@ class FragmentMenu1 : Fragment() {
             toast("Caudal (2)")
         }
         binding.btPhoto.setOnClickListener {
-            //toast("Fotografía")
-            toast(prefs.getResult())
+            toast("Fotografía")
+            Logger.e("Doggy proofs");
+            Logger.i(courseModalArrayList.toString());
+            //toast(prefs.getResult())
         }
         binding.btReload.setOnClickListener {
             reloadFields()
@@ -105,6 +115,14 @@ class FragmentMenu1 : Fragment() {
         binding.btSave.setOnClickListener { // Show logged info
             if (textFieldsCheck()) {
                 toast("Registro guardado")
+                courseModalArrayList!!.add(
+                    CourseModal(
+                        measureProcessQ2(),
+                        "Doggy :v"
+                    )
+                )
+                // notifying adapter when new data added.
+                saveData()
             } else toast("¡Complete los campos requeridos!")
         }
         binding.btPrint.setOnClickListener {
@@ -186,8 +204,9 @@ class FragmentMenu1 : Fragment() {
             }
             val realFlowQ2 = (vCorregQ2 / q2ProofTime) * 3600       // Consult functionality
             val errorQ2 = (((q2FinalR - q2InitialR) - vCorregQ2) / vCorregQ2) * 100
-            val errorQ2Final = ((errorQ2 * 100.0).roundToInt() / 100.0).toString() // To return double with 2 decimal digits only
-            prefs.saveResult(errorQ2Final)
+            val errorQ2Final =
+                ((errorQ2 * 100.0).roundToInt() / 100.0).toString() // To return double with 2 decimal digits only
+            //prefs.saveResult(errorQ2Final)
             return errorQ2Final
         }
     }
@@ -195,6 +214,69 @@ class FragmentMenu1 : Fragment() {
     private fun toast(text: String) {
         // To use Toast inside fragment replace this by context
         Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun saveData() {
+        // method for saving the data in array list.
+        // creating a variable for storing data in
+        // shared preferences.
+        val sharedPreferences = context?.getSharedPreferences(
+            "shared preferences",
+            AppCompatActivity.MODE_PRIVATE
+        )
+
+        // creating a variable for editor to
+        // store data in shared preferences.
+        val editor = sharedPreferences?.edit()
+
+        // creating a new variable for gson.
+        val gson = Gson()
+
+        // getting data from gson and storing it in a string.
+        val json = gson.toJson(courseModalArrayList)
+
+        // below line is to save data in shared
+        // prefs in the form of string.
+        editor?.putString("courses", json)
+
+        // below line is to apply changes
+        // and save data in shared prefs.
+        editor?.apply()
+
+        // after saving data we are displaying a toast message.
+        Toast.makeText(context, "Saved Array List to Shared preferences. ", Toast.LENGTH_SHORT)
+            .show()
+    }
+
+    fun loadData() {
+        // method to load arraylist from shared prefs
+        // initializing our shared prefs with name as
+        // shared preferences.
+        val sharedPreferences = context?.getSharedPreferences(
+            "shared preferences",
+            AppCompatActivity.MODE_PRIVATE
+        )
+
+        // creating a variable for gson.
+        val gson = Gson()
+
+        // below line is to get to string present from our
+        // shared prefs if not present setting it as null.
+        val json = sharedPreferences?.getString("courses", null)
+
+        // below line is to get the type of our array list.
+        val type = object : TypeToken<ArrayList<CourseModal?>?>() {}.type
+
+        // in below line we are getting data from gson
+        // and saving it to our array list
+        courseModalArrayList = gson.fromJson<ArrayList<CourseModal>>(json, type)
+
+        // checking below if the array list is empty or not
+        if (courseModalArrayList == null) {
+            // if the array list is empty
+            // creating a new array list.
+            courseModalArrayList = ArrayList<CourseModal>()
+        }
     }
 
 }
