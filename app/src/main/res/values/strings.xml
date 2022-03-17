@@ -43,4 +43,6 @@
     <string name="resultado_q2">Resultado Q2</string>
     <string name="resultado_q1">Resultado Q1</string>
     <string name="resultado">Resultado</string>
+    <string name="measure_proofs">Prueba de medidor</string>
+    <string name="specifications">Especificaciones</string>
 </resources>

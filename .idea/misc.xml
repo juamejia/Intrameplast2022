@@ -31,6 +31,8 @@
         <entry key="app/src/main/res/layout/fragment_menu2_1.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/fragment_menu3.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/fragment_menu4.xml" value="0.37604166666666666" />
+        <entry key="app/src/main/res/layout/fragment_recordDetail.xml" value="0.37604166666666666" />
+        <entry key="app/src/main/res/layout/fragment_report_saved.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/item_record.xml" value="0.35833333333333334" />
         <entry key="app/src/main/res/layout/list_item.xml" value="0.40989583333333335" />
         <entry key="app/src/main/res/layout/shape.xml" value="0.1890625" />
