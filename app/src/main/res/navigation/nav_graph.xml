@@ -41,7 +41,11 @@
         android:id="@+id/fragmentMenu2"
         android:name="com.example.intrameplast2022.ui.fragment.FragmentMenu2"
         android:label="fragment_menu2"
-        tools:layout="@layout/fragment_menu2" />
+        tools:layout="@layout/fragment_menu2" >
+        <action
+            android:id="@+id/action_fragmentMenu2_to_fragment_report_saved"
+            app:destination="@id/fragment_report_saved" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentMenu3"
         android:name="com.example.intrameplast2022.ui.fragment.FragmentMenu3"
@@ -52,4 +56,9 @@
         android:name="com.example.intrameplast2022.ui.fragment.FragmentMenu4"
         android:label="fragment_menu4"
         tools:layout="@layout/fragment_menu4" />
+    <fragment
+        android:id="@+id/fragment_report_saved"
+        android:name="com.example.intrameplast2022.fragment_report_saved"
+        android:label="fragment_report_saved"
+        tools:layout="@layout/fragment_report_saved" />
 </navigation>
