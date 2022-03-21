@@ -605,6 +605,17 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <!--A single line-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="110dp"
+                android:background="@color/black_500"
+                android:gravity="center_horizontal"
+                android:textSize="1sp"
+                app:layout_constraintTop_toBottomOf="@id/cv_main"
+                tools:ignore="SmallSp" />
+
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
