@@ -42,6 +42,21 @@ class FragmentReportSaved : Fragment() {
                 getString(R.string.clase_metrol_gica_r) + " ${getBundleBasicInfo()!![7]}"
             tvNewOld.text = getString(R.string.estado_r) + " ${getBundleBasicInfo()!![8]}"
             // Table
+            tiQ1LI.text = getBundleTable()!![0]
+            tiQ2LI.text= getBundleTable()!![1]
+            tiQ1LF.text= getBundleTable()!![2]
+            tiQ2LF.text = getBundleTable()!![3]
+            tiQ1Time.text = getBundleTable()!![4]
+            tiQ2Time.text = getBundleTable()!![5]
+            tiQ1TWater.text = getBundleTable()!![6]
+            tiQ2TWater.text = getBundleTable()!![7]
+            tiQ1TEnvironment.text = getBundleTable()!![8]
+            tiQ2TEnvironment.text = getBundleTable()!![9]
+            tiQ1WorkPressure.text = getBundleTable()!![10]
+            tiQ2WorkPressure.text = getBundleTable()!![11]
+            tvQ1Process.text = getBundleTable()!![12]
+            tvQ2Process.text = getBundleTable()!![13]
+
         }
 
         return binding.root

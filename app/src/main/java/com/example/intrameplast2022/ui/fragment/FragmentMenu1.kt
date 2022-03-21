@@ -134,7 +134,20 @@ class FragmentMenu1 : Fragment() {
                                 ddNewOld.editableText.toString()
                             ),
                             arrayListOf(
-                                "69","4"
+                                tiQ1LI0.text.toString(),
+                                tiQ2LI0.text.toString(),
+                                tiQ1LF0.text.toString(),
+                                tiQ2LF0.text.toString(),
+                                tiQ1Time0.text.toString(),
+                                tiQ2Time0.text.toString(),
+                                tiQ1TWater0.text.toString(),
+                                tiQ2TWater0.text.toString(),
+                                tiQ1TEnvironment0.text.toString(),
+                                tiQ2TEnvironment0.text.toString(),
+                                tiQ1WorkPressure0.text.toString(),
+                                tiQ2WorkPressure0.text.toString(),
+                                tvQ1Process.text.toString(),
+                                tvQ2Process.text.toString()
                             )
                         )
                     }
