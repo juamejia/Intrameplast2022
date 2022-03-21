@@ -1,6 +1,7 @@
 package com.example.intrameplast2022.ui.viewmodel
 
 import CourseModal
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,10 +32,11 @@ class RecordAdapter(
 
         private val binding = ItemRecordBinding.bind(view)
 
+        @SuppressLint("SetTextI18n")
         fun render(recordModel: CourseModal, onClickListener: (CourseModal) -> Unit) {
-            with(binding){
-                tvTitle.text = recordModel.getCourseName().toString()
-                tvDescription.text = recordModel.getCourseDescription().toString()
+            with(binding) {
+                tvTitle.text = "Operador: ${recordModel.getBasicInfo()[1]}"
+                tvDescription.text = "Fecha: ${recordModel.getBasicInfo()[0]}"
                 itemView.setOnClickListener { onClickListener(recordModel) }
             }
         }

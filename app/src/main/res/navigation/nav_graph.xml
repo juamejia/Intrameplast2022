@@ -58,7 +58,7 @@
         tools:layout="@layout/fragment_menu4" />
     <fragment
         android:id="@+id/fragment_report_saved"
-        android:name="com.example.intrameplast2022.fragment_report_saved"
+        android:name="com.example.intrameplast2022.ui.fragment.FragmentReportSaved"
         android:label="fragment_report_saved"
         tools:layout="@layout/fragment_report_saved" />
 </navigation>

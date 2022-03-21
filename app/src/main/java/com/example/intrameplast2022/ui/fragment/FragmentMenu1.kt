@@ -30,12 +30,16 @@ class FragmentMenu1 : Fragment() {
 
     // Constants table
     private val CVI_ = 0.0
+
     //  Corrección del volumen indicado en el RVM, debido a la resolución de la escala
     private val CETM_ = 0.000051
+
     //  Coeficiente de expansión térmico volumétrico para el material del R.V.M.
     private val CETV_ = 0.00015
+
     //  Coeficiente de expansión térmico volumétrico del agua
     private val CCA_ = 0.00000046
+
     //  coeficiente de Compresibilidad del agua
     private val PTR_ = 0.0
     //  Presión en el tanque de recolección
@@ -50,7 +54,7 @@ class FragmentMenu1 : Fragment() {
             ArrayAdapter(requireContext(), R.layout.dropdown_item, listOf("B", "C", "R160"))
         val newOldAdapter =
             ArrayAdapter(requireContext(), R.layout.dropdown_item, listOf("Nuevo", "Usado"))
-        with(binding){
+        with(binding) {
             ddCaliber.setAdapter(caliberAdapter)
             ddMetrological.setAdapter(metrologicalAdapter)
             ddNewOld.setAdapter(newOldAdapter)
@@ -115,14 +119,33 @@ class FragmentMenu1 : Fragment() {
             if (textFieldsCheck()) {
                 toast("Registro guardado")
                 courseModalArrayList!!.add(
-                    CourseModal(
-                        measureProcessQ2(),
-                        "Doggy :v"
-                    )
+                    with(binding) {
+                        CourseModal(
+                            "Imagine dragons photo",
+                            arrayListOf(
+                                tvDate2.editableText.toString(),
+                                tvOperator2.editableText.toString(),
+                                tvUser2.editableText.toString(),
+                                tvLocation2.editableText.toString(),
+                                tvMark2.editableText.toString(),
+                                tvSerial2.editableText.toString(),
+                                ddCaliber.editableText.toString(),
+                                ddMetrological.editableText.toString(),
+                                ddNewOld.editableText.toString()
+                            ),
+                            arrayListOf(
+                                "69","4"
+                            )
+                        )
+                    }
+
                 )
                 // notifying adapter when new data added.
                 // load.saveData()
                 saveData()
+                with(binding) {
+                    toast(tvOperator.toString())
+                }
             } else toast("¡Complete los campos requeridos!")
         }
         binding.btPrint.setOnClickListener {

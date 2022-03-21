@@ -45,4 +45,13 @@
     <string name="resultado">Resultado</string>
     <string name="measure_proofs">Prueba de medidor</string>
     <string name="specifications">Especificaciones</string>
+    <string name="fecha_r">Fecha:</string>
+    <string name="operador_r">Operador:</string>
+    <string name="usuario_r">Usuario:</string>
+    <string name="direcci_n_r">Dirección:</string>
+    <string name="marca_r">Marca:</string>
+    <string name="serial_r">Serial:</string>
+    <string name="calibre_r">Calibre:</string>
+    <string name="clase_metrol_gica_r">Clase metrológica:</string>
+    <string name="estado_r">Estado:</string>
 </resources>

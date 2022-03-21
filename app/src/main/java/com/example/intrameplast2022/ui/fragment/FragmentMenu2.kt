@@ -2,16 +2,15 @@ package com.example.intrameplast2022.ui.fragment
 
 import CourseModal
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.intrameplast2022.MainActivity.Companion.courseModalArrayList
+import com.example.intrameplast2022.R
 import com.example.intrameplast2022.databinding.FragmentMenu2Binding
 import com.example.intrameplast2022.ui.viewmodel.RecordAdapter
 import kotlin.system.exitProcess
@@ -40,10 +39,9 @@ class FragmentMenu2 : Fragment() {
     private fun initRecyclerView() {
         with(binding) {
             rvFilesList.layoutManager = LinearLayoutManager(context)
-            if (courseModalArrayList?.isEmpty()!!){
-                Toast.makeText(context, "Empty list", Toast.LENGTH_SHORT).show()
+            if (courseModalArrayList?.isEmpty()!!) {
                 emptyList.isVisible = true
-            }else{
+            } else {
                 emptyList.isVisible = false
                 rvFilesList.adapter = RecordAdapter(
                     courseModalArrayList!!
@@ -53,7 +51,10 @@ class FragmentMenu2 : Fragment() {
     }
 
     private fun onItemSelected(recordList: CourseModal) {
-        Toast.makeText(context, recordList.courseName, Toast.LENGTH_SHORT).show()
+        val bundle = Bundle()
+        bundle.putStringArrayList("recordSelected", recordList.getBasicInfo())
+        bundle.putStringArrayList("tableSelected", recordList.getTableInfo())
+        findNavController().navigate(R.id.action_fragmentMenu2_to_fragment_report_saved, bundle)
     }
 
 }
