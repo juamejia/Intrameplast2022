@@ -54,4 +54,5 @@
     <string name="calibre_r">Calibre:</string>
     <string name="clase_metrol_gica_r">Clase metrológica:</string>
     <string name="estado_r">Estado:</string>
+    <string name="mediciones">Mediciones</string>
 </resources>
