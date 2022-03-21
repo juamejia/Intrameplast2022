@@ -6,6 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.compose.ui.text.capitalize
+import androidx.compose.ui.text.decapitalize
+import androidx.compose.ui.text.toUpperCase
 import androidx.recyclerview.widget.RecyclerView
 import com.example.intrameplast2022.MainActivity.Companion.courseModalArrayList
 import com.example.intrameplast2022.R
@@ -35,7 +38,7 @@ class RecordAdapter(
         @SuppressLint("SetTextI18n")
         fun render(recordModel: CourseModal, onClickListener: (CourseModal) -> Unit) {
             with(binding) {
-                tvTitle.text = "Operador: ${recordModel.getBasicInfo()[1]}"
+                tvTitle.text = "Operario ${recordModel.getBasicInfo()[1]}"
                 tvDescription.text = "Fecha: ${recordModel.getBasicInfo()[0]}"
                 itemView.setOnClickListener { onClickListener(recordModel) }
             }
