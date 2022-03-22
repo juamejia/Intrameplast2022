@@ -58,5 +58,6 @@
     <string name="resultados">Resultados</string>
     <string name="god_exportation">¡Exportación exitosa!</string>
     <string name="bad_exportation">Error durante la exportación</string>
-    <string name="file_name_txt">Registro de medidor.txt</string>
+    <string name="file_name_txt">Pruebas de medidor.txt</string>
+    <string name="file_name_html">Registro de medidor.html</string>
 </resources>
