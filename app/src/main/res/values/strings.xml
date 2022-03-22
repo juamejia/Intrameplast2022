@@ -16,7 +16,7 @@
     <string name="salir">Salir</string>
     <string name="registros">Registros</string>
     <!--    Exportation text info-->
-    <string name="info_de_exportacion">Al presionar el botón <b>"Exportar"</b> Se creará un archivo <b>.html</b> el cual contendrá todos los registros actuales del dispositivo.<br /> <br />La nueva ubicación de este archivo por defecto será la carpeta <b>Descargas</b> pero puede elegir cualquier otra ruta</string>
+    <string name="info_de_exportacion">Al presionar el botón <b>"Exportar"</b> Se creará un archivo <b>.html</b> el cual contendrá todos los registros actuales del dispositivo.<br /> <br />La nueva ubicación de este archivo por defecto será la carpeta <b>/ Descargas</b>, sin embargo, puede elegir cualquier otra ruta.</string>
     <string name="exportar">Exportar</string>
     <string name="ingrese_registro">Ingrese nombre del registro:</string>
     <string name="fecha">Fecha</string>
