@@ -12,6 +12,7 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
+import com.example.intrameplast2022.MainActivity.Companion.courseModalArrayList
 import com.example.intrameplast2022.R
 import com.example.intrameplast2022.databinding.FragmentHomeBinding
 import com.example.intrameplast2022.databinding.FragmentMenu3Binding
@@ -55,7 +56,11 @@ class FragmentMenu3 : Fragment() {
             val uri = data!!.data
             try {
                 val outputStream = context?.contentResolver?.openOutputStream(uri!!)
-                outputStream?.write("CodeLib File save Demo".toByteArray())
+                // outputStream?.write("CodeLib File save Demo".toByteArray())
+
+                val files: String = courseModalArrayList!!.toString()
+                outputStream?.write(files.toByteArray())
+
                 outputStream?.close()
                 Toast.makeText(context, getString(R.string.god_exportation), Toast.LENGTH_SHORT)
                     .show()
@@ -64,6 +69,10 @@ class FragmentMenu3 : Fragment() {
                 Toast.makeText(context, getString(R.string.bad_exportation), Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun reportsConstructor(){
+
     }
 
 }

@@ -29,6 +29,7 @@ class FragmentReportSaved : Fragment() {
             findNavController().popBackStack()  // Return to the preview fragment
         }
 
+        // Setters
         with(binding) {
             // Basic info
             tvFecha.text = getString(R.string.fecha_r) + " ${getBundleBasicInfo()!![0]}"
@@ -43,8 +44,8 @@ class FragmentReportSaved : Fragment() {
             tvNewOld.text = getString(R.string.estado_r) + " ${getBundleBasicInfo()!![8]}"
             // Table
             tiQ1LI.text = getBundleTable()!![0]
-            tiQ2LI.text= getBundleTable()!![1]
-            tiQ1LF.text= getBundleTable()!![2]
+            tiQ2LI.text = getBundleTable()!![1]
+            tiQ1LF.text = getBundleTable()!![2]
             tiQ2LF.text = getBundleTable()!![3]
             tiQ1Time.text = getBundleTable()!![4]
             tiQ2Time.text = getBundleTable()!![5]
@@ -56,7 +57,6 @@ class FragmentReportSaved : Fragment() {
             tiQ2WorkPressure.text = getBundleTable()!![11]
             tvQ1Process.text = getBundleTable()!![12]
             tvQ2Process.text = getBundleTable()!![13]
-
         }
 
         return binding.root
