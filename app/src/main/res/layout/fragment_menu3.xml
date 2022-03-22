@@ -88,7 +88,7 @@
 
 
     <Button
-        android:id="@+id/bt_ingress"
+        android:id="@+id/bt_export"
         style="@style/Widget.MaterialComponents.Button.Icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

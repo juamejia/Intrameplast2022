@@ -20,7 +20,7 @@ class FragmentHome : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        binding.btIngress.setOnClickListener {
+        binding.btExport.setOnClickListener {
             findNavController().navigate(R.id.action_fragmentHome_to_fragmentHomeMenu)
         }
 

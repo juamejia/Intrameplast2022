@@ -56,4 +56,7 @@
     <string name="estado_r">Estado:</string>
     <string name="mediciones">Mediciones</string>
     <string name="resultados">Resultados</string>
+    <string name="god_exportation">¡Exportación exitosa!</string>
+    <string name="bad_exportation">Error durante la exportación</string>
+    <string name="file_name_txt">Registro de medidor.txt</string>
 </resources>
