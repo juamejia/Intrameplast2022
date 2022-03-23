@@ -345,16 +345,54 @@
                         android:layout_height="wrap_content"
                         android:text="@string/q2"
                         app:layout_constraintEnd_toStartOf="@+id/glt_0.33_vertical2"
+                        app:layout_constraintHorizontal_bias="0.725"
                         app:layout_constraintStart_toEndOf="@+id/glt_0.33_vertical1"
                         app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/text_q1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/aforo_text"
+                        android:textAlignment="center"
+                        android:visibility="invisible"
+                        app:layout_constraintEnd_toEndOf="@+id/bt_q1"
+                        app:layout_constraintStart_toStartOf="@+id/bt_q1"
+                        app:layout_constraintTop_toBottomOf="@+id/bt_q1" />
+
+                    <TextView
+                        android:id="@+id/text_q2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/aforo_text"
+                        android:textAlignment="center"
+                        android:visibility="invisible"
+                        app:layout_constraintEnd_toEndOf="@+id/bt_q2"
+                        app:layout_constraintStart_toStartOf="@+id/bt_q2"
+                        app:layout_constraintTop_toBottomOf="@+id/bt_q2" />
+
+                    <TextView
+                        android:id="@+id/text_photo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="invisible"
+                        android:text="@string/photo_text"
+                        android:textAlignment="center"
+                        android:textColor="@color/green"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="@+id/bt_photo"
+                        app:layout_constraintStart_toStartOf="@+id/bt_photo"
+                        app:layout_constraintTop_toBottomOf="@+id/bt_photo" />
+
                     <!--A single line-->
                     <TextView
+                        android:id="@+id/single_line"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/black_500"
                         android:gravity="center_horizontal"
                         android:textSize="1sp"
-                        app:layout_constraintTop_toBottomOf="@+id/bt_q2"
+                        app:layout_constraintTop_toBottomOf="@+id/text_q2"
                         tools:ignore="SmallSp" />
 
                     <TextView
@@ -368,7 +406,7 @@
                         android:textColor="@color/black_500"
                         app:layout_constraintEnd_toStartOf="@+id/glt_0.33_vertical1"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/bt_photo"
+                        app:layout_constraintTop_toBottomOf="@+id/single_line"
                         tools:ignore="RtlCompat" />
 
                     <TextView
@@ -437,14 +475,14 @@
 
                     <TextView
                         android:id="@+id/tv_result"
-                        android:visibility="invisible"
                         android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:gravity="center_vertical"
                         android:text="@string/resultado"
-                        android:textStyle="bold"
                         android:textAlignment="center"
                         android:textColor="@color/green"
+                        android:textStyle="bold"
+                        android:visibility="invisible"
                         app:layout_constraintEnd_toStartOf="@+id/glt_0.33_vertical1"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tv_p_trabajo"
@@ -500,7 +538,7 @@
                         app:endIconDrawable="@drawable/ic_back_24"
                         app:layout_constraintEnd_toStartOf="@+id/glt_0.33_vertical2"
                         app:layout_constraintStart_toStartOf="@+id/glt_0.33_vertical1"
-                        app:layout_constraintTop_toBottomOf="@+id/bt_q2">
+                        app:layout_constraintTop_toBottomOf="@+id/single_line">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/ti_q2_l_i0"
@@ -627,7 +665,7 @@
                         app:endIconDrawable="@drawable/ic_back_24"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/glt_0.33_vertical2"
-                        app:layout_constraintTop_toBottomOf="@+id/bt_q2">
+                        app:layout_constraintTop_toBottomOf="@+id/single_line">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/ti_q1_l_i0"

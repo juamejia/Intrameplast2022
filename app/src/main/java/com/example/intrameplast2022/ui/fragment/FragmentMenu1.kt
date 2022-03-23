@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -12,11 +13,9 @@ import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.intrameplast2022.MainActivity.Companion.courseModalArrayList
-import com.example.intrameplast2022.MainActivity.Companion.load
 import com.example.intrameplast2022.R
 import com.example.intrameplast2022.databinding.FragmentMenu1Binding
 import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
 import kotlin.math.roundToInt
@@ -51,7 +50,11 @@ class FragmentMenu1 : Fragment() {
         val caliberAdapter =
             ArrayAdapter(requireContext(), R.layout.dropdown_item, listOf("D15", "D20"))
         val metrologicalAdapter =
-            ArrayAdapter(requireContext(), R.layout.dropdown_item, listOf("B", "C", "R160"))
+            ArrayAdapter(
+                requireContext(),
+                R.layout.dropdown_item,
+                listOf("B", "C", "R80", "R160", "R200")
+            )
         val newOldAdapter =
             ArrayAdapter(requireContext(), R.layout.dropdown_item, listOf("Nuevo", "Usado"))
         with(binding) {
@@ -98,6 +101,74 @@ class FragmentMenu1 : Fragment() {
         return binding.root
     }
 
+    private fun aforo(caudal: String): Double {
+        var aforoQ1 = 0.0
+        var aforoQ2 = 0.0
+        var finalQ = 9.99
+
+        with(binding) {
+            ddCaliber.onItemClickListener =
+                AdapterView.OnItemClickListener { adapterView, _, position, _ ->
+                    toast("${adapterView.getItemAtPosition(position)}")
+                    println(ddCaliber.editableText.toString())
+                }
+            ddMetrological.onItemClickListener =
+                AdapterView.OnItemClickListener { adapterView, _, position, _ ->
+                    toast("${adapterView.getItemAtPosition(position)}")
+                }
+
+            // Measure with Q1
+            when (ddCaliber.editableText.toString()) {
+                "D15" -> {
+                    when (ddCaliber.editableText.toString()) {
+                        "R80" -> aforoQ1 = 31.25
+                        "R160" -> aforoQ1 = 15.6
+                        "R200" -> aforoQ1 = 12.5
+                        "B" -> aforoQ1 = 30.0
+                        "C" -> aforoQ1 = 15.0
+                    }
+                }
+                "D20" -> {
+                    when (ddCaliber.editableText.toString()) {
+                        "R80" -> aforoQ1 = 50.0
+                        "R160" -> aforoQ1 = 25.0
+                        "R200" -> aforoQ1 = 20.0
+                        "B" -> aforoQ1 = 30.0
+                        "C" -> aforoQ1 = 15.0
+                    }
+                }
+            }
+            // Measure with Q2
+            when (ddCaliber.editableText.toString()) {
+                "D15" -> {
+                    when (ddCaliber.editableText.toString()) {
+                        "R80" -> aforoQ2 = 50.0
+                        "R160" -> aforoQ2 = 25.0
+                        "R200" -> aforoQ2 = 20.0
+                        "B" -> aforoQ2 = 120.0
+                        "C" -> aforoQ2 = 22.5
+                    }
+                }
+                "D20" -> {
+                    when (ddCaliber.editableText.toString()) {
+                        "R80" -> aforoQ2 = 80.0
+                        "R160" -> aforoQ2 = 40.0
+                        "R200" -> aforoQ2 = 32.0
+                        "B" -> aforoQ2 = 200.0
+                        "C" -> aforoQ2 = 37.5
+                    }
+                }
+            }
+
+        }
+
+        when (caudal) {
+            "Q1" -> finalQ = aforoQ1
+            "Q2" -> finalQ = aforoQ2
+        }
+        return finalQ
+    }
+
     private fun showAlerts() {
         binding.btQ1.setOnClickListener {
             toast("Caudal (1)")
@@ -107,9 +178,6 @@ class FragmentMenu1 : Fragment() {
         }
         binding.btPhoto.setOnClickListener {
             toast("Fotografía")
-            Logger.e("Doggy proofs");
-            Logger.i(courseModalArrayList.toString());
-            //toast(prefs.getResult())
         }
         binding.btReload.setOnClickListener {
             reloadFields()
@@ -151,10 +219,8 @@ class FragmentMenu1 : Fragment() {
                             )
                         )
                     }
-
                 )
                 // notifying adapter when new data added.
-                // load.saveData()
                 saveData()
                 with(binding) {
                     toast(tvOperator.toString())
@@ -186,8 +252,6 @@ class FragmentMenu1 : Fragment() {
     }
 
     private fun reloadFields() { // This function reload all table fields to generate a new measure
-        // Measure basic info
-        // -> Implementation required later
         // Table start
         binding.tiQ1LI0.setText("")
         binding.tiQ2LI0.setText("")
@@ -201,7 +265,6 @@ class FragmentMenu1 : Fragment() {
         binding.tiQ2TEnvironment0.setText("")
         binding.tiQ1WorkPressure0.setText("")
         binding.tiQ2WorkPressure0.setText("")
-        // Table end
     }
 
     private fun measureProcessQ1(): String {
@@ -282,37 +345,6 @@ class FragmentMenu1 : Fragment() {
         // after saving data we are displaying a toast message.
         Toast.makeText(context, "Saved Array List to Shared preferences. ", Toast.LENGTH_SHORT)
             .show()
-    }
-
-    fun loadData() {
-        // method to load arraylist from shared prefs
-        // initializing our shared prefs with name as
-        // shared preferences.
-        val sharedPreferences = context?.getSharedPreferences(
-            "shared preferences",
-            AppCompatActivity.MODE_PRIVATE
-        )
-
-        // creating a variable for gson.
-        val gson = Gson()
-
-        // below line is to get to string present from our
-        // shared prefs if not present setting it as null.
-        val json = sharedPreferences?.getString("courses", null)
-
-        // below line is to get the type of our array list.
-        val type = object : TypeToken<ArrayList<CourseModal?>?>() {}.type
-
-        // in below line we are getting data from gson
-        // and saving it to our array list
-        courseModalArrayList = gson.fromJson<ArrayList<CourseModal>>(json, type)
-
-        // checking below if the array list is empty or not
-        if (courseModalArrayList == null) {
-            // if the array list is empty
-            // creating a new array list.
-            courseModalArrayList = ArrayList<CourseModal>()
-        }
     }
 
 }
