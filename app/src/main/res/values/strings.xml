@@ -62,4 +62,6 @@
     <string name="file_name_html">Registro de medidor.html</string>
     <string name="photo_text">Foto tomada</string>
     <string name="aforo_text"><b>Aforo: </b></string>
+    <string name="required">Campo requerido</string>
+    <string name="required2">¡Campos requeridos!</string>
 </resources>
