@@ -1,6 +1,7 @@
 package com.example.intrameplast2022.ui.fragment
 
 import CourseModal
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -43,6 +44,9 @@ class FragmentMenu1 : Fragment() {
     private val PTR_ = 0.0
     //  Presión en el tanque de recolección
 
+    var temp1 = false
+    var temp2 = false
+
 
     override fun onResume() {
         super.onResume()
@@ -76,7 +80,7 @@ class FragmentMenu1 : Fragment() {
             findNavController().popBackStack() // Return to the preview fragment, in this case, always homeFragment
         }
         Logger.addLogAdapter(AndroidLogAdapter())
-
+        showAlerts()
 
         // Measure observer q1
         binding.tiQ1WorkPressure0.doOnTextChanged { text, start, before, count ->
@@ -97,7 +101,21 @@ class FragmentMenu1 : Fragment() {
                 binding.tvQ2Process.text = getString(R.string.resultado_q2)
             }
         }
-        showAlerts()
+
+        with(binding) {
+
+            ddCaliber.onItemClickListener =
+                AdapterView.OnItemClickListener { _, _, _, _ ->
+                    temp1 = true
+                    aforoCheck()
+                }
+            ddMetrological.onItemClickListener =
+                AdapterView.OnItemClickListener { _, _, _, _ ->
+                    temp2 = true
+                    aforoCheck()
+                }
+        }
+
         return binding.root
     }
 
@@ -107,55 +125,51 @@ class FragmentMenu1 : Fragment() {
         var finalQ = 9.99
 
         with(binding) {
-            ddCaliber.onItemClickListener =
-                AdapterView.OnItemClickListener { adapterView, _, position, _ ->
-                    toast("${adapterView.getItemAtPosition(position)}")
-                    println(ddCaliber.editableText.toString())
-                }
-            ddMetrological.onItemClickListener =
-                AdapterView.OnItemClickListener { adapterView, _, position, _ ->
-                    toast("${adapterView.getItemAtPosition(position)}")
-                }
 
-            // Measure with Q1
+            // Measure with Q1 and Q2
             when (ddCaliber.editableText.toString()) {
-                "D15" -> {
-                    when (ddCaliber.editableText.toString()) {
-                        "R80" -> aforoQ1 = 31.25
-                        "R160" -> aforoQ1 = 15.6
-                        "R200" -> aforoQ1 = 12.5
-                        "B" -> aforoQ1 = 30.0
-                        "C" -> aforoQ1 = 15.0
+                "D15" -> when (ddMetrological.editableText.toString()) {
+                    "R80" -> {
+                        aforoQ1 = 31.25
+                        aforoQ2 = 50.0
+                    }
+                    "R160" -> {
+                        aforoQ1 = 15.6
+                        aforoQ2 = 25.0
+                    }
+                    "R200" -> {
+                        aforoQ1 = 12.5
+                        aforoQ2 = 20.0
+                    }
+                    "B" -> {
+                        aforoQ1 = 30.0
+                        aforoQ2 = 120.0
+                    }
+                    "C" -> {
+                        aforoQ1 = 15.0
+                        aforoQ2 = 22.5
                     }
                 }
-                "D20" -> {
-                    when (ddCaliber.editableText.toString()) {
-                        "R80" -> aforoQ1 = 50.0
-                        "R160" -> aforoQ1 = 25.0
-                        "R200" -> aforoQ1 = 20.0
-                        "B" -> aforoQ1 = 30.0
-                        "C" -> aforoQ1 = 15.0
+                "D20" -> when (ddMetrological.editableText.toString()) {
+                    "R80" -> {
+                        aforoQ1 = 50.0
+                        aforoQ2 = 80.0
                     }
-                }
-            }
-            // Measure with Q2
-            when (ddCaliber.editableText.toString()) {
-                "D15" -> {
-                    when (ddCaliber.editableText.toString()) {
-                        "R80" -> aforoQ2 = 50.0
-                        "R160" -> aforoQ2 = 25.0
-                        "R200" -> aforoQ2 = 20.0
-                        "B" -> aforoQ2 = 120.0
-                        "C" -> aforoQ2 = 22.5
+                    "R160" -> {
+                        aforoQ1 = 25.0
+                        aforoQ2 = 40.0
                     }
-                }
-                "D20" -> {
-                    when (ddCaliber.editableText.toString()) {
-                        "R80" -> aforoQ2 = 80.0
-                        "R160" -> aforoQ2 = 40.0
-                        "R200" -> aforoQ2 = 32.0
-                        "B" -> aforoQ2 = 200.0
-                        "C" -> aforoQ2 = 37.5
+                    "R200" -> {
+                        aforoQ1 = 20.0
+                        aforoQ2 = 32.0
+                    }
+                    "B" -> {
+                        aforoQ1 = 50.0
+                        aforoQ2 = 200.0
+                    }
+                    "C" -> {
+                        aforoQ1 = 25.0
+                        aforoQ2 = 37.5
                     }
                 }
             }
@@ -169,6 +183,20 @@ class FragmentMenu1 : Fragment() {
         return finalQ
     }
 
+    @SuppressLint("SetTextI18n")
+    private fun aforoCheck() {
+        if (temp1 && temp2) {
+            with(binding) {
+                textQ1.text = getString(R.string.aforo_text) + aforo("Q1")
+                textQ2.text = getString(R.string.aforo_text) + aforo("Q2")
+                textQ1.visibility = View.VISIBLE
+                textQ2.visibility = View.VISIBLE
+            }
+
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
     private fun showAlerts() {
         binding.btQ1.setOnClickListener {
             toast("Caudal (1)")
@@ -178,6 +206,7 @@ class FragmentMenu1 : Fragment() {
         }
         binding.btPhoto.setOnClickListener {
             toast("Fotografía")
+            println(binding.ddCaliber.editableText.toString())
         }
         binding.btReload.setOnClickListener {
             reloadFields()
