@@ -318,7 +318,6 @@ class FragmentMenu1 : Fragment() {
         }
         binding.btReload.setOnClickListener {
             reloadFields()
-            toast("Recargado")
         }
         binding.btSave.setOnClickListener { // Show logged info
             if (textFieldsCheck()) {
@@ -359,9 +358,6 @@ class FragmentMenu1 : Fragment() {
                 )
                 // notifying adapter when new data added.
                 saveData()
-                with(binding) {
-                    toast(tvOperator.toString())
-                }
             } else toast("¡Complete los campos requeridos!")
         }
         binding.btPrint.setOnClickListener {
@@ -434,7 +430,6 @@ class FragmentMenu1 : Fragment() {
     }
 
     private fun toast(text: String) {
-        // To use Toast inside fragment replace this by context
         Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
     }
 
@@ -466,8 +461,6 @@ class FragmentMenu1 : Fragment() {
         editor?.apply()
 
         // after saving data we are displaying a toast message.
-        Toast.makeText(context, "Saved Array List to Shared preferences. ", Toast.LENGTH_SHORT)
-            .show()
     }
 
 }
