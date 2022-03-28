@@ -1,6 +1,7 @@
 package com.example.intrameplast2022
 
 import CourseModal
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -15,6 +16,8 @@ class MainActivity : AppCompatActivity() {
 
     companion object{ // Todos podrán acceder a este método con companion object
         lateinit var prefs: Prefs
+        @SuppressLint("StaticFieldLeak")
+        lateinit var printer: Printer
         lateinit var load: MainActivity
         var courseModalArrayList: ArrayList<CourseModal>? = null
     }
