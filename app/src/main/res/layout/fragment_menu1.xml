@@ -375,11 +375,11 @@
                         android:id="@+id/text_photo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:visibility="invisible"
                         android:text="@string/photo_text"
                         android:textAlignment="center"
                         android:textColor="@color/green"
                         android:textStyle="bold"
+                        android:visibility="invisible"
                         app:layout_constraintEnd_toEndOf="@+id/bt_photo"
                         app:layout_constraintStart_toStartOf="@+id/bt_photo"
                         app:layout_constraintTop_toBottomOf="@+id/bt_photo" />
@@ -796,19 +796,6 @@
                 app:layout_constraintTop_toBottomOf="@id/cv_main"
                 tools:ignore="SmallSp" />
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/bt_print"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:clickable="true"
-                android:theme="@style/Widget.AppCompat.Button"
-                android:tint="#00FFEB3B"
-                app:backgroundTint="@color/grey"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/bt_save"
-                app:layout_constraintTop_toBottomOf="@+id/cv_main"
-                app:srcCompat="@drawable/ic_print_24" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/bt_save"
@@ -820,8 +807,7 @@
                 android:tint="#00FFEB3B"
                 app:backgroundTint="@color/grey"
 
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/gl_0.33_vertical2"
                 app:layout_constraintTop_toBottomOf="@+id/cv_main"
                 app:srcCompat="@drawable/ic_save_24" />
 
@@ -834,8 +820,7 @@
                 android:theme="@style/Widget.AppCompat.Button"
                 android:tint="#00FFEB3B"
                 app:backgroundTint="@color/grey"
-                app:layout_constraintEnd_toStartOf="@+id/bt_save"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/gl_0.33_vertical1"
                 app:layout_constraintTop_toBottomOf="@+id/cv_main"
                 app:srcCompat="@drawable/ic_reload_24" />
 

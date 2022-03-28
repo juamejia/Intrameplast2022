@@ -34,7 +34,6 @@ android {
     }
 }
 
-
 dependencies {
     // Core Libs
     implementation 'androidx.core:core-ktx:1.7.0'
@@ -76,6 +75,13 @@ dependencies {
     implementation 'com.orhanobut:logger:2.2.0'
 
     // Thermal printer
-    implementation 'com.github.dantsu:escpos-thermalprinter-android:2.0.11'
+    //implementation 'com.github.dantsu:escpos-thermalprinter-android:2.0.11'
+    implementation 'com.github.DantSu:ESCPOS-ThermalPrinter-Android:3.1.2'
 
+}
+
+allprojects {
+    repositories {
+        maven { url 'https://jitpack.io' }
+    }
 }

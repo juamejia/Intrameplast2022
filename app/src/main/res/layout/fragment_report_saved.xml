@@ -511,6 +511,21 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/bt_print"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:clickable="true"
+                android:layout_gravity="center"
+                android:theme="@style/Widget.AppCompat.Button"
+                android:tint="#00FFEB3B"
+                app:backgroundTint="@color/grey"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/bt_save"
+                app:layout_constraintTop_toBottomOf="@+id/cv_main"
+                app:srcCompat="@drawable/ic_print_24" />
+
             <!--A single line-->
             <TextView
                 android:layout_width="match_parent"
@@ -521,6 +536,8 @@
                 android:textSize="1sp"
                 app:layout_constraintTop_toBottomOf="@id/cv_main"
                 tools:ignore="SmallSp" />
+
+
 
 
         </androidx.appcompat.widget.LinearLayoutCompat>

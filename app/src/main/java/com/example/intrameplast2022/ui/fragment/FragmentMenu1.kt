@@ -368,10 +368,6 @@ class FragmentMenu1 : Fragment() {
                 saveData()
             } else toast("¡Complete los campos requeridos!")
         }
-        binding.btPrint.setOnClickListener {
-            textFieldsCheck()
-            toast("Imprimir")
-        }
     }
 
     private fun textFieldsCheck(): Boolean {
