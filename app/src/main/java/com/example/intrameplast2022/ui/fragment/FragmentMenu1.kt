@@ -121,7 +121,11 @@ class FragmentMenu1 : Fragment() {
                     q1WPressure = text.toString().toDoubleOrNull() ?: 0.0
                     q1_0 = true
                     measureQ1Check()
-                    if (!temp1) {
+                    if (textQ1.visibility == View.VISIBLE) {
+                        tvCaliber.error = null
+                        tvMetrologicalClass.error = null
+
+                    }else {
                         tvCaliber.error = " "
                         tvMetrologicalClass.error = getString(R.string.required2)
                     }
@@ -161,7 +165,11 @@ class FragmentMenu1 : Fragment() {
                     q2WPressure = text.toString().toDoubleOrNull() ?: 0.0
                     q2_0 = true
                     measureQ2Check()
-                    if (!temp1) {
+                    if (textQ2.visibility == View.VISIBLE) {
+                        tvCaliber.error = null
+                        tvMetrologicalClass.error = null
+
+                    }else {
                         tvCaliber.error = " "
                         tvMetrologicalClass.error = getString(R.string.required2)
                     }
