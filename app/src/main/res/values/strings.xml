@@ -64,4 +64,5 @@
     <string name="aforo_text"><b>Aforo: </b></string>
     <string name="required">Campo requerido</string>
     <string name="required2">¡Campos requeridos!</string>
+    <string name="print_not_connected">No se ha detectado impresora</string>
 </resources>

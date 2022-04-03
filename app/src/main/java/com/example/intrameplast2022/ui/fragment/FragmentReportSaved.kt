@@ -1,22 +1,34 @@
 package com.example.intrameplast2022.ui.fragment
 
-import CourseModal
 import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.intrameplast2022.MainActivity.Companion.printer
+import com.dantsu.escposprinter.EscPosPrinter
+import com.dantsu.escposprinter.connection.bluetooth.BluetoothPrintersConnections
 import com.example.intrameplast2022.Printer
 import com.example.intrameplast2022.R
 import com.example.intrameplast2022.databinding.FragmentReportSavedBinding
+import java.text.DateFormat
+import java.text.NumberFormat
+import java.text.SimpleDateFormat
+import java.util.*
 import kotlin.system.exitProcess
 
 class FragmentReportSaved : Fragment() {
 
     private lateinit var binding: FragmentReportSavedBinding
+
+    // Thermal printer
+
+    private val locale = Locale("id", "ID")
+    private val df: DateFormat = SimpleDateFormat("dd-MMM-yyyy hh:mm:ss a", locale)
+    private val nf = NumberFormat.getCurrencyInstance(locale)
 
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
@@ -62,7 +74,7 @@ class FragmentReportSaved : Fragment() {
         }
 
         binding.btPrint.setOnClickListener {
-            printer.doPrint()
+            doPrint()
         }
 
         return binding.root
@@ -75,6 +87,42 @@ class FragmentReportSaved : Fragment() {
 
     private fun getBundleTable(): ArrayList<String>? {
         return arguments?.get("tableSelected") as ArrayList<String>?
+    }
+
+    fun doPrint() {
+        try {
+            val connection = BluetoothPrintersConnections.selectFirstPaired()
+            if (connection != null) {
+                val printer = EscPosPrinter(connection, 203, 48f, 32)
+                val text = "[L]\n" +
+                        "[L]" + df.format(Date()) + "\n" +
+                        "[C]================================\n" +
+                        "[L]<b>Effective Java</b>\n" +
+                        "[L]    1 pcs[R]" + nf.format(25000) + "\n" +
+                        "[L]<b>Headfirst Android Development</b>\n" +
+                        "[L]    1 pcs[R]" + nf.format(45000) + "\n" +
+                        "[L]<b>The Martian</b>\n" +
+                        "[L]    1 pcs[R]" + nf.format(20000) + "\n" +
+                        "[C]--------------------------------\n" +
+                        "[L]TOTAL[R]" + nf.format(90000) + "\n" +
+                        "[L]DISCOUNT 15%[R]" + nf.format(13500) + "\n" +
+                        "[L]TAX 10%[R]" + nf.format(7650) + "\n" +
+                        "[L]<b>GRAND TOTAL[R]" + nf.format(84150) + "</b>\n" +
+                        "[C]--------------------------------\n" +
+                        "[C]<barcode type='ean13' height='10'>202105160005</barcode>\n" +
+                        "[C]--------------------------------\n" +
+                        "[C]Thanks For Shopping\n" +
+                        "[C]https://kodejava.org\n" +
+                        "[L]\n" +
+                        "[L]<qrcode>https://kodejava.org</qrcode>\n"
+                printer.printFormattedText(text)
+            } else {
+                Toast.makeText(context, getString(R.string.print_not_connected), Toast.LENGTH_SHORT).show()
+            }
+
+        } catch (e: Exception) {
+            Log.e("APP", "Can't print", e)
+        }
     }
 
 }

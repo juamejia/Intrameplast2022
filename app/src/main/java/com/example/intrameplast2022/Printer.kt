@@ -16,10 +16,8 @@ import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
-class Printer (context: Context) {
+class Printer () {
     val PERMISSION_BLUETOOTH = 1
-
-    val context = context
 
     private val locale = Locale("id", "ID")
     private val df: DateFormat = SimpleDateFormat("dd-MMM-yyyy hh:mm:ss a", locale)
@@ -27,12 +25,10 @@ class Printer (context: Context) {
 
     fun doPrint() {
         try {
-
             val connection = BluetoothPrintersConnections.selectFirstPaired()
             if (connection != null) {
                 val printer = EscPosPrinter(connection, 203, 48f, 32)
-                val text = "[C]<img>"  + "</img>\n" +
-                        "[L]\n" +
+                val text = "[L]\n" +
                         "[L]" + df.format(Date()) + "\n" +
                         "[C]================================\n" +
                         "[L]<b>Effective Java</b>\n" +
@@ -55,11 +51,12 @@ class Printer (context: Context) {
                         "[L]<qrcode>https://kodejava.org</qrcode>\n"
                 printer.printFormattedText(text)
             } else {
-                Toast.makeText(context, "No printer was connected!", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(context, "No printer was connected!", Toast.LENGTH_SHORT).show()
             }
 
         } catch (e: Exception) {
             Log.e("APP", "Can't print", e)
         }
     }
+
 }
