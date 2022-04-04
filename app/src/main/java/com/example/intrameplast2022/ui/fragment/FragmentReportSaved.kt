@@ -94,12 +94,24 @@ class FragmentReportSaved : Fragment() {
             val connection = BluetoothPrintersConnections.selectFirstPaired()
             if (connection != null) {
                 val printer = EscPosPrinter(connection, 203, 48f, 32)
-                val text = "[L]\n" +
-                        "[L]" + df.format(Date()) + "\n" +
+                val text =
+                        "[C]<b>Prueba de medidor</b>\n" +
+                        "[C]--------------------------------\n" +
+                        "[L]Fecha: ${getBundleBasicInfo()!![0]}\n" +
+                        "[L]Operador: ${getBundleBasicInfo()!![1]}\n" +
+                        "[L]Usuario: ${getBundleBasicInfo()!![2]}\n" +
+                        "[L]Dirección: ${getBundleBasicInfo()!![3]}\n" +
                         "[C]================================\n" +
-                        "[L]<b>Effective Java</b>\n" +
-                        "[L]    1 pcs[R]" + nf.format(25000) + "\n" +
-                        "[L]<b>Headfirst Android Development</b>\n" +
+                        "[C]<b>Especificaciones</b>\n" +
+                        "[L]Marca: ${getBundleBasicInfo()!![4]}\n" +
+                        "[L]Serial: ${getBundleBasicInfo()!![5]}\n" +
+                        "[L]Calibre: ${getBundleBasicInfo()!![6]}\n" +
+                        "[L]Clase metrológica: ${getBundleBasicInfo()!![7]}\n" +
+                        "[L]Estado: ${getBundleBasicInfo()!![8]}\n" +
+
+
+                        "[L]    <b>MEDICIONES[R]Q1[R]Q2</b>" + "\n" +
+                        "[L]    Lectura inicial <b>[L]</b>\n" +
                         "[L]    1 pcs[R]" + nf.format(45000) + "\n" +
                         "[L]<b>The Martian</b>\n" +
                         "[L]    1 pcs[R]" + nf.format(20000) + "\n" +

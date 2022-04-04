@@ -19,6 +19,9 @@ import com.example.intrameplast2022.databinding.FragmentMenu1Binding
 import com.google.gson.Gson
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
 import kotlin.math.roundToInt
 import kotlin.system.exitProcess
 
@@ -69,6 +72,10 @@ class FragmentMenu1 : Fragment() {
     var q2ProofTime = 0.0
 
 
+    private val locale = Locale("id", "ID")
+    private val df: DateFormat = SimpleDateFormat("dd/MM/yyyy", locale)
+
+
     override fun onResume() {
         super.onResume()
         // Dropdown settings
@@ -104,6 +111,8 @@ class FragmentMenu1 : Fragment() {
         showAlerts()
 
         with(binding) {
+            // Auto date field
+            tvDate2.setText(df.format(Date()))
             // Aforos setter
             ddCaliber.onItemClickListener =
                 AdapterView.OnItemClickListener { _, _, _, _ ->
@@ -207,6 +216,12 @@ class FragmentMenu1 : Fragment() {
         }
 
         return binding.root
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        binding.progressBar.visibility = View.GONE
+        binding.nestedScrollView.visibility = View.VISIBLE
+        super.onActivityCreated(savedInstanceState)
     }
 
     @SuppressLint("SetTextI18n")
@@ -322,7 +337,6 @@ class FragmentMenu1 : Fragment() {
         }
         binding.btPhoto.setOnClickListener {
             toast("Fotografía")
-            println(binding.ddCaliber.editableText.toString())
         }
         binding.btReload.setOnClickListener {
             reloadFields()
