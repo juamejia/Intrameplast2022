@@ -50,12 +50,13 @@ class FragmentReportSaved : Fragment() {
             tvOperador.text = getString(R.string.operador_r) + " ${getBundleBasicInfo()!![1]}"
             tvUsuario.text = getString(R.string.usuario_r) + " ${getBundleBasicInfo()!![2]}"
             tvDireccion.text = getString(R.string.direcci_n_r) + " ${getBundleBasicInfo()!![3]}"
-            tvMark.text = getString(R.string.marca_r) + " ${getBundleBasicInfo()!![4]}"
-            tvSerial.text = getString(R.string.serial_r) + " ${getBundleBasicInfo()!![5]}"
-            tvCaliber.text = getString(R.string.calibre_r) + " ${getBundleBasicInfo()!![6]}"
+            tvNContrato.text = getString(R.string.n_contrato_r) + " ${getBundleBasicInfo()!![4]}"
+            tvMark.text = getString(R.string.marca_r) + " ${getBundleBasicInfo()!![5]}"
+            tvSerial.text = getString(R.string.serial_r) + " ${getBundleBasicInfo()!![6]}"
+            tvCaliber.text = getString(R.string.calibre_r) + " ${getBundleBasicInfo()!![7]}"
             tvMetrologicalClass.text =
-                getString(R.string.clase_metrol_gica_r) + " ${getBundleBasicInfo()!![7]}"
-            tvNewOld.text = getString(R.string.estado_r) + " ${getBundleBasicInfo()!![8]}"
+                getString(R.string.clase_metrol_gica_r) + " ${getBundleBasicInfo()!![8]}"
+            tvNewOld.text = getString(R.string.estado_r) + " ${getBundleBasicInfo()!![9]}"
             // Table
             tiQ1LI.text = getBundleTable()!![0]
             tiQ2LI.text = getBundleTable()!![1]
@@ -89,7 +90,7 @@ class FragmentReportSaved : Fragment() {
         return arguments?.get("tableSelected") as ArrayList<String>?
     }
 
-    fun doPrint() {
+    private fun doPrint() {
         try {
             val connection = BluetoothPrintersConnections.selectFirstPaired()
             if (connection != null) {
@@ -101,32 +102,32 @@ class FragmentReportSaved : Fragment() {
                         "[L]Operador: ${getBundleBasicInfo()!![1]}\n" +
                         "[L]Usuario: ${getBundleBasicInfo()!![2]}\n" +
                         "[L]Dirección: ${getBundleBasicInfo()!![3]}\n" +
+                        "[L]Número de contrato: ${getBundleBasicInfo()!![4]}\n" +
                         "[C]================================\n" +
                         "[C]<b>Especificaciones</b>\n" +
-                        "[L]Marca: ${getBundleBasicInfo()!![4]}\n" +
-                        "[L]Serial: ${getBundleBasicInfo()!![5]}\n" +
-                        "[L]Calibre: ${getBundleBasicInfo()!![6]}\n" +
-                        "[L]Clase metrológica: ${getBundleBasicInfo()!![7]}\n" +
-                        "[L]Estado: ${getBundleBasicInfo()!![8]}\n" +
+                        "[L]Marca: ${getBundleBasicInfo()!![5]}\n" +
+                        "[L]Serial: ${getBundleBasicInfo()!![6]}\n" +
+                        "[L]Calibre: ${getBundleBasicInfo()!![7]}\n" +
+                        "[L]Clase metrológica: ${getBundleBasicInfo()!![8]}\n" +
+                        "[L]Estado: ${getBundleBasicInfo()!![9]}\n\n" +
 
 
-                        "[L]    <b>MEDICIONES[R]Q1[R]Q2</b>" + "\n" +
-                        "[L]    Lectura inicial <b>[L]</b>\n" +
-                        "[L]    1 pcs[R]" + nf.format(45000) + "\n" +
-                        "[L]<b>The Martian</b>\n" +
-                        "[L]    1 pcs[R]" + nf.format(20000) + "\n" +
-                        "[C]--------------------------------\n" +
-                        "[L]TOTAL[R]" + nf.format(90000) + "\n" +
-                        "[L]DISCOUNT 15%[R]" + nf.format(13500) + "\n" +
-                        "[L]TAX 10%[R]" + nf.format(7650) + "\n" +
-                        "[L]<b>GRAND TOTAL[R]" + nf.format(84150) + "</b>\n" +
-                        "[C]--------------------------------\n" +
-                        "[C]<barcode type='ean13' height='10'>202105160005</barcode>\n" +
-                        "[C]--------------------------------\n" +
-                        "[C]Thanks For Shopping\n" +
-                        "[C]https://kodejava.org\n" +
-                        "[L]\n" +
-                        "[L]<qrcode>https://kodejava.org</qrcode>\n"
+                        "[L]    <b>MEDICIONES[R]Q2[R]Q1</b>" + "\n" +
+                                "<b>----------------------------------</b>\n" +
+                        "[L]Lectura" + "\n" + "inicial <b>(L)</b>" + "[R]${getBundleTable()!![1]}[R]${getBundleTable()!![0]}\n" +
+                                "----------------------------------\n" +
+                        "[L]Lectura" + "\n" + "final <b>(L)</b>" + "[R]${getBundleTable()!![3]}[R]${getBundleTable()!![2]}\n" +
+                                "----------------------------------\n" +
+                        "[L]Tiempo <b>(Seg)</b>" + "[R]${getBundleTable()!![5]}[R]${getBundleTable()!![4]}\n" +
+                                "----------------------------------\n" +
+                        "[L]Temp" + "\n" + "agua <b>(C)</b>" + "[R]${getBundleTable()!![7]}[R]${getBundleTable()!![6]}\n" +
+                                "----------------------------------\n" +
+                        "[L]Temp" + "\n" + "ambiente <b>(C)</b>" + "[R]${getBundleTable()!![9]}[R]${getBundleTable()!![8]}\n" +
+                                "----------------------------------\n" +
+                        "[L]Presión de" + "\n" + "trabajo <b>(Kpa)</b>" + "[R]${getBundleTable()!![11]}[R]${getBundleTable()!![10]}\n" +
+                                "----------------------------------\n" +
+                        "[L]<b>Resultados" + "[R]${getBundleTable()!![13]}[R]${getBundleTable()!![12]}</b>\n"+
+                                "[L]\n"
                 printer.printFormattedText(text)
             } else {
                 Toast.makeText(context, getString(R.string.print_not_connected), Toast.LENGTH_SHORT).show()

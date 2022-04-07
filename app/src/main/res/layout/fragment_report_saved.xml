@@ -108,6 +108,11 @@
                     style="@style/simpleText"
                     android:text="@string/direcci_n_r" />
 
+                <TextView
+                    android:id="@+id/tv_n_contrato"
+                    style="@style/simpleText"
+                    android:text="@string/n_contrato_r" />
+
             </LinearLayout>
 
             <TextView

@@ -22,6 +22,7 @@
     <string name="fecha">Fecha</string>
     <string name="operador">Operador</string>
     <string name="direccion">Dirección</string>
+    <string name="n_contrato">Número de contrato</string>
     <string name="usuario">Usuario</string>
     <string name="marca">Marca</string>
     <string name="serial">Serial</string>
@@ -49,6 +50,7 @@
     <string name="operador_r">Operador:</string>
     <string name="usuario_r">Usuario:</string>
     <string name="direcci_n_r">Dirección:</string>
+    <string name="n_contrato_r">Número de contrato:</string>
     <string name="marca_r">Marca:</string>
     <string name="serial_r">Serial:</string>
     <string name="calibre_r">Calibre:</string>

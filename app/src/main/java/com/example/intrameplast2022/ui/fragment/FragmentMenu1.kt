@@ -353,6 +353,7 @@ class FragmentMenu1 : Fragment() {
                                 tvOperator2.editableText.toString().uppercase(),
                                 tvUser2.editableText.toString().uppercase(),
                                 tvLocation2.editableText.toString().uppercase(),
+                                tvContract2.editableText.toString(),
                                 tvMark2.editableText.toString().uppercase(),
                                 tvSerial2.editableText.toString(),
                                 ddCaliber.editableText.toString(),
