@@ -16,10 +16,11 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/iv_photo"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/ic_background2_large"
+            tools:background="@drawable/ic_background2_large"
+            android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -37,7 +38,7 @@
             android:textColor="#212121"
             android:textSize="22sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintStart_toEndOf="@+id/iv_photo"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Operario Ruben Bladez" />
 

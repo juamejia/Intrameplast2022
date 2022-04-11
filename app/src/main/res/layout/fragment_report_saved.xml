@@ -74,12 +74,14 @@
                 android:background="@android:color/black" />
 
             <ImageView
+                android:id="@+id/iv_photo"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_gravity="center"
                 android:layout_margin="20dp"
                 android:contentDescription="@string/foto"
-                android:scaleType="centerInside"
+                android:scaleType="centerCrop"
+                app:layout_constraintDimensionRatio="1:1"
                 tools:background="@drawable/ic_background2_large" />
 
             <LinearLayout

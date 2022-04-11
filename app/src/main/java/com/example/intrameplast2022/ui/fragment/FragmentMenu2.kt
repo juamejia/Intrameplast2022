@@ -1,6 +1,8 @@
 package com.example.intrameplast2022.ui.fragment
 
 import CourseModal
+import android.graphics.Bitmap
+import android.os.BaseBundle
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -52,6 +54,7 @@ class FragmentMenu2 : Fragment() {
 
     private fun onItemSelected(recordList: CourseModal) {
         val bundle = Bundle()
+        bundle.putString("recordPhoto", recordList.getPhoto())
         bundle.putStringArrayList("recordSelected", recordList.getBasicInfo())
         bundle.putStringArrayList("tableSelected", recordList.getTableInfo())
         findNavController().navigate(R.id.action_fragmentMenu2_to_fragment_report_saved, bundle)

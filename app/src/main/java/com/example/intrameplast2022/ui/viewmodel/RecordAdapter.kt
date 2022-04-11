@@ -2,6 +2,9 @@ package com.example.intrameplast2022.ui.viewmodel
 
 import CourseModal
 import android.annotation.SuppressLint
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,6 +41,10 @@ class RecordAdapter(
         @SuppressLint("SetTextI18n")
         fun render(recordModel: CourseModal, onClickListener: (CourseModal) -> Unit) {
             with(binding) {
+                val imageBytes2 = Base64.decode(recordModel.getPhoto(), Base64.DEFAULT)
+                val decodedImage = BitmapFactory.decodeByteArray(imageBytes2, 0, imageBytes2.size)
+
+                ivPhoto.setImageBitmap(decodedImage)
                 tvTitle.text = "Operario ${recordModel.getBasicInfo()[1]}"
                 tvDescription.text = "Fecha: ${recordModel.getBasicInfo()[0]}"
                 itemView.setOnClickListener { onClickListener(recordModel) }

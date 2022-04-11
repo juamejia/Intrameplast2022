@@ -1,7 +1,10 @@
 package com.example.intrameplast2022.ui.fragment
 
 import android.annotation.SuppressLint
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.util.Base64
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +14,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.dantsu.escposprinter.EscPosPrinter
 import com.dantsu.escposprinter.connection.bluetooth.BluetoothPrintersConnections
-import com.example.intrameplast2022.Printer
 import com.example.intrameplast2022.R
 import com.example.intrameplast2022.databinding.FragmentReportSavedBinding
 import java.text.DateFormat
@@ -19,6 +21,7 @@ import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.system.exitProcess
+
 
 class FragmentReportSaved : Fragment() {
 
@@ -45,6 +48,8 @@ class FragmentReportSaved : Fragment() {
 
         // Setters
         with(binding) {
+            // Set photo
+            ivPhoto.setImageBitmap(getBundlePhoto())
             // Basic info
             tvFecha.text = getString(R.string.fecha_r) + " ${getBundleBasicInfo()!![0]}"
             tvOperador.text = getString(R.string.operador_r) + " ${getBundleBasicInfo()!![1]}"
@@ -79,6 +84,11 @@ class FragmentReportSaved : Fragment() {
         }
 
         return binding.root
+    }
+
+    private fun getBundlePhoto(): Bitmap {
+        val imageBytes = Base64.decode(arguments?.get("recordPhoto") as String, Base64.DEFAULT)
+        return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
     }
 
     private fun getBundleBasicInfo(): ArrayList<String>? {

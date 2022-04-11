@@ -1,3 +1,7 @@
+import android.content.Intent.getIntent
+import android.graphics.Bitmap
+
+
 data class CourseModal     // creating constructor for our variables.
     (// creating getter and setter methods.
     // variables for our course
@@ -7,7 +11,8 @@ data class CourseModal     // creating constructor for our variables.
     val tableInfo: ArrayList<String>
 
 ) {
-    fun getPhoto(): Any?{
+    @JvmName("getPhoto1")
+    fun getPhoto(): String {
         return photo
     }
 

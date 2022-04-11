@@ -2,7 +2,14 @@ package com.example.intrameplast2022.ui.fragment
 
 import CourseModal
 import android.annotation.SuppressLint
+import android.app.Activity.RESULT_OK
+import android.content.Intent
+import android.graphics.Bitmap
+import android.util.Base64
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.provider.MediaStore
+import android.util.Base64.encodeToString
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,6 +26,7 @@ import com.example.intrameplast2022.databinding.FragmentMenu1Binding
 import com.google.gson.Gson
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
+import java.io.ByteArrayOutputStream
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -26,9 +34,13 @@ import kotlin.math.roundToInt
 import kotlin.system.exitProcess
 
 
+@Suppress("DEPRECATION")
 class FragmentMenu1 : Fragment() {
 
     private lateinit var binding: FragmentMenu1Binding
+    val REQUEST_IMAGE_CAPTURE = 1
+    lateinit var imageBitmap: Bitmap
+    lateinit var imageString: String
 
     // Constants table
     private val CVI_ = 0.0
@@ -102,6 +114,8 @@ class FragmentMenu1 : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentMenu1Binding.inflate(inflater, container, false)
+        // Image default loader
+        imageBitmap = BitmapFactory.decodeResource(resources, R.drawable.ic_background1_large)
         // Back and Exit buttons, always the same in all fragments
         binding.btExit.setOnClickListener { exitProcess(0) }
         binding.btBack.setOnClickListener {
@@ -134,7 +148,7 @@ class FragmentMenu1 : Fragment() {
                         tvCaliber.error = null
                         tvMetrologicalClass.error = null
 
-                    }else {
+                    } else {
                         tvCaliber.error = " "
                         tvMetrologicalClass.error = getString(R.string.required2)
                     }
@@ -178,7 +192,7 @@ class FragmentMenu1 : Fragment() {
                         tvCaliber.error = null
                         tvMetrologicalClass.error = null
 
-                    }else {
+                    } else {
                         tvCaliber.error = " "
                         tvMetrologicalClass.error = getString(R.string.required2)
                     }
@@ -336,7 +350,9 @@ class FragmentMenu1 : Fragment() {
             toast("Caudal (2)")
         }
         binding.btPhoto.setOnClickListener {
-            toast("Fotografía")
+            dispatchTakePictureIntent()
+            binding.ivPhoto.visibility = View.VISIBLE
+            binding.textPhoto.visibility = View.VISIBLE
         }
         binding.btReload.setOnClickListener {
             reloadFields()
@@ -347,7 +363,7 @@ class FragmentMenu1 : Fragment() {
                 courseModalArrayList!!.add(
                     with(binding) {
                         CourseModal(
-                            "Imagine dragons photo",
+                            imageString,
                             arrayListOf(
                                 tvDate2.editableText.toString(),
                                 tvOperator2.editableText.toString().uppercase(),
@@ -382,6 +398,30 @@ class FragmentMenu1 : Fragment() {
                 // notifying adapter when new data added.
                 saveData()
             } else toast("¡Complete los campos requeridos!")
+        }
+    }
+
+    private fun dispatchTakePictureIntent() {
+        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
+            context?.let {
+                takePictureIntent.resolveActivity(it.packageManager)?.also {
+                    startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+                }
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            imageBitmap = data?.extras?.get("data") as Bitmap
+
+            val byteArrayOutputStream = ByteArrayOutputStream()
+            imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)
+            val imageBytes: ByteArray = byteArrayOutputStream.toByteArray()
+            imageString = encodeToString(imageBytes, Base64.DEFAULT)
+
+
+            binding.ivPhoto.setImageBitmap(imageBitmap)
         }
     }
 
