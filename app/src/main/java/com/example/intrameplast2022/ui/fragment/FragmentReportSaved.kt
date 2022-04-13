@@ -69,14 +69,16 @@ class FragmentReportSaved : Fragment() {
             tiQ2LF.text = getBundleTable()!![3]
             tiQ1Time.text = getBundleTable()!![4]
             tiQ2Time.text = getBundleTable()!![5]
-            tiQ1TWater.text = getBundleTable()!![6]
-            tiQ2TWater.text = getBundleTable()!![7]
-            tiQ1TEnvironment.text = getBundleTable()!![8]
-            tiQ2TEnvironment.text = getBundleTable()!![9]
-            tiQ1WorkPressure.text = getBundleTable()!![10]
-            tiQ2WorkPressure.text = getBundleTable()!![11]
-            tvQ1Process.text = getBundleTable()!![12]
-            tvQ2Process.text = getBundleTable()!![13]
+            tiQ1AforoR.text = getBundleTable()!![6]
+            tiQ2AfaroR.text = getBundleTable()!![7]
+            tiQ1TWater.text = getBundleTable()!![8]
+            tiQ2TWater.text = getBundleTable()!![9]
+            tiQ1TEnvironment.text = getBundleTable()!![10]
+            tiQ2TEnvironment.text = getBundleTable()!![11]
+            tiQ1WorkPressure.text = getBundleTable()!![12]
+            tiQ2WorkPressure.text = getBundleTable()!![13]
+            tvQ1Process.text = getBundleTable()!![14]
+            tvQ2Process.text = getBundleTable()!![15]
         }
 
         binding.btPrint.setOnClickListener {
@@ -130,13 +132,15 @@ class FragmentReportSaved : Fragment() {
                                 "----------------------------------\n" +
                         "[L]Tiempo <b>(Seg)</b>" + "[R]${getBundleTable()!![5]}[R]${getBundleTable()!![4]}\n" +
                                 "----------------------------------\n" +
-                        "[L]Temp" + "\n" + "agua <b>(C)</b>" + "[R]${getBundleTable()!![7]}[R]${getBundleTable()!![6]}\n" +
+                        "[L]Aforo " + "\n" + "real <b>(Seg)</b>" + "[R]${getBundleTable()!![7]}[R]${getBundleTable()!![6]}\n" +
+                        "----------------------------------\n" +
+                        "[L]Temp" + "\n" + "agua <b>(C)</b>" + "[R]${getBundleTable()!![9]}[R]${getBundleTable()!![8]}\n" +
                                 "----------------------------------\n" +
-                        "[L]Temp" + "\n" + "ambiente <b>(C)</b>" + "[R]${getBundleTable()!![9]}[R]${getBundleTable()!![8]}\n" +
+                        "[L]Temp" + "\n" + "ambiente <b>(C)</b>" + "[R]${getBundleTable()!![11]}[R]${getBundleTable()!![10]}\n" +
                                 "----------------------------------\n" +
-                        "[L]Presión de" + "\n" + "trabajo <b>(Kpa)</b>" + "[R]${getBundleTable()!![11]}[R]${getBundleTable()!![10]}\n" +
+                        "[L]Presión de" + "\n" + "trabajo <b>(Kpa)</b>" + "[R]${getBundleTable()!![13]}[R]${getBundleTable()!![12]}\n" +
                                 "----------------------------------\n" +
-                        "[L]<b>Resultados" + "[R]${getBundleTable()!![13]}[R]${getBundleTable()!![12]}</b>\n"+
+                        "[L]<b>Resultados" + "[R]${getBundleTable()!![15]}[R]${getBundleTable()!![14]}</b>\n"+
                                 "[L]\n"
                 printer.printFormattedText(text)
             } else {

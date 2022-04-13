@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.example.intrameplast2022.databinding.FragmentHomeBinding
 import com.example.intrameplast2022.databinding.FragmentMenu4Binding
 import kotlin.system.exitProcess
 

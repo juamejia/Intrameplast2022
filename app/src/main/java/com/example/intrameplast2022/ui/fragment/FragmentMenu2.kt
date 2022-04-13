@@ -1,8 +1,6 @@
 package com.example.intrameplast2022.ui.fragment
 
 import CourseModal
-import android.graphics.Bitmap
-import android.os.BaseBundle
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View

@@ -82,7 +82,7 @@
                 android:contentDescription="@string/foto"
                 android:scaleType="centerCrop"
                 app:layout_constraintDimensionRatio="1:1"
-                tools:background="@drawable/ic_background2_large" />
+                tools:background="@drawable/ic_background1_large" />
 
             <LinearLayout
                 android:id="@+id/basic_info"
@@ -265,6 +265,18 @@
                     tools:ignore="RtlCompat" />
 
                 <TextView
+                    android:id="@+id/tv_aforo_real"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/aforo_real"
+                    android:textAlignment="center"
+                    app:layout_constraintEnd_toStartOf="@+id/glt_0.33_vertical1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_tiempo"
+                    tools:ignore="RtlCompat" />
+
+                <TextView
                     android:id="@+id/tv_Tepm_agua"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
@@ -274,7 +286,7 @@
                     android:textColor="@color/black_500"
                     app:layout_constraintEnd_toStartOf="@+id/glt_0.33_vertical1"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_tiempo"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_aforo_real"
                     tools:ignore="RtlCompat" />
 
                 <TextView
@@ -399,7 +411,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/ti_q2_l_f" />
 
                 <TextView
-                    android:id="@+id/ti_q2_t_water"
+                    android:id="@+id/ti_q2_afaro_r"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
                     android:layout_marginEnd="5dp"
@@ -410,6 +422,19 @@
                     app:layout_constraintEnd_toStartOf="@+id/glt_0.33_vertical2"
                     app:layout_constraintStart_toStartOf="@+id/glt_0.33_vertical1"
                     app:layout_constraintTop_toBottomOf="@+id/ti_q2_time" />
+
+                <TextView
+                    android:id="@+id/ti_q2_t_water"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="5dp"
+                    android:background="@drawable/line"
+                    android:gravity="center"
+                    android:padding="0dp"
+                    android:textAlignment="center"
+                    app:layout_constraintEnd_toStartOf="@+id/glt_0.33_vertical2"
+                    app:layout_constraintStart_toStartOf="@+id/glt_0.33_vertical1"
+                    app:layout_constraintTop_toBottomOf="@+id/ti_q2_afaro_r" />
 
                 <TextView
                     android:id="@+id/ti_q2_t_environment"
@@ -478,6 +503,19 @@
                     app:layout_constraintTop_toBottomOf="@+id/ti_q2_l_f" />
 
                 <TextView
+                    android:id="@+id/ti_q1_aforo_r"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="5dp"
+                    android:background="@drawable/line"
+                    android:gravity="center"
+                    android:padding="0dp"
+                    android:textAlignment="center"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/glt_0.33_vertical2"
+                    app:layout_constraintTop_toBottomOf="@+id/ti_q1_time" />
+
+                <TextView
                     android:id="@+id/ti_q1_t_water"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
@@ -488,7 +526,7 @@
                     android:textAlignment="center"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/glt_0.33_vertical2"
-                    app:layout_constraintTop_toBottomOf="@+id/ti_q2_time" />
+                    app:layout_constraintTop_toBottomOf="@+id/ti_q1_aforo_r" />
 
                 <TextView
                     android:id="@+id/ti_q1_t_environment"

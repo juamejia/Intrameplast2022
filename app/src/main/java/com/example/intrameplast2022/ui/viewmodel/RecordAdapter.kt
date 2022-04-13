@@ -2,18 +2,12 @@ package com.example.intrameplast2022.ui.viewmodel
 
 import CourseModal
 import android.annotation.SuppressLint
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.compose.ui.text.capitalize
-import androidx.compose.ui.text.decapitalize
-import androidx.compose.ui.text.toUpperCase
 import androidx.recyclerview.widget.RecyclerView
-import com.example.intrameplast2022.MainActivity.Companion.courseModalArrayList
 import com.example.intrameplast2022.R
 import com.example.intrameplast2022.databinding.ItemRecordBinding
 

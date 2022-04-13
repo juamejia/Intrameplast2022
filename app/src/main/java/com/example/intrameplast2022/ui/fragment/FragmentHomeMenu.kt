@@ -39,10 +39,6 @@ class FragmentHomeMenu : Fragment() {
             findNavController().navigate(R.id.action_fragmentHomeMenu_to_fragmentMenu3)
         }
 
-        binding.bt4Print.setOnClickListener {
-            findNavController().navigate(R.id.action_fragmentHomeMenu_to_fragmentMenu4)
-        }
-
         return binding.root
     }
 

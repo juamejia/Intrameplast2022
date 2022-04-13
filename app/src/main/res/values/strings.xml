@@ -10,7 +10,7 @@
     <string name="laboratorio_movil">Laboratorio móvil</string>
     <string name="menu_principal">Menú principal</string>
     <string name="prueba_de_medidor">Prueba de medidor</string>
-    <string name="revisar_registros">Revisar registros</string>
+    <string name="revisar_registros">Revisar e imprimir registros</string>
     <string name="exportar_registros">Exportar registros</string>
     <string name="imprimir">Imprimir</string>
     <string name="salir">Salir</string>
@@ -37,13 +37,14 @@
     <!--    Measures table-->
     <string name="lectura_final_l">Lectura final <br /> <b>[L]</b></string>
     <string name="tiempo_seg">Tiempo <br /> <b>[Seg]</b></string>
+    <string name="aforo_real">Aforo real <br /> <b>[L]</b></string>
     <string name="temp_agua_c">Temp agua <br /> <b>[Cº]</b></string>
     <string name="temp_ambiente_c">Temp ambiente <br /> <b>[Cº]</b></string>
     <string name="presi_n_de_trabajo_kpa">Presión de trabajo <br /> <b>[Kpa]</b></string>
     <string name="lectura_inicial_l">Lectura inicial <br /> <b>[L]</b></string>
     <string name="resultado_q2">Resultado Q2</string>
     <string name="resultado_q1">Resultado Q1</string>
-    <string name="resultado">Resultado</string>
+    <string name="resultado">Resultado:\n</string>
     <string name="measure_proofs">Prueba de medidor</string>
     <string name="specifications">Especificaciones</string>
     <string name="fecha_r">Fecha:</string>
@@ -63,8 +64,10 @@
     <string name="file_name_txt">Pruebas de medidor.txt</string>
     <string name="file_name_html">Registro de medidor.html</string>
     <string name="photo_text">Foto tomada</string>
-    <string name="aforo_text"><b>Aforo: </b></string>
+    <string name="aforo_text"><b>Caudal: </b></string>
     <string name="required">Campo requerido</string>
     <string name="required2">¡Campos requeridos!</string>
     <string name="print_not_connected">No se ha detectado impresora</string>
+    <string name="aprobado">Aprobado</string>
+    <string name="rechazado">Rechazado</string>
 </resources>

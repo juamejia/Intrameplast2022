@@ -17,6 +17,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -26,6 +27,9 @@ import com.example.intrameplast2022.databinding.FragmentMenu1Binding
 import com.google.gson.Gson
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.io.ByteArrayOutputStream
 import java.text.DateFormat
 import java.text.SimpleDateFormat
@@ -41,6 +45,9 @@ class FragmentMenu1 : Fragment() {
     val REQUEST_IMAGE_CAPTURE = 1
     lateinit var imageBitmap: Bitmap
     lateinit var imageString: String
+
+    var requireQ1 = false
+    var requireQ2 = false
 
     // Constants table
     private val CVI_ = 0.0
@@ -66,22 +73,26 @@ class FragmentMenu1 : Fragment() {
     var q1_2 = false
     var q1_3 = false
     var q1_4 = false
+    var q1_5 = false
     var q1WPressure = 0.1           //  Presión de trabajo
     var q1Water = 0.0               //  Temp agua
     var q1FinalR = 0.0              //  Lectura final
     var q1InitialR = 0.0            //  Lectura inicial
     var q1ProofTime = 0.0           //  Tiempo
+    var q1AforoReal = 0.0           //  Aforo real
 
     var q2_0 = false
     var q2_1 = false
     var q2_2 = false
     var q2_3 = false
     var q2_4 = false
+    var q2_5 = false
     var q2WPressure = 0.1
     var q2Water = 0.0
     var q2FinalR = 0.0
     var q2InitialR = 0.0
     var q2ProofTime = 0.0
+    var q2AforoReal = 0.0
 
 
     private val locale = Locale("id", "ID")
@@ -92,7 +103,7 @@ class FragmentMenu1 : Fragment() {
         super.onResume()
         // Dropdown settings
         val caliberAdapter =
-            ArrayAdapter(requireContext(), R.layout.dropdown_item, listOf("D15", "D20"))
+            ArrayAdapter(requireContext(), R.layout.dropdown_item, listOf("DN15", "DN20"))
         val metrologicalAdapter =
             ArrayAdapter(
                 requireContext(),
@@ -116,6 +127,14 @@ class FragmentMenu1 : Fragment() {
         binding = FragmentMenu1Binding.inflate(inflater, container, false)
         // Image default loader
         imageBitmap = BitmapFactory.decodeResource(resources, R.drawable.ic_background1_large)
+        val byteArrayOutputStream = ByteArrayOutputStream()
+
+        CoroutineScope(Dispatchers.IO).launch {
+            imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)
+            val imageBytes: ByteArray = byteArrayOutputStream.toByteArray()
+            imageString = encodeToString(imageBytes, Base64.DEFAULT)
+        }
+
         // Back and Exit buttons, always the same in all fragments
         binding.btExit.setOnClickListener { exitProcess(0) }
         binding.btBack.setOnClickListener {
@@ -182,6 +201,13 @@ class FragmentMenu1 : Fragment() {
                     measureQ1Check()
                 }
             }
+            tiQ1AforoR0.doOnTextChanged { text, start, before, count ->
+                if (!text.isNullOrEmpty()) {
+                    q1AforoReal = text.toString().toDoubleOrNull() ?: 0.0
+                    q1_5 = true
+                    measureQ1Check()
+                }
+            }
             // Q2 auto setter
             tiQ2WorkPressure0.doOnTextChanged { text, start, before, count ->
                 if (!text.isNullOrEmpty()) {
@@ -226,8 +252,16 @@ class FragmentMenu1 : Fragment() {
                     measureQ2Check()
                 }
             }
+            tiQ2AfaroR0.doOnTextChanged { text, start, before, count ->
+                if (!text.isNullOrEmpty()) {
+                    q2AforoReal = text.toString().toDoubleOrNull() ?: 0.0
+                    q2_5 = true
+                    measureQ2Check()
+                }
+            }
 
         }
+
 
         return binding.root
     }
@@ -239,29 +273,75 @@ class FragmentMenu1 : Fragment() {
     }
 
     @SuppressLint("SetTextI18n")
-    private fun measureQ1Check() {
+    private fun allFieldschecked() {
         with(binding) {
-            if (q1_0 && q1_1 && q1_2 && q1_3 && q1_4 && temp1) {
-                tvQ1Process.text = measureProcessQ1()
+            if (requireQ1 && requireQ2) {
+
+                tvResult.text = "${getString(R.string.resultado)}${NewMeter()}"
+
+                if (NewMeter().contains("Aprobado")) {
+                    tvResult.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
+                } else {
+                    tvResult.setTextColor(ContextCompat.getColor(requireContext(), R.color.red_500))
+                }
+
                 tvResult.visibility = View.VISIBLE
+
             } else {
-                tvQ1Process.text = getString(R.string.resultado_q2)
                 tvResult.visibility = View.GONE
             }
         }
     }
 
     @SuppressLint("SetTextI18n")
-    private fun measureQ2Check() {
+    private fun measureQ1Check() {
+        allFieldschecked()
         with(binding) {
-            if (q2_0 && q2_1 && q2_2 && q2_3 && q2_4 && temp2) {
-                binding.tvQ2Process.text = measureProcessQ2()
-                tvResult.visibility = View.VISIBLE
+            if (q1_0 && q1_1 && q1_2 && q1_3 && q1_4 && q1_5 && temp1) {
+                tvQ1Process.text = measureProcessQ1()
+                requireQ1 = true
+                allFieldschecked()
             } else {
-                binding.tvQ2Process.text = getString(R.string.resultado_q2)
-                tvResult.visibility = View.GONE
+                tvQ1Process.text = getString(R.string.resultado_q2)
+                requireQ1 = false
             }
         }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun measureQ2Check() {
+        allFieldschecked()
+        with(binding) {
+            if (q2_0 && q2_1 && q2_2 && q2_3 && q2_4 && q2_5 && temp2) {
+                tvQ2Process.text = measureProcessQ2()
+                requireQ2 = true
+                allFieldschecked()
+            } else {
+                tvQ2Process.text = getString(R.string.resultado_q2)
+                requireQ2 = false
+            }
+        }
+    }
+
+    private fun NewMeter(): String {
+        val resultQ1 = binding.tvQ1Process.text.toString().toDouble()
+        val resultQ2 = binding.tvQ2Process.text.toString().toDouble()
+        var checkQ1 = false
+        var checkQ2 = false
+
+        when (binding.ddNewOld.editableText.toString()) {
+            "Nuevo" -> {
+                checkQ1 = resultQ1 <= 5 && resultQ1 >= -5
+                checkQ2 = resultQ2 <= 2 && resultQ2 >= -2
+            }
+            "Usado" -> {
+                checkQ1 = resultQ1 <= 10 && resultQ1 >= -10
+                checkQ2 = resultQ2 <= 4 && resultQ2 >= -4
+            }
+        }
+        return if (checkQ1 && checkQ2) {
+            getString(R.string.aprobado)
+        } else getString(R.string.rechazado)
     }
 
     private fun aforo(caudal: String): Double {
@@ -273,7 +353,7 @@ class FragmentMenu1 : Fragment() {
 
             // Measure with Q1 and Q2
             when (ddCaliber.editableText.toString()) {
-                "D15" -> when (ddMetrological.editableText.toString()) {
+                "DN15" -> when (ddMetrological.editableText.toString()) {
                     "R80" -> {
                         aforoQ1 = 31.25
                         aforoQ2 = 50.0
@@ -295,7 +375,7 @@ class FragmentMenu1 : Fragment() {
                         aforoQ2 = 22.5
                     }
                 }
-                "D20" -> when (ddMetrological.editableText.toString()) {
+                "DN20" -> when (ddMetrological.editableText.toString()) {
                     "R80" -> {
                         aforoQ1 = 50.0
                         aforoQ2 = 80.0
@@ -345,6 +425,7 @@ class FragmentMenu1 : Fragment() {
     private fun showAlerts() {
         binding.btQ1.setOnClickListener {
             toast("Caudal (1)")
+            allFieldschecked()
         }
         binding.btQ2.setOnClickListener {
             toast("Caudal (2)")
@@ -383,6 +464,8 @@ class FragmentMenu1 : Fragment() {
                                 tiQ2LF0.text.toString(),
                                 tiQ1Time0.text.toString(),
                                 tiQ2Time0.text.toString(),
+                                tiQ1AforoR0.text.toString(),
+                                tiQ2AfaroR0.text.toString(),
                                 tiQ1TWater0.text.toString(),
                                 tiQ2TWater0.text.toString(),
                                 tiQ1TEnvironment0.text.toString(),
@@ -411,7 +494,11 @@ class FragmentMenu1 : Fragment() {
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    override fun onActivityResult(
+        requestCode: Int,
+        resultCode: Int,
+        data: Intent?
+    ) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             imageBitmap = data?.extras?.get("data") as Bitmap
 
@@ -445,47 +532,54 @@ class FragmentMenu1 : Fragment() {
 
     private fun reloadFields() { // This function reload all table fields to generate a new measure
         // Table start
-        binding.tiQ1LI0.setText("")
-        binding.tiQ2LI0.setText("")
-        binding.tiQ1LF0.setText("")
-        binding.tiQ2LF0.setText("")
-        binding.tiQ1Time0.setText("")
-        binding.tiQ2Time0.setText("")
-        binding.tiQ1TWater0.setText("")
-        binding.tiQ2TWater0.setText("")
-        binding.tiQ1TEnvironment0.setText("")
-        binding.tiQ2TEnvironment0.setText("")
-        binding.tiQ1WorkPressure0.setText("")
-        binding.tiQ2WorkPressure0.setText("")
+        with(binding) {
+            tiQ1LI0.setText("")
+            tiQ2LI0.setText("")
+            tiQ1LF0.setText("")
+            tiQ2LF0.setText("")
+            tiQ1Time0.setText("")
+            tiQ2Time0.setText("")
+            tiQ1AforoR0.setText("")
+            tiQ2AfaroR0.setText("")
+            tiQ1TWater0.setText("")
+            tiQ2TWater0.setText("")
+            tiQ1TEnvironment0.setText("")
+            tiQ2TEnvironment0.setText("")
+            tiQ1WorkPressure0.setText("")
+            tiQ2WorkPressure0.setText("")
+        }
     }
 
     private fun measureProcessQ1(): String {
-        // val aforo = 99.9
-        val aforo = aforo("Q1")
+        val caudal = aforo("Q1")
 
         // Measure Q1
+        var aforoCalculado =
+            (q1AforoReal + CVI_) * (1 + CETM_ * (q1Water - 20)) * (1 + CETV_ * (20 - q1Water)) * (1 + CCA_ * (q1WPressure - PTR_))
 
-        var vCorregQ1 =
-            (aforo + CVI_) * (1 + CETM_ * (q1Water - 20)) * (1 + CETV_ * (20 - q1Water) * (1 + CCA_ * (q1WPressure - PTR_))) // to code review
+        val q1CaudalReal =
+            (aforoCalculado / q1ProofTime) * 3600       // Consult functionality
+        println(q1CaudalReal)
+        val errorQ1 =
+            (((q1FinalR - q1InitialR) - aforoCalculado) / aforoCalculado) * 100
 
-        val realFlowQ1 = (vCorregQ1 / q1ProofTime) * 3600       // Consult functionality
-        val errorQ1 = (((q1FinalR - q1InitialR) - vCorregQ1) / vCorregQ1) * 100
         return ((errorQ1 * 100.0).roundToInt() / 100.0).toString() // To return double with 3 decimal digits only
-
     }
 
     private fun measureProcessQ2(): String {
-        // val aforo = 9.99
-        val aforo = aforo("Q2")
+        val caudal = aforo("Q2")
 
         // Measure Q2
-        var vCorregQ2 =
-            (aforo + CVI_) * (1 + CETM_ * (q2Water - 20)) * (1 + CETV_ * (20 - q2Water) * (1 + CCA_ * (q2WPressure - PTR_))) // to code review
+        var aforoCalculado =
+            (q2AforoReal + CVI_) * (1 + CETM_ * (q2Water - 20)) * (1 + CETV_ * (20 - q2Water)) * (1 + CCA_ * (q2WPressure - PTR_))
 
-        val realFlowQ2 = (vCorregQ2 / q2ProofTime) * 3600       // Consult functionality
-        val errorQ2 = (((q2FinalR - q2InitialR) - vCorregQ2) / vCorregQ2) * 100
-        return ((errorQ2 * 100.0).roundToInt() / 100.0).toString()
+        val q2CaudalReal =
+            (aforoCalculado / q2ProofTime) * 3600       // Consult functionality
+        println(aforoCalculado)
+        val errorQ2 =
+            (((q2FinalR - q2InitialR) - aforoCalculado) / aforoCalculado) * 100
 
+        return ((errorQ2 * 100.0).roundToInt() / 100.0).toString() // To return double with 3 decimal digits only
     }
 
     private fun toast(text: String) {
