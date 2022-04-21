@@ -29,14 +29,18 @@
             android:id="@+id/action_fragmentHomeMenu_to_fragmentMenu3"
             app:destination="@id/fragmentMenu3" />
         <action
-            android:id="@+id/action_fragmentHomeMenu_to_fragmentMenu4"
-            app:destination="@id/fragmentMenu4" />
+            android:id="@+id/action_fragmentHomeMenu_to_fragmentHome"
+            app:destination="@id/fragmentHome" />
     </fragment>
     <fragment
         android:id="@+id/fragmentMenu1"
         android:name="com.example.intrameplast2022.ui.fragment.FragmentMenu1"
         android:label="fragment_menu1"
-        tools:layout="@layout/fragment_menu1" />
+        tools:layout="@layout/fragment_menu1" >
+        <action
+            android:id="@+id/action_fragmentMenu1_to_fragmentMenu1New"
+            app:destination="@id/fragmentMenu1New" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentMenu2"
         android:name="com.example.intrameplast2022.ui.fragment.FragmentMenu2"
@@ -52,13 +56,17 @@
         android:label="fragment_menu3"
         tools:layout="@layout/fragment_menu3" />
     <fragment
-        android:id="@+id/fragmentMenu4"
-        android:name="com.example.intrameplast2022.ui.fragment.FragmentMenu4"
-        android:label="fragment_menu4"
-        tools:layout="@layout/fragment_menu4" />
-    <fragment
         android:id="@+id/fragment_report_saved"
         android:name="com.example.intrameplast2022.ui.fragment.FragmentReportSaved"
         android:label="fragment_report_saved"
         tools:layout="@layout/fragment_report_saved" />
+    <fragment
+        android:id="@+id/fragmentMenu1New"
+        android:name="com.example.intrameplast2022.ui.fragment.fragmentMenu1New"
+        android:label="fragment_menu1_new"
+        tools:layout="@layout/fragment_menu1_new" >
+        <action
+            android:id="@+id/action_fragmentMenu1New_to_fragmentHomeMenu"
+            app:destination="@id/fragmentHomeMenu" />
+    </fragment>
 </navigation>

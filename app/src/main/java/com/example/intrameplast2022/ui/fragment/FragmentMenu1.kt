@@ -137,6 +137,9 @@ class FragmentMenu1 : Fragment() {
 
         // Back and Exit buttons, always the same in all fragments
         binding.btExit.setOnClickListener { exitProcess(0) }
+        binding.btChange.setOnClickListener{
+            findNavController().navigate(R.id.action_fragmentMenu1_to_fragmentMenu1New)
+        }
         binding.btBack.setOnClickListener {
             findNavController().popBackStack() // Return to the preview fragment, in this case, always homeFragment
         }
@@ -166,10 +169,11 @@ class FragmentMenu1 : Fragment() {
                     if (textQ1.visibility == View.VISIBLE) {
                         tvCaliber.error = null
                         tvMetrologicalClass.error = null
-
+                        tvNewOld.error = null
                     } else {
                         tvCaliber.error = " "
                         tvMetrologicalClass.error = getString(R.string.required2)
+                        tvNewOld.error = " "
                     }
                 }
             }
@@ -217,10 +221,11 @@ class FragmentMenu1 : Fragment() {
                     if (textQ2.visibility == View.VISIBLE) {
                         tvCaliber.error = null
                         tvMetrologicalClass.error = null
-
+                        tvNewOld.error = null
                     } else {
                         tvCaliber.error = " "
                         tvMetrologicalClass.error = getString(R.string.required2)
+                        tvNewOld.error = " "
                     }
                 }
             }
@@ -259,16 +264,12 @@ class FragmentMenu1 : Fragment() {
                     measureQ2Check()
                 }
             }
-
         }
-
 
         return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
-        binding.progressBar.visibility = View.GONE
-        binding.nestedScrollView.visibility = View.VISIBLE
         super.onActivityCreated(savedInstanceState)
     }
 
@@ -281,8 +282,10 @@ class FragmentMenu1 : Fragment() {
 
                 if (NewMeter().contains("Aprobado")) {
                     tvResult.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
+                    binding.btChange.visibility = View.GONE
                 } else {
                     tvResult.setTextColor(ContextCompat.getColor(requireContext(), R.color.red_500))
+                    binding.btChange.visibility = View.VISIBLE
                 }
 
                 tvResult.visibility = View.VISIBLE
@@ -425,6 +428,7 @@ class FragmentMenu1 : Fragment() {
     private fun showAlerts() {
         binding.btQ1.setOnClickListener {
             toast("Caudal (1)")
+
             allFieldschecked()
         }
         binding.btQ2.setOnClickListener {

@@ -24,7 +24,7 @@ class FragmentHomeMenu : Fragment() {
         binding.btExit.setOnClickListener { exitProcess(0) }
 
         binding.btBack.setOnClickListener{
-            findNavController().popBackStack() // Return to the preview fragment, in this case, always homeFragment
+            findNavController().navigate(R.id.action_fragmentHomeMenu_to_fragmentHome) // Return to the preview fragment, in this case, always homeFragment
         }
 
         binding.bt1Proof.setOnClickListener {

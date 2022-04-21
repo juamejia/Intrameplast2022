@@ -70,4 +70,6 @@
     <string name="print_not_connected">No se ha detectado impresora</string>
     <string name="aprobado">Aprobado</string>
     <string name="rechazado">Rechazado</string>
+    <string name="new_meter">Nuevo medidor</string>
+    <string name="change">Cambio</string>
 </resources>
