@@ -74,5 +74,5 @@
     <string name="change">Cambio</string>
     <string name="aforo_calculado">Aforo calculado:</string>
     <string name="kind">Tipo</string>
-    <string name="caudal">Caudal</string>
+    <string name="caudal">Mediciones</string>
 </resources>
