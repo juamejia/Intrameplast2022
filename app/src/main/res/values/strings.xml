@@ -38,8 +38,8 @@
     <string name="lectura_final_l">Lectura final <br /> <b>[L]</b></string>
     <string name="tiempo_seg">Tiempo <br /> <b>[Seg]</b></string>
     <string name="aforo_real">Aforo real <br /> <b>[L]</b></string>
-    <string name="temp_agua_c">Temp agua <br /> <b>[Cº]</b></string>
-    <string name="temp_ambiente_c">Temp ambiente <br /> <b>[Cº]</b></string>
+    <string name="temp_agua_c">Temperatura del agua <br /> <b>[Cº]</b></string>
+    <string name="temp_ambiente_c">Temperatura ambiente <br /> <b>[Cº]</b></string>
     <string name="presi_n_de_trabajo_kpa">Presión de trabajo <br /> <b>[Kpa]</b></string>
     <string name="lectura_inicial_l">Lectura inicial <br /> <b>[L]</b></string>
     <string name="resultado_q2">Resultado Q2</string>
@@ -72,4 +72,7 @@
     <string name="rechazado">Rechazado</string>
     <string name="new_meter">Nuevo medidor</string>
     <string name="change">Cambio</string>
+    <string name="aforo_calculado">Aforo calculado:</string>
+    <string name="kind">Tipo</string>
+    <string name="caudal">Caudal</string>
 </resources>

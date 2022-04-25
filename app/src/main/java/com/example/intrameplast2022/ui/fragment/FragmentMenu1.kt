@@ -110,11 +110,15 @@ class FragmentMenu1 : Fragment() {
                 R.layout.dropdown_item,
                 listOf("B", "C", "R80", "R160", "R200")
             )
+        val kindAdapter =
+            ArrayAdapter(requireContext(), R.layout.dropdown_item, listOf("Vol", "Vel"))
         val newOldAdapter =
             ArrayAdapter(requireContext(), R.layout.dropdown_item, listOf("Nuevo", "Usado"))
+
         with(binding) {
             ddCaliber.setAdapter(caliberAdapter)
             ddMetrological.setAdapter(metrologicalAdapter)
+            ddKind.setAdapter(kindAdapter)
             ddNewOld.setAdapter(newOldAdapter)
         }
     }
