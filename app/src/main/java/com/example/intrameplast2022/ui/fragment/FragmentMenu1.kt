@@ -504,7 +504,6 @@ class FragmentMenu1 : Fragment() {
     }
 
     private fun reloadFields() { // This function reload all table fields to generate a new measure
-        // Table start
         with(binding) {
             tiQ1LI0.setText("")
             tiQ2LI0.setText("")
@@ -515,10 +514,9 @@ class FragmentMenu1 : Fragment() {
             tiQ1AforoR0.setText("")
             tiQ2AfaroR0.setText("")
             tiQ1TWater0.setText("")
-            //tiQ2TWater0.setText("")
             tiQ1TEnvironment0.setText("")
-            //tiQ2TEnvironment0.setText("")
             tiQ1WorkPressure0.setText("")
+            tiRH0.setText("")
         }
     }
 
