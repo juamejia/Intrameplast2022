@@ -136,7 +136,16 @@ class FragmentMenu1 : Fragment() {
         // Back and Exit buttons, always the same in all fragments
         binding.btExit.setOnClickListener { exitProcess(0) }
         binding.btChange.setOnClickListener {
-            findNavController().navigate(R.id.action_fragmentMenu1_to_fragmentMenu1New)
+            //findNavController().navigate(R.id.action_fragmentMenu1_to_fragmentMenu1New)
+            with(binding){
+                cvMain.visibility = View.GONE
+                cvNewMeter.visibility = View.VISIBLE
+                tiQ2LI0TableNew.setText(tiQ2LI0.text.toString())
+                tiQ1LI0TableNew.setText(tiQ1LI0.text.toString())
+
+            }
+            binding.cvMain.visibility = View.GONE
+            binding.cvNewMeter.visibility = View.VISIBLE
         }
         binding.btBack.setOnClickListener {
             findNavController().popBackStack() // Return to the preview fragment, in this case, always homeFragment
