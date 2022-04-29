@@ -142,7 +142,6 @@ class FragmentMenu1 : Fragment() {
                 cvNewMeter.visibility = View.VISIBLE
                 tiQ2LI0TableNew.setText(tiQ2LI0.text.toString())
                 tiQ1LI0TableNew.setText(tiQ1LI0.text.toString())
-
             }
             binding.cvMain.visibility = View.GONE
             binding.cvNewMeter.visibility = View.VISIBLE
