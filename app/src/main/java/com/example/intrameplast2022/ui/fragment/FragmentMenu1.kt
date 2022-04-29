@@ -137,14 +137,26 @@ class FragmentMenu1 : Fragment() {
         binding.btExit.setOnClickListener { exitProcess(0) }
         binding.btChange.setOnClickListener {
             //findNavController().navigate(R.id.action_fragmentMenu1_to_fragmentMenu1New)
-            with(binding){
+            with(binding) {
                 cvMain.visibility = View.GONE
                 cvNewMeter.visibility = View.VISIBLE
                 tiQ2LI0TableNew.setText(tiQ2LI0.text.toString())
                 tiQ1LI0TableNew.setText(tiQ1LI0.text.toString())
+                ddNewOld.setText("Nuevo")   // Set the new value new to NewOld
+                ddNewOld.isEnabled = false
+                btChange.visibility = View.GONE
+                btCancelNewMeter.visibility = View.VISIBLE
+                cvMain.visibility = View.GONE
+                cvNewMeter.visibility = View.VISIBLE
             }
-            binding.cvMain.visibility = View.GONE
-            binding.cvNewMeter.visibility = View.VISIBLE
+        }
+        binding.btCancelNewMeter.setOnClickListener {
+            with(binding) {
+                cvMain.visibility = View.VISIBLE
+                cvNewMeter.visibility = View.GONE
+                btCancelNewMeter.visibility = View.GONE
+                ddNewOld.isEnabled = true
+            }
         }
         binding.btBack.setOnClickListener {
             findNavController().popBackStack() // Return to the preview fragment, in this case, always homeFragment
@@ -216,7 +228,7 @@ class FragmentMenu1 : Fragment() {
                     q1AforoReal = text.toString().toDoubleOrNull() ?: 0.1
                     q1_5 = true
                     measureQ1Check()
-                }else q1AforoReal = 0.1
+                } else q1AforoReal = 0.1
             }
             // Q2 auto setter
             tiQ2LF0.doOnTextChanged { text, start, before, count ->
