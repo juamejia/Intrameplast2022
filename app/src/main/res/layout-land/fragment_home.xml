@@ -11,7 +11,7 @@
         android:id="@+id/cv_main"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="-30dp"
+        android:layout_marginTop="-45dp"
         android:layout_marginBottom="12dp"
         app:cardCornerRadius="50dp"
         app:contentPadding="0dp"
@@ -20,32 +20,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-
-
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:foregroundGravity="center"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_background1_large" />
-
-        <TextView android:id="@+id/txt_example1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="40sp"
-            android:textStyle="bold"
-            android:textColor="@color/light_font"
-            android:shadowColor="@color/text_shadow"
-            android:text="@string/aguas_municipales"
-            android:textAlignment="center"
-            android:shadowDx="1"
-            android:shadowDy="1"
-            android:shadowRadius="30" />
-
+            android:src="@drawable/ic_bacground_main" />
 
     </androidx.cardview.widget.CardView>
 
@@ -86,7 +69,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-
         app:layout_constraintTop_toBottomOf="@+id/tv_subtitle"
         app:layout_constraintVertical_bias="0.01999998">
 
@@ -147,7 +129,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".4" />
+        app:layout_constraintGuide_percent="0.5" />
 
     <TextView
         android:id="@+id/tv_info1"

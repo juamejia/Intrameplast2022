@@ -7,8 +7,7 @@
     <item
         android:width="300dp"
         android:height="300dp"
-
-        android:drawable="@drawable/ic_whale_11"
+        android:drawable="@drawable/ic_logo2_transparent"
         android:gravity="center">
     </item>
 

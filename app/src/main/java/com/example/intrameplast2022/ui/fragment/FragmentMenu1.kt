@@ -37,7 +37,6 @@ import java.util.*
 import kotlin.math.roundToInt
 import kotlin.system.exitProcess
 
-
 @Suppress("DEPRECATION")
 class FragmentMenu1 : Fragment() {
 
@@ -68,8 +67,8 @@ class FragmentMenu1 : Fragment() {
     var temp1 = false               // Aforo Q1
     var temp2 = false               // Aforo Q2
 
-    var q_0 = false
-    var q_1 = false
+    var q1_0 = false
+    var q1_1 = false
     var q1_2 = false
     var q1_3 = false
     var q1_4 = false
@@ -81,10 +80,14 @@ class FragmentMenu1 : Fragment() {
     var q1ProofTime = 0.0           //  Tiempo
     var q1AforoReal = 0.1           //  Aforo real
 
+    var q2_0 = false
+    var q2_1 = false
     var q2_2 = false
     var q2_3 = false
     var q2_4 = false
     var q2_5 = false
+    var q2WPressure = 0.1
+    var q2Water = 0.0
     var q2FinalR = 0.0
     var q2InitialR = 0.0
     var q2ProofTime = 0.0
@@ -136,13 +139,10 @@ class FragmentMenu1 : Fragment() {
         // Back and Exit buttons, always the same in all fragments
         binding.btExit.setOnClickListener { exitProcess(0) }
         binding.btChange.setOnClickListener {
-            //findNavController().navigate(R.id.action_fragmentMenu1_to_fragmentMenu1New)
             with(binding) {
                 cvMain.visibility = View.GONE
                 cvNewMeter.visibility = View.VISIBLE
-                tiQ2LI0TableNew.setText(tiQ2LI0.text.toString())
-                tiQ1LI0TableNew.setText(tiQ1LI0.text.toString())
-                ddNewOld.setText("Nuevo")   // Set the new value new to NewOld
+                ddNewOld.setText("Nuevo")  // Set the new value new to NewOld
                 ddNewOld.isEnabled = false
                 btChange.visibility = View.GONE
                 btCancelNewMeter.visibility = View.VISIBLE
@@ -155,6 +155,7 @@ class FragmentMenu1 : Fragment() {
                 cvMain.visibility = View.VISIBLE
                 cvNewMeter.visibility = View.GONE
                 btCancelNewMeter.visibility = View.GONE
+                ddNewOld.setAdapter(ArrayAdapter(requireContext(), R.layout.dropdown_item, listOf("Nuevo", "Usado")))
                 ddNewOld.isEnabled = true
             }
         }
@@ -182,7 +183,7 @@ class FragmentMenu1 : Fragment() {
             tiQ1WorkPressure0.doOnTextChanged { text, start, before, count ->
                 if (!text.isNullOrEmpty()) {
                     q1WPressure = text.toString().toDoubleOrNull() ?: 0.0
-                    q_0 = true
+                    q1_0 = true
                     measureQ1Check()
                     if (textQ1.visibility == View.VISIBLE) {
                         tvCaliber.error = null
@@ -198,7 +199,7 @@ class FragmentMenu1 : Fragment() {
             tiQ1TWater0.doOnTextChanged { text, start, before, count ->
                 if (!text.isNullOrEmpty()) {
                     q1Water = text.toString().toDoubleOrNull() ?: 0.0
-                    q_1 = true
+                    q1_1 = true
                     measureQ1Check()
                 }
             }
@@ -231,6 +232,29 @@ class FragmentMenu1 : Fragment() {
                 } else q1AforoReal = 0.1
             }
             // Q2 auto setter
+            tiQ2WorkPressure0.doOnTextChanged { text, start, before, count ->
+                if (!text.isNullOrEmpty()) {
+                    q2WPressure = text.toString().toDoubleOrNull() ?: 0.0
+                    q2_0 = true
+                    measureQ2Check()
+                    if (textQ2.visibility == View.VISIBLE) {
+                        tvCaliber.error = null
+                        tvMetrologicalClass.error = null
+                        tvNewOld.error = null
+                    } else {
+                        tvCaliber.error = " "
+                        tvMetrologicalClass.error = getString(R.string.required2)
+                        tvNewOld.error = " "
+                    }
+                }
+            }
+            tiQ2TWater0.doOnTextChanged { text, start, before, count ->
+                if (!text.isNullOrEmpty()) {
+                    q2Water = text.toString().toDoubleOrNull() ?: 0.0
+                    q2_1 = true
+                    measureQ2Check()
+                }
+            }
             tiQ2LF0.doOnTextChanged { text, start, before, count ->
                 if (!text.isNullOrEmpty()) {
                     q2FinalR = text.toString().toDoubleOrNull() ?: 0.0
@@ -295,7 +319,7 @@ class FragmentMenu1 : Fragment() {
     private fun measureQ1Check() {
         allFieldschecked()
         with(binding) {
-            if (q_0 && q_1 && q1_2 && q1_3 && q1_4 && q1_5 && temp1) {
+            if (q1_0 && q1_1 && q1_2 && q1_3 && q1_4 && q1_5 && temp1) {
                 tvQ1Process.text = measureProcessQ1()
                 requireQ1 = true
                 allFieldschecked()
@@ -310,7 +334,7 @@ class FragmentMenu1 : Fragment() {
     private fun measureQ2Check() {
         allFieldschecked()
         with(binding) {
-            if (q_0 && q_1 && q2_2 && q2_3 && q2_4 && q2_5 && temp2) { // Modified
+            if (q2_0 && q2_1 && q2_2 && q2_3 && q2_4 && q2_5 && temp2) {
                 tvQ2Process.text = measureProcessQ2()
                 requireQ2 = true
                 allFieldschecked()
@@ -464,10 +488,11 @@ class FragmentMenu1 : Fragment() {
                                 tiQ1AforoR0.text.toString(),
                                 tiQ2AfaroR0.text.toString(),
                                 tiQ1TWater0.text.toString(),
-                                //tiQ2TWater0.text.toString(),
+                                tiQ2TWater0.text.toString(),
                                 tiQ1TEnvironment0.text.toString(),
-                                //tiQ2TEnvironment0.text.toString(),
+                                tiQ2TEnvironment0.text.toString(),
                                 tiQ1WorkPressure0.text.toString(),
+                                tiQ2WorkPressure0.text.toString(),
                                 tvQ1Process.text.toString(),
                                 tvQ2Process.text.toString()
                             )
@@ -534,8 +559,11 @@ class FragmentMenu1 : Fragment() {
             tiQ1AforoR0.setText("")
             tiQ2AfaroR0.setText("")
             tiQ1TWater0.setText("")
+            tiQ2TWater0.setText("")
             tiQ1TEnvironment0.setText("")
+            tiQ2TEnvironment0.setText("")
             tiQ1WorkPressure0.setText("")
+            tiQ2WorkPressure0.setText("")
             tiRH0.setText("")
         }
     }
@@ -551,7 +579,7 @@ class FragmentMenu1 : Fragment() {
 
     private fun measureProcessQ2(): String {
         var aforoCalculado =
-            (q2AforoReal + CVI_) * (1 + CETM_ * (q1Water - 20)) * (1 + CETV_ * (20 - q1Water)) * (1 + CCA_ * (q1WPressure - PTR_))
+            (q2AforoReal + CVI_) * (1 + CETM_ * (q2Water - 20)) * (1 + CETV_ * (20 - q2Water)) * (1 + CCA_ * (q1WPressure - PTR_))
         binding.tvQ2Aforo.text = round(aforoCalculado)
         val q2CaudalReal = (aforoCalculado / q2ProofTime) * 3600 // Consult functionality
         val errorQ2 = (((q2FinalR - q2InitialR) - aforoCalculado) / aforoCalculado) * 100
@@ -567,33 +595,15 @@ class FragmentMenu1 : Fragment() {
     }
 
     private fun saveData() {
-        // method for saving the data in array list.
-        // creating a variable for storing data in
-        // shared preferences.
         val sharedPreferences = context?.getSharedPreferences(
             "shared preferences",
             AppCompatActivity.MODE_PRIVATE
         )
-
-        // creating a variable for editor to
-        // store data in shared preferences.
         val editor = sharedPreferences?.edit()
-
-        // creating a new variable for gson.
         val gson = Gson()
-
-        // getting data from gson and storing it in a string.
         val json = gson.toJson(courseModalArrayList)
-
-        // below line is to save data in shared
-        // prefs in the form of string.
         editor?.putString("courses", json)
-
-        // below line is to apply changes
-        // and save data in shared prefs.
         editor?.apply()
-
-        // after saving data we are displaying a toast message.
     }
 
 }
