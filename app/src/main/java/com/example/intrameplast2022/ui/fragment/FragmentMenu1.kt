@@ -574,21 +574,21 @@ class FragmentMenu1 : Fragment() {
     }
 
     private fun measureProcessQ1(): String {
-        var aforoCalculado =
+        val aforoCalculado =
             (q1AforoReal + CVI_) * (1 + CETM_ * (q1Water - 20)) * (1 + CETV_ * (20 - q1Water)) * (1 + CCA_ * (q1WPressure - PTR_))
         binding.tvQ1Aforo.text = round(aforoCalculado)
         val q1CaudalReal = (aforoCalculado / q1ProofTime) * 3600 // Consult functionality
-        val errorQ1 = (((q1FinalR - q1InitialR) - aforoCalculado) / aforoCalculado) * 100
-        return round(errorQ1)
+        val errorQ1 = (((q1FinalR - q1InitialR) - aforoCalculado) / aforoCalculado) * 100 ?: 0.1
+        return round(errorQ1) ?: ""
     }
 
     private fun measureProcessQ2(): String {
-        var aforoCalculado =
+        val aforoCalculado =
             (q2AforoReal + CVI_) * (1 + CETM_ * (q2Water - 20)) * (1 + CETV_ * (20 - q2Water)) * (1 + CCA_ * (q1WPressure - PTR_))
         binding.tvQ2Aforo.text = round(aforoCalculado)
         val q2CaudalReal = (aforoCalculado / q2ProofTime) * 3600 // Consult functionality
-        val errorQ2 = (((q2FinalR - q2InitialR) - aforoCalculado) / aforoCalculado) * 100
-        return round(errorQ2)
+        val errorQ2 = (((q2FinalR - q2InitialR) - aforoCalculado) / aforoCalculado) * 100 ?: 0.1
+        return round(errorQ2) ?: ""
     }
 
     private fun round(num: Double): String {

@@ -103,23 +103,22 @@ class FragmentReportSaved : Fragment() {
             val connection = BluetoothPrintersConnections.selectFirstPaired()
             if (connection != null) {
                 val printer = EscPosPrinter(connection, 203, 48f, 32)
-                val text =
-                    "[C]<b>Prueba de medidor</b>\n" +
-                            "[C]--------------------------------\n" +
-                            "[L]Fecha: ${getBundleBasicInfo()!![0]}\n" +
-                            "[L]Operador: ${getBundleBasicInfo()!![1]}\n" +
-                            "[L]Usuario: ${getBundleBasicInfo()!![2]}\n" +
-                            "[L]Dirección: ${getBundleBasicInfo()!![3]}\n" +
-                            "[L]Número de contrato: ${getBundleBasicInfo()!![4]}\n" +
-                            "[C]================================\n" +
-                            "[C]<b>Especificaciones</b>\n" +
-                            "[L]Marca: ${getBundleBasicInfo()!![5]}\n" +
-                            "[L]Serial: ${getBundleBasicInfo()!![6]}\n" +
-                            "[L]Calibre: ${getBundleBasicInfo()!![7]}\n" +
-                            "[L]Clase metrológica: ${getBundleBasicInfo()!![8]}\n" +
-                            "[L]Tipo: ${getBundleBasicInfo()!![9]}\n" +
-                            "[L]Estado: ${getBundleBasicInfo()!![10]}\n\n" +
-                            approvedTable(getBundleTable()!![17])
+                val text = "[C]<b>Prueba de medidor</b>\n" +
+                        "[C]--------------------------------\n" +
+                        "[L]Fecha: ${getBundleBasicInfo()!![0]}\n" +
+                        "[L]Operador: ${getBundleBasicInfo()!![1]}\n" +
+                        "[L]Usuario: ${getBundleBasicInfo()!![2]}\n" +
+                        "[L]Dirección: ${getBundleBasicInfo()!![3]}\n" +
+                        "[L]Número de contrato: ${getBundleBasicInfo()!![4]}\n" +
+                        "[C]================================\n" +
+                        "[C]<b>Especificaciones</b>\n" +
+                        "[L]Marca: ${getBundleBasicInfo()!![5]}\n" +
+                        "[L]Serial: ${getBundleBasicInfo()!![6]}\n" +
+                        "[L]Calibre: ${getBundleBasicInfo()!![7]}\n" +
+                        "[L]Clase metrológica: ${getBundleBasicInfo()!![8]}\n" +
+                        "[L]Tipo: ${getBundleBasicInfo()!![9]}\n" +
+                        "[L]Estado: ${getBundleBasicInfo()!![10]}\n\n" +
+                        approvedTable(getBundleTable()!![17])
 
                 printer.printFormattedText(text)
             } else {
@@ -132,8 +131,8 @@ class FragmentReportSaved : Fragment() {
         }
     }
 
-    private fun approvedTable(approvedText:String): String {
-        var table = ""
+    private fun approvedTable(approvedText: String): String {
+        var table: String = ""
 
         val approvedInfo = approvedText.replace("\n", " ")
         if (approvedInfo.contains(getString(R.string.rechazado), ignoreCase = true)) {
@@ -141,7 +140,7 @@ class FragmentReportSaved : Fragment() {
                     "----------------------------------\n" +
                     "[L]Lectura" + "\n" + "inicial <b>(L)</b>" + "[R]${getBundleTable()!![0]}\n" +
                     "[L]\n"
-        } else{
+        } else {
             table = "[L]Humedad" + "\n" + "relativa <b>(%)</b>" + "[R]${getBundleTable()!![0]}\n" +
                     "<b>----------------------------------</b>\n" +
                     "[L]    <b>MEDICIONES[R]Q2[R]Q1</b>" + "\n" +
