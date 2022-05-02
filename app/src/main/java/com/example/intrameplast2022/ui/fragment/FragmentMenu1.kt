@@ -147,6 +147,7 @@ class FragmentMenu1 : Fragment() {
             }
         }
         binding.btCancelNewMeter.setOnClickListener {
+            allFieldsChecked()
             with(binding) {
                 cvMain.visibility = View.VISIBLE
                 cvNewMeter.visibility = View.GONE
@@ -177,6 +178,10 @@ class FragmentMenu1 : Fragment() {
                 AdapterView.OnItemClickListener { _, _, _, _ ->
                     temp2 = true
                     aforoCheck()
+                }
+            ddNewOld.onItemClickListener =
+                AdapterView.OnItemClickListener { _, _, _, _ ->
+                    allFieldsChecked()
                 }
             // Q1 auto setter
             tiQ1WorkPressure0.doOnTextChanged { text, _, _, _ ->
@@ -344,8 +349,8 @@ class FragmentMenu1 : Fragment() {
     }
 
     private fun newMeter(): String {
-        val resultQ1 = binding.tvQ1Process.text.toString().toDouble()
-        val resultQ2 = binding.tvQ2Process.text.toString().toDouble()
+        var resultQ1 = binding.tvQ1Process.text.toString().toDouble() ?: 0.1
+        var resultQ2 = binding.tvQ2Process.text.toString().toDouble() ?: 0.1
         var checkQ1 = false
         var checkQ2 = false
 
@@ -443,11 +448,11 @@ class FragmentMenu1 : Fragment() {
     private fun showAlerts() {
         binding.btQ1.setOnClickListener {
             toast("Caudal (1)")
-
             allFieldsChecked()
         }
         binding.btQ2.setOnClickListener {
             toast("Caudal (2)")
+            allFieldsChecked()
         }
         binding.btPhoto.setOnClickListener {
             dispatchTakePictureIntent()
@@ -570,6 +575,13 @@ class FragmentMenu1 : Fragment() {
             tiQ1WorkPressure0.setText("")
             tiQ2WorkPressure0.setText("")
             tiRH0.setText("")
+            tvQ2Aforo.text = ""
+            tvQ1Aforo.text = ""
+            tvQ2Process.text = ""
+            tvQ1Process.text = ""
+            tvResult.visibility = View.INVISIBLE
+            btChange.visibility = View.GONE
+
         }
     }
 
