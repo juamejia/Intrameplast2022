@@ -1,16 +1,10 @@
 package com.example.intrameplast2022
 
-import CourseModal
+import com.example.intrameplast2022.dataSource.CourseModal
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.os.TransactionTooLargeException
-import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.NavUtils
 import androidx.navigation.NavController
-import androidx.appcompat.widget.Toolbar
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -19,12 +13,11 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
-import kotlin.system.exitProcess
 
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
 
-    companion object { // Todos podrán acceder a este método con companion object
+    companion object {
         lateinit var prefs: Prefs
 
         @SuppressLint("StaticFieldLeak")

@@ -1,6 +1,6 @@
 package com.example.intrameplast2022.ui.fragment
 
-import CourseModal
+import com.example.intrameplast2022.dataSource.CourseModal
 import android.content.Intent
 import android.os.Bundle
 import android.provider.DocumentsContract

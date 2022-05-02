@@ -79,4 +79,9 @@
     <string name="cancelar">Cancelar</string>
     <string name="back">Atrás</string>
     <string name="Exit">Salir</string>
+    <string name="aforo_q2">Aforo Q2</string>
+    <string name="aforo_q1">Aforo Q1</string>
+    <string name="registro_guardado">Registro guardado</string>
+    <string name="complete_campos">¡Complete los campos requeridos!</string>
+    <string name="kind_r">Tipo:</string>
 </resources>

@@ -1,6 +1,6 @@
 package com.example.intrameplast2022.ui.fragment
 
-import CourseModal
+import com.example.intrameplast2022.dataSource.CourseModal
 import android.annotation.SuppressLint
 import android.app.Activity.RESULT_OK
 import android.content.Intent
@@ -125,7 +125,7 @@ class FragmentMenu1 : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentMenu1Binding.inflate(inflater, container, false)
         // Image default loader
-        imageBitmap = BitmapFactory.decodeResource(resources, R.drawable.ic_background1_large)
+        imageBitmap = BitmapFactory.decodeResource(resources, R.drawable.ic_logo2_transparent)
         val byteArrayOutputStream = ByteArrayOutputStream()
 
         CoroutineScope(Dispatchers.IO).launch {
@@ -179,7 +179,7 @@ class FragmentMenu1 : Fragment() {
                     aforoCheck()
                 }
             // Q1 auto setter
-            tiQ1WorkPressure0.doOnTextChanged { text, start, before, count ->
+            tiQ1WorkPressure0.doOnTextChanged { text, _, _, _ ->
                 if (!text.isNullOrEmpty()) {
                     q1WPressure = text.toString().toDoubleOrNull() ?: 0.0
                     q1_0 = true
@@ -195,35 +195,35 @@ class FragmentMenu1 : Fragment() {
                     }
                 }
             }
-            tiQ1TWater0.doOnTextChanged { text, start, before, count ->
+            tiQ1TWater0.doOnTextChanged { text, _, _, _ ->
                 if (!text.isNullOrEmpty()) {
                     q1Water = text.toString().toDoubleOrNull() ?: 0.0
                     q1_1 = true
                     measureQ1Check()
                 }
             }
-            tiQ1LF0.doOnTextChanged { text, start, before, count ->
+            tiQ1LF0.doOnTextChanged { text, _, _, _ ->
                 if (!text.isNullOrEmpty()) {
                     q1FinalR = text.toString().toDoubleOrNull() ?: 0.0
                     q1_2 = true
                     measureQ1Check()
                 }
             }
-            tiQ1LI0.doOnTextChanged { text, start, before, count ->
+            tiQ1LI0.doOnTextChanged { text, _, _, _ ->
                 if (!text.isNullOrEmpty()) {
                     q1InitialR = text.toString().toDoubleOrNull() ?: 0.0
                     q1_3 = true
                     measureQ1Check()
                 }
             }
-            tiQ1Time0.doOnTextChanged { text, start, before, count ->
+            tiQ1Time0.doOnTextChanged { text, _, _, _ ->
                 if (!text.isNullOrEmpty()) {
                     q1ProofTime = text.toString().toDoubleOrNull() ?: 0.0
                     q1_4 = true
                     measureQ1Check()
                 }
             }
-            tiQ1AforoR0.doOnTextChanged { text, start, before, count ->
+            tiQ1AforoR0.doOnTextChanged { text, _, _, _ ->
                 if (!text.isNullOrEmpty()) {
                     q1AforoReal = text.toString().toDoubleOrNull() ?: 0.1
                     q1_5 = true
@@ -231,7 +231,7 @@ class FragmentMenu1 : Fragment() {
                 } else q1AforoReal = 0.1
             }
             // Q2 auto setter
-            tiQ2WorkPressure0.doOnTextChanged { text, start, before, count ->
+            tiQ2WorkPressure0.doOnTextChanged { text, _, _, _ ->
                 if (!text.isNullOrEmpty()) {
                     q2WPressure = text.toString().toDoubleOrNull() ?: 0.0
                     q2_0 = true
@@ -247,35 +247,35 @@ class FragmentMenu1 : Fragment() {
                     }
                 }
             }
-            tiQ2TWater0.doOnTextChanged { text, start, before, count ->
+            tiQ2TWater0.doOnTextChanged { text, _, _, _ ->
                 if (!text.isNullOrEmpty()) {
                     q2Water = text.toString().toDoubleOrNull() ?: 0.0
                     q2_1 = true
                     measureQ2Check()
                 }
             }
-            tiQ2LF0.doOnTextChanged { text, start, before, count ->
+            tiQ2LF0.doOnTextChanged { text, _, _, _ ->
                 if (!text.isNullOrEmpty()) {
                     q2FinalR = text.toString().toDoubleOrNull() ?: 0.0
                     q2_2 = true
                     measureQ2Check()
                 }
             }
-            tiQ2LI0.doOnTextChanged { text, start, before, count ->
+            tiQ2LI0.doOnTextChanged { text, _, _, _ ->
                 if (!text.isNullOrEmpty()) {
                     q2InitialR = text.toString().toDoubleOrNull() ?: 0.0
                     q2_3 = true
                     measureQ2Check()
                 }
             }
-            tiQ2Time0.doOnTextChanged { text, start, before, count ->
+            tiQ2Time0.doOnTextChanged { text, _, _, _ ->
                 if (!text.isNullOrEmpty()) {
                     q2ProofTime = text.toString().toDoubleOrNull() ?: 0.0
                     q2_4 = true
                     measureQ2Check()
                 }
             }
-            tiQ2AfaroR0.doOnTextChanged { text, start, before, count ->
+            tiQ2AfaroR0.doOnTextChanged { text, _, _, _ ->
                 if (!text.isNullOrEmpty()) {
                     q2AforoReal = text.toString().toDoubleOrNull() ?: 0.1
                     q2_5 = true
@@ -292,13 +292,12 @@ class FragmentMenu1 : Fragment() {
     }
 
     @SuppressLint("SetTextI18n")
-    private fun allFieldschecked() {
+    private fun allFieldsChecked() {
         with(binding) {
             if (requireQ1 && requireQ2) {
+                tvResult.text = "${getString(R.string.resultado)}${newMeter()}"
 
-                tvResult.text = "${getString(R.string.resultado)}${NewMeter()}"
-
-                if (NewMeter().contains("Aprobado")) {
+                if (newMeter().contains("Aprobado")) {
                     tvResult.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
                     binding.btChange.visibility = View.GONE
                 } else {
@@ -316,12 +315,12 @@ class FragmentMenu1 : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun measureQ1Check() {
-        allFieldschecked()
+        allFieldsChecked()
         with(binding) {
             if (q1_0 && q1_1 && q1_2 && q1_3 && q1_4 && q1_5 && temp1) {
                 tvQ1Process.text = measureProcessQ1()
                 requireQ1 = true
-                allFieldschecked()
+                allFieldsChecked()
             } else {
                 tvQ1Process.text = getString(R.string.resultado_q2)
                 requireQ1 = false
@@ -331,12 +330,12 @@ class FragmentMenu1 : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun measureQ2Check() {
-        allFieldschecked()
+        allFieldsChecked()
         with(binding) {
             if (q2_0 && q2_1 && q2_2 && q2_3 && q2_4 && q2_5 && temp2) {
                 tvQ2Process.text = measureProcessQ2()
                 requireQ2 = true
-                allFieldschecked()
+                allFieldsChecked()
             } else {
                 tvQ2Process.text = getString(R.string.resultado_q2)
                 requireQ2 = false
@@ -344,7 +343,7 @@ class FragmentMenu1 : Fragment() {
         }
     }
 
-    private fun NewMeter(): String {
+    private fun newMeter(): String {
         val resultQ1 = binding.tvQ1Process.text.toString().toDouble()
         val resultQ2 = binding.tvQ2Process.text.toString().toDouble()
         var checkQ1 = false
@@ -445,7 +444,7 @@ class FragmentMenu1 : Fragment() {
         binding.btQ1.setOnClickListener {
             toast("Caudal (1)")
 
-            allFieldschecked()
+            allFieldsChecked()
         }
         binding.btQ2.setOnClickListener {
             toast("Caudal (2)")
@@ -460,7 +459,6 @@ class FragmentMenu1 : Fragment() {
         }
         binding.btSave.setOnClickListener { // Show logged info
             if (textFieldsCheck()) {
-                toast("Registro guardado")
                 courseModalArrayList!!.add(
                     with(binding) {
                         CourseModal(
@@ -475,32 +473,40 @@ class FragmentMenu1 : Fragment() {
                                 tvSerial2.editableText.toString(),
                                 ddCaliber.editableText.toString(),
                                 ddMetrological.editableText.toString(),
+                                ddKind.editableText.toString(),
                                 ddNewOld.editableText.toString()
                             ),
                             arrayListOf(
-                                tiQ1LI0.text.toString(),
+                                tiRH0.text.toString(),
                                 tiQ2LI0.text.toString(),
-                                tiQ1LF0.text.toString(),
+                                tiQ1LI0.text.toString(),
                                 tiQ2LF0.text.toString(),
-                                tiQ1Time0.text.toString(),
+                                tiQ1LF0.text.toString(),
                                 tiQ2Time0.text.toString(),
-                                tiQ1AforoR0.text.toString(),
+                                tiQ1Time0.text.toString(),
                                 tiQ2AfaroR0.text.toString(),
+                                tiQ1AforoR0.text.toString(),
                                 tiQ1TWater0.text.toString(),
                                 tiQ2TWater0.text.toString(),
                                 tiQ1TEnvironment0.text.toString(),
                                 tiQ2TEnvironment0.text.toString(),
                                 tiQ1WorkPressure0.text.toString(),
                                 tiQ2WorkPressure0.text.toString(),
+
+                                tvQ2Aforo.text.toString(),
+                                tvQ1Aforo.text.toString(),
+                                tvResult.text.toString(),
+                                tvQ2Process.text.toString(),
                                 tvQ1Process.text.toString(),
-                                tvQ2Process.text.toString()
+                                tiLiTableNew0.text.toString()
                             )
                         )
                     }
                 )
                 // notifying adapter when new data added.
                 saveData()
-            } else toast("¡Complete los campos requeridos!")
+                toast(getString(R.string.registro_guardado))
+            } else toast(getString(R.string.complete_campos))
         }
     }
 

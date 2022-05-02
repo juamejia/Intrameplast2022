@@ -15,7 +15,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:paddingHorizontal="20dp"
+            android:paddingTop="20dp">
 
             <View
                 android:layout_width="match_parent"
@@ -104,14 +105,57 @@
                     android:text="@string/clase_metrol_gica_r" />
 
                 <TextView
+                    android:id="@+id/tv_kind"
+                    style="@style/simpleText"
+                    android:text="@string/kind_r" />
+
+                <TextView
                     android:id="@+id/tv_new_old"
                     style="@style/simpleText"
                     android:text="@string/estado_r" />
 
             </LinearLayout>
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/deprecated_table"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                android:layout_marginTop="20dp">
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:stretchColumns="*">
+
+                    <TableRow>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="@string/lectura_inicial_l"
+                            android:textAlignment="center"
+                            android:textColor="@color/black_500" />
+
+                        <TextView
+                            android:id="@+id/ti_li_table_new"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginHorizontal="5dp"
+                            android:background="@drawable/line"
+                            android:gravity="center"
+                            android:padding="0dp"
+                            android:textAlignment="center"
+                            android:textColorHint="@color/grey_font"
+                            app:endIconDrawable="@drawable/ic_back_24" />
+                    </TableRow>
+                </TableLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/approved_table"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="20dp">
@@ -131,6 +175,44 @@
                     app:layout_constraintGuide_percent="0.701897" />
 
                 <TextView
+                    android:id="@+id/tv_r_h"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/humedad_relativa"
+                    android:textAlignment="center"
+                    android:textColor="@color/black_500"
+                    app:layout_constraintBottom_toTopOf="@id/line_guide"
+                    app:layout_constraintEnd_toEndOf="@+id/ti_q2_l_i"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="RtlCompat" />
+
+                <TextView
+                    android:id="@+id/ti_r_h0"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:background="@drawable/line"
+                    android:gravity="center"
+                    android:padding="0dp"
+                    android:textAlignment="center"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/glt_0.33_vertical2"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <!--A single line-->
+                <TextView
+                    android:id="@+id/line_guide"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/black_500"
+                    android:gravity="center_horizontal"
+                    android:textSize="1sp"
+                    app:layout_constraintTop_toBottomOf="@id/tv_r_h"
+                    tools:ignore="SmallSp" />
+
+                <TextView
                     android:id="@+id/bt_photo"
                     style="@style/Widget.MaterialComponents.Button.Icon"
                     android:layout_width="wrap_content"
@@ -141,18 +223,7 @@
                     app:icon="@drawable/ic_camera_24"
                     app:layout_constraintEnd_toStartOf="@+id/glt_0.33_vertical1"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/bt_q1"
-                    style="?attr/materialButtonOutlinedStyle"
-                    android:layout_width="60dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/q1"
-                    android:textColor="@color/black"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/glt_0.33_vertical2"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/line_guide" />
 
                 <TextView
                     android:id="@+id/bt_q2"
@@ -163,9 +234,22 @@
                     android:textColor="@color/black"
                     app:layout_constraintEnd_toStartOf="@+id/glt_0.33_vertical2"
                     app:layout_constraintStart_toEndOf="@+id/glt_0.33_vertical1"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/line_guide" />
+
+                <TextView
+                    android:id="@+id/bt_q1"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/q1"
+                    android:textColor="@color/black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/glt_0.33_vertical2"
+                    app:layout_constraintTop_toBottomOf="@+id/line_guide" />
+
                 <!--A single line-->
                 <TextView
+                    android:id="@+id/single_line"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/black_500"
@@ -174,6 +258,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/bt_q2"
                     tools:ignore="SmallSp" />
 
+                <!--TABLE BEGIN-->
                 <TextView
                     android:id="@+id/tv_lectura_i"
                     android:layout_width="0dp"
@@ -185,8 +270,36 @@
                     android:textColor="@color/black_500"
                     app:layout_constraintEnd_toStartOf="@+id/glt_0.33_vertical1"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/bt_photo"
+                    app:layout_constraintTop_toBottomOf="@+id/single_line"
                     tools:ignore="RtlCompat" />
+
+                <TextView
+                    android:id="@+id/ti_q2_l_i"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:background="@drawable/line"
+                    android:gravity="center"
+                    android:padding="0dp"
+                    android:textAlignment="center"
+                    app:layout_constraintEnd_toStartOf="@+id/glt_0.33_vertical2"
+                    app:layout_constraintStart_toStartOf="@+id/glt_0.33_vertical1"
+                    app:layout_constraintTop_toBottomOf="@+id/single_line" />
+
+                <TextView
+                    android:id="@+id/ti_q1_l_i"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/line"
+                    android:gravity="center"
+                    android:padding="0dp"
+                    android:textAlignment="center"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/glt_0.33_vertical2"
+                    app:layout_constraintTop_toBottomOf="@+id/single_line" />
 
                 <TextView
                     android:id="@+id/tv_lectura_f"
@@ -202,138 +315,6 @@
                     tools:ignore="RtlCompat" />
 
                 <TextView
-                    android:id="@+id/tv_tiempo"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:gravity="center_vertical"
-                    android:text="@string/tiempo_seg"
-                    android:textAlignment="center"
-                    app:layout_constraintEnd_toStartOf="@+id/glt_0.33_vertical1"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_lectura_f"
-                    tools:ignore="RtlCompat" />
-
-                <TextView
-                    android:id="@+id/tv_aforo_real"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:gravity="center_vertical"
-                    android:text="@string/aforo_real"
-                    android:textAlignment="center"
-                    app:layout_constraintEnd_toStartOf="@+id/glt_0.33_vertical1"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_tiempo"
-                    tools:ignore="RtlCompat" />
-
-                <TextView
-                    android:id="@+id/tv_Tepm_agua"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:gravity="center_vertical"
-                    android:text="@string/temp_agua_c"
-                    android:textAlignment="center"
-                    android:textColor="@color/black_500"
-                    app:layout_constraintEnd_toStartOf="@+id/glt_0.33_vertical1"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_aforo_real"
-                    tools:ignore="RtlCompat" />
-
-                <TextView
-                    android:id="@+id/tv_Tepm_ambiente"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:gravity="center_vertical"
-                    android:text="@string/temp_ambiente_c"
-                    android:textAlignment="center"
-                    android:textColor="@color/black_500"
-                    app:layout_constraintEnd_toStartOf="@+id/glt_0.33_vertical1"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_Tepm_agua"
-                    tools:ignore="RtlCompat" />
-
-                <TextView
-                    android:id="@+id/tv_p_trabajo"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:gravity="center_vertical"
-                    android:text="@string/presi_n_de_trabajo_kpa"
-                    android:textAlignment="center"
-                    android:textColor="@color/black_500"
-                    app:layout_constraintEnd_toStartOf="@+id/glt_0.33_vertical1"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_Tepm_ambiente"
-                    tools:ignore="RtlCompat" />
-
-                <TextView
-                    android:id="@+id/tv_result"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:gravity="center_vertical"
-                    android:text="@string/resultados"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toStartOf="@+id/glt_0.33_vertical1"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_p_trabajo"
-                    tools:ignore="RtlCompat" />
-                <!--A single line-->
-                <TextView
-                    android:id="@+id/tv_line2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="0dp"
-                    android:background="@color/transparent"
-                    android:gravity="center_horizontal"
-                    android:textSize="1sp"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_p_trabajo"
-                    tools:ignore="SmallSp" />
-
-                <TextView
-                    android:id="@+id/tv_q2_process"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:gravity="center_vertical"
-                    android:hint="@string/resultado_q2"
-                    android:textAlignment="center"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toStartOf="@+id/glt_0.33_vertical2"
-                    app:layout_constraintStart_toStartOf="@id/glt_0.33_vertical1"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_line2"
-                    tools:ignore="RtlCompat" />
-
-                <TextView
-                    android:id="@+id/tv_q1_process"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:gravity="center_vertical"
-                    android:hint="@string/resultado_q1"
-                    android:textAlignment="center"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@id/glt_0.33_vertical2"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_line2"
-                    tools:ignore="RtlCompat" />
-
-                <!--Q2-->
-                <TextView
-                    android:id="@+id/ti_q2_l_i"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:background="@drawable/line"
-                    android:gravity="center"
-                    android:padding="0dp"
-                    android:textAlignment="center"
-                    app:layout_constraintEnd_toStartOf="@+id/glt_0.33_vertical2"
-                    app:layout_constraintStart_toStartOf="@+id/glt_0.33_vertical1"
-                    app:layout_constraintTop_toBottomOf="@+id/bt_q2">
-
-
-                </TextView>
-
-                <TextView
                     android:id="@+id/ti_q2_l_f"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
@@ -345,85 +326,6 @@
                     app:layout_constraintEnd_toStartOf="@+id/glt_0.33_vertical2"
                     app:layout_constraintStart_toStartOf="@+id/glt_0.33_vertical1"
                     app:layout_constraintTop_toBottomOf="@+id/ti_q2_l_i" />
-
-                <TextView
-                    android:id="@+id/ti_q2_time"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_marginEnd="5dp"
-                    android:background="@drawable/line"
-                    android:gravity="center"
-                    android:padding="0dp"
-                    android:textAlignment="center"
-                    app:layout_constraintEnd_toStartOf="@+id/glt_0.33_vertical2"
-                    app:layout_constraintStart_toStartOf="@+id/glt_0.33_vertical1"
-                    app:layout_constraintTop_toBottomOf="@+id/ti_q2_l_f" />
-
-                <TextView
-                    android:id="@+id/ti_q2_afaro_r"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_marginEnd="5dp"
-                    android:background="@drawable/line"
-                    android:gravity="center"
-                    android:padding="0dp"
-                    android:textAlignment="center"
-                    app:layout_constraintEnd_toStartOf="@+id/glt_0.33_vertical2"
-                    app:layout_constraintStart_toStartOf="@+id/glt_0.33_vertical1"
-                    app:layout_constraintTop_toBottomOf="@+id/ti_q2_time" />
-
-                <TextView
-                    android:id="@+id/ti_q2_t_water"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_marginEnd="5dp"
-                    android:background="@drawable/line"
-                    android:gravity="center"
-                    android:padding="0dp"
-                    android:textAlignment="center"
-                    app:layout_constraintEnd_toStartOf="@+id/glt_0.33_vertical2"
-                    app:layout_constraintStart_toStartOf="@+id/glt_0.33_vertical1"
-                    app:layout_constraintTop_toBottomOf="@+id/ti_q2_afaro_r" />
-
-                <TextView
-                    android:id="@+id/ti_q2_t_environment"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_marginEnd="5dp"
-                    android:background="@drawable/line"
-                    android:gravity="center"
-                    android:padding="0dp"
-                    android:textAlignment="center"
-                    app:layout_constraintEnd_toStartOf="@+id/glt_0.33_vertical2"
-                    app:layout_constraintStart_toStartOf="@+id/glt_0.33_vertical1"
-                    app:layout_constraintTop_toBottomOf="@+id/ti_q2_t_water" />
-
-                <TextView
-                    android:id="@+id/ti_q2_work_pressure"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_marginEnd="5dp"
-                    android:background="@drawable/line"
-                    android:gravity="center"
-                    android:textAlignment="center"
-                    app:layout_constraintEnd_toStartOf="@+id/glt_0.33_vertical2"
-                    app:layout_constraintStart_toStartOf="@+id/glt_0.33_vertical1"
-                    app:layout_constraintTop_toBottomOf="@+id/ti_q2_t_environment" />
-
-                <!--Q1-->
-                <TextView
-                    android:id="@+id/ti_q1_l_i"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/line"
-                    android:gravity="center"
-                    android:padding="0dp"
-                    android:textAlignment="center"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/glt_0.33_vertical2"
-                    app:layout_constraintTop_toBottomOf="@+id/bt_q2" />
 
                 <TextView
                     android:id="@+id/ti_q1_l_f"
@@ -439,6 +341,31 @@
                     app:layout_constraintTop_toBottomOf="@+id/ti_q2_l_i" />
 
                 <TextView
+                    android:id="@+id/tv_tiempo"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/tiempo_seg"
+                    android:textAlignment="center"
+                    app:layout_constraintEnd_toStartOf="@+id/glt_0.33_vertical1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_lectura_f"
+                    tools:ignore="RtlCompat" />
+
+                <TextView
+                    android:id="@+id/ti_q2_time"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="5dp"
+                    android:background="@drawable/line"
+                    android:gravity="center"
+                    android:padding="0dp"
+                    android:textAlignment="center"
+                    app:layout_constraintEnd_toStartOf="@+id/glt_0.33_vertical2"
+                    app:layout_constraintStart_toStartOf="@+id/glt_0.33_vertical1"
+                    app:layout_constraintTop_toBottomOf="@+id/ti_q2_l_f" />
+
+                <TextView
                     android:id="@+id/ti_q1_time"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
@@ -450,6 +377,32 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/glt_0.33_vertical2"
                     app:layout_constraintTop_toBottomOf="@+id/ti_q2_l_f" />
+
+                <!-- Real aforo -->
+                <TextView
+                    android:id="@+id/tv_aforo_real"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/aforo_real"
+                    android:textAlignment="center"
+                    app:layout_constraintEnd_toStartOf="@+id/glt_0.33_vertical1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_tiempo"
+                    tools:ignore="RtlCompat" />
+
+                <TextView
+                    android:id="@+id/ti_q2_afaro_r"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="5dp"
+                    android:background="@drawable/line"
+                    android:gravity="center"
+                    android:padding="0dp"
+                    android:textAlignment="center"
+                    app:layout_constraintEnd_toStartOf="@+id/glt_0.33_vertical2"
+                    app:layout_constraintStart_toStartOf="@+id/glt_0.33_vertical1"
+                    app:layout_constraintTop_toBottomOf="@+id/ti_q2_time" />
 
                 <TextView
                     android:id="@+id/ti_q1_aforo_r"
@@ -464,8 +417,34 @@
                     app:layout_constraintStart_toStartOf="@+id/glt_0.33_vertical2"
                     app:layout_constraintTop_toBottomOf="@+id/ti_q1_time" />
 
+                <!-- Temp water -->
+                <TextView
+                    android:id="@+id/tv_Tepm_agua"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/temp_agua_c"
+                    android:textAlignment="center"
+                    app:layout_constraintEnd_toStartOf="@+id/glt_0.33_vertical1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_aforo_real"
+                    tools:ignore="RtlCompat" />
+
                 <TextView
                     android:id="@+id/ti_q1_t_water"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="5dp"
+                    android:background="@drawable/line"
+                    android:gravity="center"
+                    android:padding="0dp"
+                    android:textAlignment="center"
+                    app:layout_constraintEnd_toStartOf="@+id/glt_0.33_vertical2"
+                    app:layout_constraintStart_toStartOf="@+id/glt_0.33_vertical1"
+                    app:layout_constraintTop_toBottomOf="@+id/ti_q2_afaro_r" />
+
+                <TextView
+                    android:id="@+id/ti_q2_t_water"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
                     android:layout_marginStart="5dp"
@@ -477,8 +456,34 @@
                     app:layout_constraintStart_toStartOf="@+id/glt_0.33_vertical2"
                     app:layout_constraintTop_toBottomOf="@+id/ti_q1_aforo_r" />
 
+                <!-- Environment temp -->
+                <TextView
+                    android:id="@+id/tv_Tepm_ambiente"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/temp_ambiente_c"
+                    android:textAlignment="center"
+                    app:layout_constraintEnd_toStartOf="@+id/glt_0.33_vertical1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_Tepm_agua"
+                    tools:ignore="RtlCompat" />
+
                 <TextView
                     android:id="@+id/ti_q1_t_environment"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="5dp"
+                    android:background="@drawable/line"
+                    android:gravity="center"
+                    android:padding="0dp"
+                    android:textAlignment="center"
+                    app:layout_constraintEnd_toStartOf="@+id/glt_0.33_vertical2"
+                    app:layout_constraintStart_toStartOf="@+id/glt_0.33_vertical1"
+                    app:layout_constraintTop_toBottomOf="@+id/ti_q1_t_water" />
+
+                <TextView
+                    android:id="@+id/ti_q2_t_environment"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
                     android:layout_marginStart="5dp"
@@ -490,8 +495,34 @@
                     app:layout_constraintStart_toStartOf="@+id/glt_0.33_vertical2"
                     app:layout_constraintTop_toBottomOf="@+id/ti_q2_t_water" />
 
+                <!-- work pressure -->
+                <TextView
+                    android:id="@+id/tv_p_trabajo_"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/presi_n_de_trabajo_kpa"
+                    android:textAlignment="center"
+                    app:layout_constraintEnd_toStartOf="@+id/glt_0.33_vertical1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_Tepm_ambiente"
+                    tools:ignore="RtlCompat" />
+
                 <TextView
                     android:id="@+id/ti_q1_work_pressure"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="5dp"
+                    android:background="@drawable/line"
+                    android:gravity="center"
+                    android:padding="0dp"
+                    android:textAlignment="center"
+                    app:layout_constraintEnd_toStartOf="@+id/glt_0.33_vertical2"
+                    app:layout_constraintStart_toStartOf="@+id/glt_0.33_vertical1"
+                    app:layout_constraintTop_toBottomOf="@+id/ti_q1_t_environment" />
+
+                <TextView
+                    android:id="@+id/ti_q2_work_pressure"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
                     android:layout_marginStart="5dp"
@@ -503,39 +534,121 @@
                     app:layout_constraintStart_toStartOf="@+id/glt_0.33_vertical2"
                     app:layout_constraintTop_toBottomOf="@+id/ti_q2_t_environment" />
 
+                <!--Finish variables line-->
+                <TextView
+                    android:id="@+id/tv_line2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    android:background="@color/transparent"
+                    android:gravity="center_horizontal"
+                    android:textSize="1sp"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_p_trabajo_"
+                    tools:ignore="SmallSp" />
+
+                <TextView
+                    android:id="@+id/tv_aforo"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/aforo_calculado"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/glt_0.33_vertical1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_line2"
+                    tools:ignore="RtlCompat" />
+
+                <TextView
+                    android:id="@+id/tv_q2_aforo"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:gravity="center_vertical"
+                    android:hint="@string/aforo_q2"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/glt_0.33_vertical2"
+                    app:layout_constraintStart_toStartOf="@id/glt_0.33_vertical1"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_line2"
+                    tools:ignore="RtlCompat" />
+
+                <TextView
+                    android:id="@+id/tv_q1_aforo"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:gravity="center_vertical"
+                    android:hint="@string/aforo_q1"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/glt_0.33_vertical2"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_line2"
+                    tools:ignore="RtlCompat" />
+
+                <TextView
+                    android:id="@+id/tv_result"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/resultado"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/glt_0.33_vertical1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_aforo"
+                    tools:ignore="RtlCompat" />
+
+                <TextView
+                    android:id="@+id/tv_q2_process"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:gravity="center_vertical"
+                    android:hint="@string/resultado_q2"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/glt_0.33_vertical2"
+                    app:layout_constraintStart_toStartOf="@id/glt_0.33_vertical1"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_q2_aforo"
+                    tools:ignore="RtlCompat" />
+
+                <TextView
+                    android:id="@+id/tv_q1_process"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:gravity="center_vertical"
+                    android:hint="@string/resultado_q1"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/glt_0.33_vertical2"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_q1_aforo"
+                    tools:ignore="RtlCompat" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_height="2dp"
+                android:background="@android:color/black"
+                app:layout_constraintTop_toBottomOf="@+id/approved_table"/>
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/bt_print"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp"
+                android:layout_marginVertical="20dp"
                 android:clickable="true"
                 android:theme="@style/Widget.AppCompat.Button"
                 android:tint="#00FFEB3B"
                 app:backgroundTint="@color/grey"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/bt_save"
-                app:layout_constraintTop_toBottomOf="@+id/cv_main"
+                app:layout_constraintTop_toBottomOf="@+id/approved_table"
                 app:srcCompat="@drawable/ic_print_24" />
-
-            <!--A single line-->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="110dp"
-                android:background="@color/black_500"
-                android:gravity="center_horizontal"
-                android:textSize="1sp"
-                app:layout_constraintTop_toBottomOf="@id/cv_main"
-                tools:ignore="SmallSp" />
-
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
-
     </androidx.core.widget.NestedScrollView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

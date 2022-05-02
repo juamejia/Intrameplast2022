@@ -1,6 +1,6 @@
 package com.example.intrameplast2022.ui.viewmodel
 
-import CourseModal
+import com.example.intrameplast2022.dataSource.CourseModal
 import android.annotation.SuppressLint
 import android.graphics.BitmapFactory
 import android.util.Base64
