@@ -7,65 +7,11 @@
     android:background="@color/white"
     tools:context=".MainActivity">
 
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/sky_700"
-        android:orientation="horizontal"
-        android:paddingTop="30dp"
-        android:paddingBottom="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageButton
-            android:id="@+id/bt_back"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="10dp"
-            android:background="@drawable/ic_back_24"
-            android:foregroundGravity="center"
-            android:scaleType="centerCrop"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/tv_menu"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/prueba_de_medidor"
-            android:textAlignment="center"
-            android:textColor="@color/black_500"
-            android:textSize="24sp"
-            app:flow_verticalAlign="center"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageButton
-            android:id="@+id/bt_exit"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginEnd="10dp"
-            android:background="@drawable/ic_exit_44"
-            android:foregroundGravity="center"
-            android:scaleType="centerCrop"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-    <!--    END HEADER-->
-
-
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+        tools:ignore="MissingConstraints">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -1001,11 +947,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="12dp"
+                android:visibility="gone"
                 app:cardBackgroundColor="@color/grey"
                 app:cardCornerRadius="15dp"
                 app:cardElevation="6dp"
                 app:contentPadding="4dp"
-                android:visibility="gone"
                 app:layout_constraintTop_toBottomOf="@+id/text_photo">
 
                 <TableLayout
@@ -1027,8 +973,8 @@
                             android:id="@+id/ti_q2_l_i_table_new"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textAlignment="center"
                             android:layout_marginHorizontal="5dp"
+                            android:textAlignment="center"
                             android:textColorHint="@color/grey_font"
                             android:theme="@style/textInputStyle"
                             app:endIconDrawable="@drawable/ic_back_24">

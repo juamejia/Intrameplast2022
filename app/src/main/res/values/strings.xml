@@ -77,4 +77,6 @@
     <string name="kind">Tipo</string>
     <string name="caudal">Mediciones</string>
     <string name="cancelar">Cancelar</string>
+    <string name="back">Atrás</string>
+    <string name="Exit">Salir</string>
 </resources>

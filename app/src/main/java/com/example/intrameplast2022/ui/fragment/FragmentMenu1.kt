@@ -20,7 +20,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import com.example.intrameplast2022.MainActivity.Companion.courseModalArrayList
 import com.example.intrameplast2022.R
 import com.example.intrameplast2022.databinding.FragmentMenu1Binding
@@ -35,13 +34,12 @@ import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.roundToInt
-import kotlin.system.exitProcess
 
 @Suppress("DEPRECATION")
 class FragmentMenu1 : Fragment() {
 
     private lateinit var binding: FragmentMenu1Binding
-    val REQUEST_IMAGE_CAPTURE = 1
+    private val REQUEST_IMAGE_CAPTURE = 1
     lateinit var imageBitmap: Bitmap
     lateinit var imageString: String
 
@@ -136,8 +134,6 @@ class FragmentMenu1 : Fragment() {
             imageString = encodeToString(imageBytes, Base64.DEFAULT)
         }
 
-        // Back and Exit buttons, always the same in all fragments
-        binding.btExit.setOnClickListener { exitProcess(0) }
         binding.btChange.setOnClickListener {
             with(binding) {
                 cvMain.visibility = View.GONE
@@ -155,12 +151,15 @@ class FragmentMenu1 : Fragment() {
                 cvMain.visibility = View.VISIBLE
                 cvNewMeter.visibility = View.GONE
                 btCancelNewMeter.visibility = View.GONE
-                ddNewOld.setAdapter(ArrayAdapter(requireContext(), R.layout.dropdown_item, listOf("Nuevo", "Usado")))
+                ddNewOld.setAdapter(
+                    ArrayAdapter(
+                        requireContext(),
+                        R.layout.dropdown_item,
+                        listOf("Nuevo", "Usado")
+                    )
+                )
                 ddNewOld.isEnabled = true
             }
-        }
-        binding.btBack.setOnClickListener {
-            findNavController().popBackStack() // Return to the preview fragment, in this case, always homeFragment
         }
         Logger.addLogAdapter(AndroidLogAdapter())
         showAlerts()

@@ -11,7 +11,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import com.dantsu.escposprinter.EscPosPrinter
 import com.dantsu.escposprinter.connection.bluetooth.BluetoothPrintersConnections
 import com.example.intrameplast2022.R
@@ -20,18 +19,9 @@ import java.text.DateFormat
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.system.exitProcess
-
 
 class FragmentReportSaved : Fragment() {
-
     private lateinit var binding: FragmentReportSavedBinding
-
-    // Thermal printer
-
-    private val locale = Locale("id", "ID")
-    private val df: DateFormat = SimpleDateFormat("dd-MMM-yyyy hh:mm:ss a", locale)
-    private val nf = NumberFormat.getCurrencyInstance(locale)
 
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
@@ -40,11 +30,6 @@ class FragmentReportSaved : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentReportSavedBinding.inflate(inflater, container, false)
-        // Buttons
-        binding.btExit.setOnClickListener { exitProcess(0) }
-        binding.btBack.setOnClickListener {
-            findNavController().popBackStack()  // Return to the preview fragment
-        }
 
         // Setters
         with(binding) {
@@ -108,43 +93,43 @@ class FragmentReportSaved : Fragment() {
             if (connection != null) {
                 val printer = EscPosPrinter(connection, 203, 48f, 32)
                 val text =
-                        "[C]<b>Prueba de medidor</b>\n" +
-                        "[C]--------------------------------\n" +
-                        "[L]Fecha: ${getBundleBasicInfo()!![0]}\n" +
-                        "[L]Operador: ${getBundleBasicInfo()!![1]}\n" +
-                        "[L]Usuario: ${getBundleBasicInfo()!![2]}\n" +
-                        "[L]Dirección: ${getBundleBasicInfo()!![3]}\n" +
-                        "[L]Número de contrato: ${getBundleBasicInfo()!![4]}\n" +
-                        "[C]================================\n" +
-                        "[C]<b>Especificaciones</b>\n" +
-                        "[L]Marca: ${getBundleBasicInfo()!![5]}\n" +
-                        "[L]Serial: ${getBundleBasicInfo()!![6]}\n" +
-                        "[L]Calibre: ${getBundleBasicInfo()!![7]}\n" +
-                        "[L]Clase metrológica: ${getBundleBasicInfo()!![8]}\n" +
-                        "[L]Estado: ${getBundleBasicInfo()!![9]}\n\n" +
+                    "[C]<b>Prueba de medidor</b>\n" +
+                    "[C]--------------------------------\n" +
+                    "[L]Fecha: ${getBundleBasicInfo()!![0]}\n" +
+                    "[L]Operador: ${getBundleBasicInfo()!![1]}\n" +
+                    "[L]Usuario: ${getBundleBasicInfo()!![2]}\n" +
+                    "[L]Dirección: ${getBundleBasicInfo()!![3]}\n" +
+                    "[L]Número de contrato: ${getBundleBasicInfo()!![4]}\n" +
+                    "[C]================================\n" +
+                    "[C]<b>Especificaciones</b>\n" +
+                    "[L]Marca: ${getBundleBasicInfo()!![5]}\n" +
+                    "[L]Serial: ${getBundleBasicInfo()!![6]}\n" +
+                    "[L]Calibre: ${getBundleBasicInfo()!![7]}\n" +
+                    "[L]Clase metrológica: ${getBundleBasicInfo()!![8]}\n" +
+                    "[L]Estado: ${getBundleBasicInfo()!![9]}\n\n" +
 
-
-                        "[L]    <b>MEDICIONES[R]Q2[R]Q1</b>" + "\n" +
-                                "<b>----------------------------------</b>\n" +
-                        "[L]Lectura" + "\n" + "inicial <b>(L)</b>" + "[R]${getBundleTable()!![1]}[R]${getBundleTable()!![0]}\n" +
-                                "----------------------------------\n" +
-                        "[L]Lectura" + "\n" + "final <b>(L)</b>" + "[R]${getBundleTable()!![3]}[R]${getBundleTable()!![2]}\n" +
-                                "----------------------------------\n" +
-                        "[L]Tiempo <b>(Seg)</b>" + "[R]${getBundleTable()!![5]}[R]${getBundleTable()!![4]}\n" +
-                                "----------------------------------\n" +
-                        "[L]Aforo " + "\n" + "real <b>(Seg)</b>" + "[R]${getBundleTable()!![7]}[R]${getBundleTable()!![6]}\n" +
-                        "----------------------------------\n" +
-                        "[L]Temp" + "\n" + "agua <b>(C)</b>" + "[R]${getBundleTable()!![9]}[R]${getBundleTable()!![8]}\n" +
-                                "----------------------------------\n" +
-                        "[L]Temp" + "\n" + "ambiente <b>(C)</b>" + "[R]${getBundleTable()!![11]}[R]${getBundleTable()!![10]}\n" +
-                                "----------------------------------\n" +
-                        "[L]Presión de" + "\n" + "trabajo <b>(Kpa)</b>" + "[R]${getBundleTable()!![13]}[R]${getBundleTable()!![12]}\n" +
-                                "----------------------------------\n" +
-                        "[L]<b>Resultados" + "[R]${getBundleTable()!![15]}[R]${getBundleTable()!![14]}</b>\n"+
-                                "[L]\n"
+                    "[L]    <b>MEDICIONES[R]Q2[R]Q1</b>" + "\n" +
+                    "<b>----------------------------------</b>\n" +
+                    "[L]Lectura" + "\n" + "inicial <b>(L)</b>" + "[R]${getBundleTable()!![1]}[R]${getBundleTable()!![0]}\n" +
+                    "----------------------------------\n" +
+                    "[L]Lectura" + "\n" + "final <b>(L)</b>" + "[R]${getBundleTable()!![3]}[R]${getBundleTable()!![2]}\n" +
+                    "----------------------------------\n" +
+                    "[L]Tiempo <b>(Seg)</b>" + "[R]${getBundleTable()!![5]}[R]${getBundleTable()!![4]}\n" +
+                    "----------------------------------\n" +
+                    "[L]Aforo " + "\n" + "real <b>(Seg)</b>" + "[R]${getBundleTable()!![7]}[R]${getBundleTable()!![6]}\n" +
+                    "----------------------------------\n" +
+                    "[L]Temp" + "\n" + "agua <b>(C)</b>" + "[R]${getBundleTable()!![9]}[R]${getBundleTable()!![8]}\n" +
+                    "----------------------------------\n" +
+                    "[L]Temp" + "\n" + "ambiente <b>(C)</b>" + "[R]${getBundleTable()!![11]}[R]${getBundleTable()!![10]}\n" +
+                    "----------------------------------\n" +
+                    "[L]Presión de" + "\n" + "trabajo <b>(Kpa)</b>" + "[R]${getBundleTable()!![13]}[R]${getBundleTable()!![12]}\n" +
+                    "----------------------------------\n" +
+                    "[L]<b>Resultados" + "[R]${getBundleTable()!![15]}[R]${getBundleTable()!![14]}</b>\n" +
+                    "[L]\n"
                 printer.printFormattedText(text)
             } else {
-                Toast.makeText(context, getString(R.string.print_not_connected), Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, getString(R.string.print_not_connected), Toast.LENGTH_SHORT)
+                    .show()
             }
 
         } catch (e: Exception) {

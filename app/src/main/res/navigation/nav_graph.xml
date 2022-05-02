@@ -8,65 +8,69 @@
     <fragment
         android:id="@+id/fragmentHome"
         android:name="com.example.intrameplast2022.ui.fragment.FragmentHome"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        android:label="Inicio"
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_fragmentHome_to_fragmentHomeMenu"
-            app:destination="@id/fragmentHomeMenu" />
+            app:destination="@id/fragmentHomeMenu"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/fragmentHomeMenu"
         android:name="com.example.intrameplast2022.ui.fragment.FragmentHomeMenu"
-        android:label="fragment_home_menu"
-        tools:layout="@layout/fragment_home_menu" >
+        android:label="Menú principal"
+        tools:layout="@layout/fragment_home_menu">
         <action
             android:id="@+id/action_fragmentHomeMenu_to_fragmentMenu1"
-            app:destination="@id/fragmentMenu1" />
+            app:destination="@id/fragmentMenu1"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_fragmentHomeMenu_to_fragmentMenu2"
-            app:destination="@id/fragmentMenu2" />
+            app:destination="@id/fragmentMenu2"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_fragmentHomeMenu_to_fragmentMenu3"
-            app:destination="@id/fragmentMenu3" />
-        <action
-            android:id="@+id/action_fragmentHomeMenu_to_fragmentHome"
-            app:destination="@id/fragmentHome" />
+            app:destination="@id/fragmentMenu3"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/fragmentMenu1"
         android:name="com.example.intrameplast2022.ui.fragment.FragmentMenu1"
-        android:label="fragment_menu1"
-        tools:layout="@layout/fragment_menu1" >
-        <action
-            android:id="@+id/action_fragmentMenu1_to_fragmentMenu1New"
-            app:destination="@id/fragmentMenu1New" />
-    </fragment>
+        android:label="Prueba de medidor"
+        tools:layout="@layout/fragment_menu1" />
     <fragment
         android:id="@+id/fragmentMenu2"
         android:name="com.example.intrameplast2022.ui.fragment.FragmentMenu2"
-        android:label="fragment_menu2"
-        tools:layout="@layout/fragment_menu2" >
+        android:label="Registros"
+        tools:layout="@layout/fragment_menu2">
         <action
             android:id="@+id/action_fragmentMenu2_to_fragment_report_saved"
-            app:destination="@id/fragment_report_saved" />
+            app:destination="@id/fragment_report_saved"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/fragmentMenu3"
         android:name="com.example.intrameplast2022.ui.fragment.FragmentMenu3"
-        android:label="fragment_menu3"
+        android:label="Exportar"
         tools:layout="@layout/fragment_menu3" />
     <fragment
         android:id="@+id/fragment_report_saved"
         android:name="com.example.intrameplast2022.ui.fragment.FragmentReportSaved"
         android:label="fragment_report_saved"
         tools:layout="@layout/fragment_report_saved" />
-    <fragment
-        android:id="@+id/fragmentMenu1New"
-        android:name="com.example.intrameplast2022.ui.fragment.fragmentMenu1New"
-        android:label="fragment_menu1_new"
-        tools:layout="@layout/fragment_menu1_new" >
-        <action
-            android:id="@+id/action_fragmentMenu1New_to_fragmentHomeMenu"
-            app:destination="@id/fragmentHomeMenu" />
-    </fragment>
 </navigation>

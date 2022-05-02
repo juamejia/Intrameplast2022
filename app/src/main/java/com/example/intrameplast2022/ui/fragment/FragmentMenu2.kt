@@ -13,7 +13,6 @@ import com.example.intrameplast2022.MainActivity.Companion.courseModalArrayList
 import com.example.intrameplast2022.R
 import com.example.intrameplast2022.databinding.FragmentMenu2Binding
 import com.example.intrameplast2022.ui.viewmodel.RecordAdapter
-import kotlin.system.exitProcess
 
 class FragmentMenu2 : Fragment() {
 
@@ -25,12 +24,6 @@ class FragmentMenu2 : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentMenu2Binding.inflate(inflater, container, false)
-        // Back and Exit buttons, always the same in all fragments
-        binding.btExit.setOnClickListener { exitProcess(0) }
-        binding.btBack.setOnClickListener {
-            findNavController().popBackStack() // Return to the preview fragment, in this case, always homeFragment
-        }
-
         initRecyclerView()
 
         return binding.root

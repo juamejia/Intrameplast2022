@@ -10,12 +10,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.fragment.findNavController
 import com.example.intrameplast2022.MainActivity.Companion.courseModalArrayList
 import com.example.intrameplast2022.R
 import com.example.intrameplast2022.databinding.FragmentMenu3Binding
 import java.lang.Exception
-import kotlin.system.exitProcess
 
 class FragmentMenu3 : Fragment() {
 
@@ -28,14 +26,8 @@ class FragmentMenu3 : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentMenu3Binding.inflate(inflater, container, false)
-        // Back and Exit buttons, always the same in all fragments
-        binding.btExit.setOnClickListener { exitProcess(0) }
-        binding.btBack.setOnClickListener {
-            findNavController().popBackStack() // Return to the preview fragment, in this case, always homeFragment
-        }
 
-        // Export button code
-        binding.btExport.setOnClickListener {
+        binding.bt3Export.setOnClickListener {
 
             val intent = Intent(Intent.ACTION_CREATE_DOCUMENT).apply {
                 addCategory(Intent.CATEGORY_OPENABLE)
