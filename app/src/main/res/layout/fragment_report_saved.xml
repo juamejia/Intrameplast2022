@@ -114,14 +114,26 @@
                     style="@style/simpleText"
                     android:text="@string/estado_r" />
 
+                <TextView
+                    android:id="@+id/tv_meter_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    tools:text="@string/reject_meter"
+                    android:textAlignment="center"
+                    android:textColor="@color/black_500"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
             </LinearLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/deprecated_table"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:visibility="gone"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="20dp"
+                android:visibility="gone">
 
                 <TableLayout
                     android:layout_width="match_parent"
@@ -131,6 +143,7 @@
                     <TableRow>
 
                         <TextView
+                            android:id="@+id/tv_reject_1"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
@@ -139,7 +152,7 @@
                             android:textColor="@color/black_500" />
 
                         <TextView
-                            android:id="@+id/ti_li_table_new"
+                            android:id="@+id/tv_reject_2"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:layout_marginHorizontal="5dp"
@@ -627,10 +640,10 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_marginTop="20dp"
                 android:layout_height="2dp"
+                android:layout_marginTop="20dp"
                 android:background="@android:color/black"
-                app:layout_constraintTop_toBottomOf="@+id/approved_table"/>
+                app:layout_constraintTop_toBottomOf="@+id/approved_table" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/bt_print"

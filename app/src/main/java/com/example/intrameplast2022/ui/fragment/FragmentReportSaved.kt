@@ -64,14 +64,20 @@ class FragmentReportSaved : Fragment() {
             tvResult.text = getBundleTable()!![17]
             tvQ2Process.text = getBundleTable()!![18]
             tvQ1Process.text = getBundleTable()!![19]
-            tiLiTableNew.text = getBundleTable()!![20]
+            tvReject2.text = getBundleTable()!![20]
 
             // Show/hide information tables
             val approvedInfo = tvResult.text.toString().replace("\n", " ")
             if (approvedInfo.contains(getString(R.string.rechazado), ignoreCase = true)) {
-                deprecatedTable.visibility = View.VISIBLE
-                approvedTable.visibility = View.GONE
+                tvMeterInfo.text = "Medidor ${getString(R.string.rechazado)}"
+                approvedTable.visibility = View.VISIBLE
+                if (tvReject2.text.toString() == "") {
+                    deprecatedTable.visibility = View.GONE
+                } else {
+                    deprecatedTable.visibility = View.VISIBLE
+                }
             } else {
+                tvMeterInfo.text = "Medidor ${getString(R.string.aprobado)}"
                 deprecatedTable.visibility = View.GONE
                 approvedTable.visibility = View.VISIBLE
             }
@@ -118,7 +124,30 @@ class FragmentReportSaved : Fragment() {
                         "[L]Clase metrológica: ${getBundleBasicInfo()!![8]}\n" +
                         "[L]Tipo: ${getBundleBasicInfo()!![9]}\n" +
                         "[L]Estado: ${getBundleBasicInfo()!![10]}\n\n" +
-                        approvedTable(getBundleTable()!![17])
+                        "[C]<b>Medidor ${getBundleTable()!![17].replace("\n", " ")}</b>\n" +
+                        approvedTable(getBundleTable()!![20]) +
+                        "[L]Humedad" + "\n" + "relativa <b>(%)</b>" + "[R]${getBundleTable()!![0]}\n" +
+                        "<b>----------------------------------</b>\n" +
+                        "[L]    <b>MEDICIONES[R]Q2[R]Q1</b>" + "\n" +
+                        "<b>----------------------------------</b>\n" +
+                        "[L]Lectura" + "\n" + "inicial <b>(L)</b>" + "[R]${getBundleTable()!![1]}[R]${getBundleTable()!![2]}\n" +
+                        "----------------------------------\n" +
+                        "[L]Lectura" + "\n" + "final <b>(L)</b>" + "[R]${getBundleTable()!![3]}[R]${getBundleTable()!![4]}\n" +
+                        "----------------------------------\n" +
+                        "[L]Tiempo <b>(Seg)</b>" + "[R]${getBundleTable()!![5]}[R]${getBundleTable()!![6]}\n" +
+                        "----------------------------------\n" +
+                        "[L]Aforo " + "\n" + "real <b>(Seg)</b>" + "[R]${getBundleTable()!![7]}[R]${getBundleTable()!![8]}\n" +
+                        "----------------------------------\n" +
+                        "[L]Temp" + "\n" + "agua <b>(C)</b>" + "[R]${getBundleTable()!![9]}[R]${getBundleTable()!![10]}\n" +
+                        "----------------------------------\n" +
+                        "[L]Temp" + "\n" + "ambiente <b>(C)</b>" + "[R]${getBundleTable()!![11]}[R]${getBundleTable()!![12]}\n" +
+                        "----------------------------------\n" +
+                        "[L]Presión de" + "\n" + "trabajo <b>(Kpa)</b>" + "[R]${getBundleTable()!![13]}[R]${getBundleTable()!![14]}\n" +
+                        "----------------------------------\n" +
+                        "[L]<b>Aforo calculado:</b>" + "[R]${getBundleTable()!![15]}[R]${getBundleTable()!![16]}\n" +
+                        "----------------------------------\n" +
+                        "[L]<b>${getBundleTable()!![17]}" + "[R]${getBundleTable()!![18]}[R]${getBundleTable()!![19]}</b>\n" +
+                        "[L]\n"
 
                 printer.printFormattedText(text)
             } else {
@@ -131,38 +160,15 @@ class FragmentReportSaved : Fragment() {
         }
     }
 
-    private fun approvedTable(approvedText: String): String {
+    private fun approvedTable(finalReadingText: String): String {
         var table: String = ""
 
-        val approvedInfo = approvedText.replace("\n", " ")
-        if (approvedInfo.contains(getString(R.string.rechazado), ignoreCase = true)) {
-            table = "[L]<b>Medidor rechazado</b>\n" +
-                    "----------------------------------\n" +
+        table = if (finalReadingText != "") {
+            "----------------------------------\n" +
                     "[L]Lectura" + "\n" + "inicial <b>(L)</b>" + "[R]${getBundleTable()!![0]}\n" +
                     "[L]\n"
         } else {
-            table = "[L]Humedad" + "\n" + "relativa <b>(%)</b>" + "[R]${getBundleTable()!![0]}\n" +
-                    "<b>----------------------------------</b>\n" +
-                    "[L]    <b>MEDICIONES[R]Q2[R]Q1</b>" + "\n" +
-                    "<b>----------------------------------</b>\n" +
-                    "[L]Lectura" + "\n" + "inicial <b>(L)</b>" + "[R]${getBundleTable()!![1]}[R]${getBundleTable()!![2]}\n" +
-                    "----------------------------------\n" +
-                    "[L]Lectura" + "\n" + "final <b>(L)</b>" + "[R]${getBundleTable()!![3]}[R]${getBundleTable()!![4]}\n" +
-                    "----------------------------------\n" +
-                    "[L]Tiempo <b>(Seg)</b>" + "[R]${getBundleTable()!![5]}[R]${getBundleTable()!![6]}\n" +
-                    "----------------------------------\n" +
-                    "[L]Aforo " + "\n" + "real <b>(Seg)</b>" + "[R]${getBundleTable()!![7]}[R]${getBundleTable()!![8]}\n" +
-                    "----------------------------------\n" +
-                    "[L]Temp" + "\n" + "agua <b>(C)</b>" + "[R]${getBundleTable()!![9]}[R]${getBundleTable()!![10]}\n" +
-                    "----------------------------------\n" +
-                    "[L]Temp" + "\n" + "ambiente <b>(C)</b>" + "[R]${getBundleTable()!![11]}[R]${getBundleTable()!![12]}\n" +
-                    "----------------------------------\n" +
-                    "[L]Presión de" + "\n" + "trabajo <b>(Kpa)</b>" + "[R]${getBundleTable()!![13]}[R]${getBundleTable()!![14]}\n" +
-                    "----------------------------------\n" +
-                    "[L]<b>Aforo calculado:</b>" + "[R]${getBundleTable()!![15]}[R]${getBundleTable()!![16]}\n" +
-                    "----------------------------------\n" +
-                    "[L]<b>${getBundleTable()!![17]}" + "[R]${getBundleTable()!![18]}[R]${getBundleTable()!![19]}</b>\n" +
-                    "[L]\n"
+            ""
         }
 
         return table

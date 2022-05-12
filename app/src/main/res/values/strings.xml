@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Intrameplast 2022</string>
+    <string name="app_name">Metrología agua y servicio</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="ingresar">Ingresar</string>
@@ -84,4 +84,5 @@
     <string name="registro_guardado">Registro guardado</string>
     <string name="complete_campos">¡Complete los campos requeridos!</string>
     <string name="kind_r">Tipo:</string>
+    <string name="reject_meter">Medidor rechazado</string>
 </resources>
