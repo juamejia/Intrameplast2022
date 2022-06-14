@@ -44,27 +44,28 @@ class FragmentReportSaved : Fragment() {
             tvKind.text = getString(R.string.kind_r) + " ${getBundleBasicInfo()!![9]}"
             tvNewOld.text = getString(R.string.estado_r) + " ${getBundleBasicInfo()!![10]}"
             // Table
-            tiRH0.text = getBundleTable()!![0]
-            tiQ2LI.text = getBundleTable()!![1]
-            tiQ1LI.text = getBundleTable()!![2]
-            tiQ2LF.text = getBundleTable()!![3]
-            tiQ1LF.text = getBundleTable()!![4]
-            tiQ2Time.text = getBundleTable()!![5]
-            tiQ1Time.text = getBundleTable()!![6]
-            tiQ2AfaroR.text = getBundleTable()!![7]
-            tiQ1AforoR.text = getBundleTable()!![8]
-            tiQ1TWater.text = getBundleTable()!![9]
-            tiQ2TWater.text = getBundleTable()!![10]
-            tiQ1TEnvironment.text = getBundleTable()!![11]
-            tiQ2TEnvironment.text = getBundleTable()!![12]
-            tiQ1WorkPressure.text = getBundleTable()!![13]
-            tiQ2WorkPressure.text = getBundleTable()!![14]
-            tvQ2Aforo.text = getBundleTable()!![15]
-            tvQ1Aforo.text = getBundleTable()!![16]
-            tvResult.text = getBundleTable()!![17]
-            tvQ2Process.text = getBundleTable()!![18]
-            tvQ1Process.text = getBundleTable()!![19]
-            tvReject2.text = getBundleTable()!![20]
+            tiLM0.text = getBundleTable()!![0]
+            tiRH0.text = getBundleTable()!![1]
+            tiQ2LI.text = getBundleTable()!![2]
+            tiQ1LI.text = getBundleTable()!![3]
+            tiQ2LF.text = getBundleTable()!![4]
+            tiQ1LF.text = getBundleTable()!![5]
+            tiQ2Time.text = getBundleTable()!![6]
+            tiQ1Time.text = getBundleTable()!![7]
+            tiQ2AfaroR.text = getBundleTable()!![8]
+            tiQ1AforoR.text = getBundleTable()!![9]
+            tiQ1TWater.text = getBundleTable()!![10]
+            tiQ2TWater.text = getBundleTable()!![11]
+            tiQ1TEnvironment.text = getBundleTable()!![12]
+            tiQ2TEnvironment.text = getBundleTable()!![13]
+            tiQ1WorkPressure.text = getBundleTable()!![14]
+            tiQ2WorkPressure.text = getBundleTable()!![15]
+            tvQ2Aforo.text = getBundleTable()!![16]
+            tvQ1Aforo.text = getBundleTable()!![17]
+            tvResult.text = getBundleTable()!![18]
+            tvQ2Process.text = getBundleTable()!![19]
+            tvQ1Process.text = getBundleTable()!![20]
+            tvReject2.text = getBundleTable()!![21]
 
             // Show/hide information tables
             val approvedInfo = tvResult.text.toString().replace("\n", " ")
@@ -109,7 +110,8 @@ class FragmentReportSaved : Fragment() {
             val connection = BluetoothPrintersConnections.selectFirstPaired()
             if (connection != null) {
                 val printer = EscPosPrinter(connection, 203, 48f, 32)
-                val text = "[C]<b>Prueba de medidor</b>\n" +
+                val text = "[C]<b>METROLOGÍA AGUA Y SERVICIO</b>\n" +
+                        "[C]Prueba de medidor\n" +
                         "[C]--------------------------------\n" +
                         "[L]Fecha: ${getBundleBasicInfo()!![0]}\n" +
                         "[L]Operador: ${getBundleBasicInfo()!![1]}\n" +
@@ -124,30 +126,31 @@ class FragmentReportSaved : Fragment() {
                         "[L]Clase metrológica: ${getBundleBasicInfo()!![8]}\n" +
                         "[L]Tipo: ${getBundleBasicInfo()!![9]}\n" +
                         "[L]Estado: ${getBundleBasicInfo()!![10]}\n\n" +
-                        "[C]<b>Medidor ${getBundleTable()!![17].replace("\n", " ")}</b>\n" +
-                        approvedTable(getBundleTable()!![20]) +
-                        "[L]Humedad" + "\n" + "relativa <b>(%)</b>" + "[R]${getBundleTable()!![0]}\n" +
+                        "[C]<b>Medidor ${getBundleTable()!![18].replace("\n", " ")}</b>\n" +
+                        approvedTable(getBundleTable()!![21]) +
+                        "[L]Lectura <b>(mts 3)</b>" + "[R]${getBundleTable()!![0]}\n" +
+                        "[L]Humedad" + "\n" + "relativa <b>(%)</b>" + "[R]${getBundleTable()!![1]}\n" +
                         "<b>----------------------------------</b>\n" +
                         "[L]    <b>MEDICIONES[R]Q2[R]Q1</b>" + "\n" +
                         "<b>----------------------------------</b>\n" +
-                        "[L]Lectura" + "\n" + "inicial <b>(L)</b>" + "[R]${getBundleTable()!![1]}[R]${getBundleTable()!![2]}\n" +
+                        "[L]Lectura" + "\n" + "inicial <b>(L)</b>" + "[R]${getBundleTable()!![2]}[R]${getBundleTable()!![3]}\n" +
                         "----------------------------------\n" +
-                        "[L]Lectura" + "\n" + "final <b>(L)</b>" + "[R]${getBundleTable()!![3]}[R]${getBundleTable()!![4]}\n" +
+                        "[L]Lectura" + "\n" + "final <b>(L)</b>" + "[R]${getBundleTable()!![4]}[R]${getBundleTable()!![5]}\n" +
                         "----------------------------------\n" +
-                        "[L]Tiempo <b>(Seg)</b>" + "[R]${getBundleTable()!![5]}[R]${getBundleTable()!![6]}\n" +
+                        "[L]Tiempo <b>(Seg)</b>" + "[R]${getBundleTable()!![6]}[R]${getBundleTable()!![7]}\n" +
                         "----------------------------------\n" +
-                        "[L]Aforo " + "\n" + "real <b>(Seg)</b>" + "[R]${getBundleTable()!![7]}[R]${getBundleTable()!![8]}\n" +
+                        "[L]Aforo " + "\n" + "real <b>(Seg)</b>" + "[R]${getBundleTable()!![8]}[R]${getBundleTable()!![9]}\n" +
                         "----------------------------------\n" +
-                        "[L]Temp" + "\n" + "agua <b>(C)</b>" + "[R]${getBundleTable()!![9]}[R]${getBundleTable()!![10]}\n" +
+                        "[L]Temp" + "\n" + "agua <b>(C)</b>" + "[R]${getBundleTable()!![10]}[R]${getBundleTable()!![11]}\n" +
                         "----------------------------------\n" +
-                        "[L]Temp" + "\n" + "ambiente <b>(C)</b>" + "[R]${getBundleTable()!![11]}[R]${getBundleTable()!![12]}\n" +
+                        "[L]Temp" + "\n" + "ambiente <b>(C)</b>" + "[R]${getBundleTable()!![12]}[R]${getBundleTable()!![13]}\n" +
                         "----------------------------------\n" +
-                        "[L]Presión de" + "\n" + "trabajo <b>(Kpa)</b>" + "[R]${getBundleTable()!![13]}[R]${getBundleTable()!![14]}\n" +
+                        "[L]Presión de" + "\n" + "trabajo <b>(Kpa)</b>" + "[R]${getBundleTable()!![14]}[R]${getBundleTable()!![15]}\n" +
                         "----------------------------------\n" +
-                        "[L]<b>Aforo calculado:</b>" + "[R]${getBundleTable()!![15]}[R]${getBundleTable()!![16]}\n" +
+                        "[L]<b>Aforo calculado:</b>" + "[R]${getBundleTable()!![16]}[R]${getBundleTable()!![17]}\n" +
                         "----------------------------------\n" +
-                        "[L]<b>${getBundleTable()!![17]}" + "[R]${getBundleTable()!![18]}[R]${getBundleTable()!![19]}</b>\n" +
-                        "[L]\n"
+                        "[L]<b>${getBundleTable()!![18]}" + "[R]${getBundleTable()!![19]}[R]${getBundleTable()!![20]}</b>\n" +
+                        "[L]\n" + firmRequired(getBundleTable()!![18])
 
                 printer.printFormattedText(text)
             } else {
@@ -165,13 +168,26 @@ class FragmentReportSaved : Fragment() {
 
         table = if (finalReadingText != "") {
             "----------------------------------\n" +
-                    "[L]Lectura" + "\n" + "inicial <b>(L)</b>" + "[R]${getBundleTable()!![0]}\n" +
+                    "[L]Lectura" + "\n" + "inicial <b>(L)</b>" + "[R]${getBundleTable()!![2]}\n" +
                     "[L]\n"
         } else {
             ""
         }
 
         return table
+    }
+
+    private fun firmRequired(passed: String): String {
+        var firm: String = ""
+        firm = if (passed.replace("\n", " ").contains("Aprobado")) {
+            "\n\n_______________________________\n" +
+                    "[C]Firma del cliente" +
+                    "[L]\n"+
+                    "[L]\n"
+        } else {
+            ""
+        }
+        return firm
     }
 
 }

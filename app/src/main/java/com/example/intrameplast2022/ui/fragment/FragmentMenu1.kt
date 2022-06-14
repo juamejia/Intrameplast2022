@@ -482,6 +482,7 @@ class FragmentMenu1 : Fragment() {
                                 ddNewOld.editableText.toString()
                             ),
                             arrayListOf(
+                                tiLM0.text.toString(),
                                 tiRH0.text.toString(),
                                 tiQ2LI0.text.toString(),
                                 tiQ1LI0.text.toString(),
