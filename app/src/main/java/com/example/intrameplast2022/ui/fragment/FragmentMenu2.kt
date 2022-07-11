@@ -48,6 +48,7 @@ class FragmentMenu2 : Fragment() {
         bundle.putString("recordPhoto", recordList.getPhoto())
         bundle.putStringArrayList("recordSelected", recordList.getBasicInfo())
         bundle.putStringArrayList("tableSelected", recordList.getTableInfo())
+        bundle.putStringArrayList("newMeterSelected", recordList.getNewMeter())
         findNavController().navigate(R.id.action_fragmentMenu2_to_fragment_report_saved, bundle)
     }
 

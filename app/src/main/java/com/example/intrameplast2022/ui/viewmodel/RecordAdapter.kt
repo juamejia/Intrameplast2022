@@ -41,6 +41,7 @@ class RecordAdapter(
                 ivPhoto.setImageBitmap(decodedImage)
                 tvTitle.text = "Operario ${recordModel.getBasicInfo()[1]}"
                 tvDescription.text = "Fecha: ${recordModel.getBasicInfo()[0]}"
+                tvApproved.text = recordModel.getTableInfo()[18]
                 itemView.setOnClickListener { onClickListener(recordModel) }
             }
         }

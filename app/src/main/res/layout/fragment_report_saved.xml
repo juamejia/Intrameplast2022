@@ -120,11 +120,11 @@
                     android:layout_height="match_parent"
                     android:layout_marginTop="10dp"
                     android:gravity="center"
-                    tools:text="@string/reject_meter"
                     android:textAlignment="center"
                     android:textColor="@color/black_500"
                     android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    tools:text="@string/reject_meter" />
 
             </LinearLayout>
 
@@ -147,7 +147,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
-                            android:text="@string/lectura_inicial_l"
+                            android:text="@string/lectura_inicial_l2"
                             android:textAlignment="center"
                             android:textColor="@color/black_500" />
 
@@ -673,6 +673,64 @@
                 android:background="@android:color/black"
                 app:layout_constraintTop_toBottomOf="@+id/approved_table" />
 
+            <LinearLayout
+                android:id="@+id/new_specifications"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginBottom="20dp"
+                    android:text="@string/new_specifications"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_mark_new"
+                    style="@style/simpleText"
+                    android:text="@string/marca_r" />
+
+                <TextView
+                    android:id="@+id/tv_serial_new"
+                    style="@style/simpleText"
+                    android:text="@string/serial_r" />
+
+                <TextView
+                    android:id="@+id/tv_caliber_new"
+                    style="@style/simpleText"
+                    android:text="@string/calibre_r" />
+
+                <TextView
+                    android:id="@+id/tv_metrological_class_new"
+                    style="@style/simpleText"
+                    android:text="@string/clase_metrol_gica_r" />
+
+                <TextView
+                    android:id="@+id/tv_kind_new"
+                    style="@style/simpleText"
+                    android:text="@string/kind_r" />
+
+                <TextView
+                    android:id="@+id/tv_new_old_new"
+                    style="@style/simpleText"
+                    android:text="@string/estado_r" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@android:color/black"
+                    app:layout_constraintTop_toBottomOf="@+id/new_meter" />
+
+            </LinearLayout>
+
+
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/bt_print"
                 android:layout_width="wrap_content"
@@ -685,7 +743,7 @@
                 app:backgroundTint="@color/grey"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/bt_save"
-                app:layout_constraintTop_toBottomOf="@+id/approved_table"
+                app:layout_constraintTop_toBottomOf="@+id/new_meter"
                 app:srcCompat="@drawable/ic_print_24" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>

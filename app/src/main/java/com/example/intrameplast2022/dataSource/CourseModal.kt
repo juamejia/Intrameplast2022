@@ -4,7 +4,8 @@ data class CourseModal     // creating constructor for our variables.
     (
     val photo: String,
     val basicInfo: ArrayList<String>,
-    val tableInfo: ArrayList<String>
+    val tableInfo: ArrayList<String>,
+    val newMeter: ArrayList<String>
 ) {
     @JvmName("getPhoto1")
     fun getPhoto(): String {
@@ -19,5 +20,10 @@ data class CourseModal     // creating constructor for our variables.
     @JvmName("getTableInfo1")
     fun getTableInfo(): ArrayList<String> {
         return tableInfo
+    }
+
+    @JvmName("getNewMeter1")
+    fun getNewMeter(): ArrayList<String> {
+        return newMeter
     }
 }

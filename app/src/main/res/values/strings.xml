@@ -42,13 +42,15 @@
     <string name="temp_ambiente_c">Temperatura ambiente <br /> <b>[Cº]</b></string>
     <string name="presi_n_de_trabajo_kpa">Presión de trabajo <br /> <b>[Kpa]</b></string>
     <string name="lectura_inicial_l">Lectura inicial <br /> <b>[L]</b></string>
+    <string name="lectura_inicial_l2">Lectura inicial <br /> <b>[mts 3]</b></string>
     <string name="lectura_m">Lectura <br /> <b>[mts 3]</b></string>
     <string name="humedad_relativa">Humedad relativa <br /> <b>[%]</b></string>
     <string name="resultado_q2">Resultado Q2</string>
     <string name="resultado_q1">Resultado Q1</string>
     <string name="resultado">Resultado:\n</string>
     <string name="measure_proofs">Prueba de medidor</string>
-    <string name="specifications">Especificaciones</string>
+    <string name="specifications">Especificaciones medidor instalado</string>
+    <string name="new_specifications">Especificaciones medidor Nuevo</string>
     <string name="fecha_r">Fecha:</string>
     <string name="operador_r">Operador:</string>
     <string name="usuario_r">Usuario:</string>

@@ -33,6 +33,7 @@ import java.io.ByteArrayOutputStream
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.math.roundToInt
 
 @Suppress("DEPRECATION")
@@ -91,6 +92,10 @@ class FragmentMenu1 : Fragment() {
     var q2ProofTime = 0.0
     var q2AforoReal = 0.1
 
+    var newMeter = false
+    private var oldMeterInfo = ArrayList<String>()
+    private var newMeterInfo = ArrayList<String>()
+
     private val locale = Locale("id", "ID")
     private val df: DateFormat = SimpleDateFormat("dd/MM/yyyy", locale)
 
@@ -109,7 +114,6 @@ class FragmentMenu1 : Fragment() {
             ArrayAdapter(requireContext(), R.layout.dropdown_item, listOf("Vol", "Vel"))
         val newOldAdapter =
             ArrayAdapter(requireContext(), R.layout.dropdown_item, listOf("Nuevo", "Usado"))
-
         with(binding) {
             ddCaliber.setAdapter(caliberAdapter)
             ddMetrological.setAdapter(metrologicalAdapter)
@@ -138,28 +142,59 @@ class FragmentMenu1 : Fragment() {
             with(binding) {
                 cvMain.visibility = View.GONE
                 cvNewMeter.visibility = View.VISIBLE
-                ddNewOld.setText("Nuevo")  // Set the new value new to NewOld
+                ddNewOld.setText("Nuevo", false)  // Set the new value new to NewOld
                 ddNewOld.isEnabled = false
                 btChange.visibility = View.GONE
                 btCancelNewMeter.visibility = View.VISIBLE
                 cvMain.visibility = View.GONE
                 cvNewMeter.visibility = View.VISIBLE
+
+                newMeter = true
+                oldMeterInfo = arrayListOf(
+                    tvMark2.editableText.toString(),
+                    tvSerial2.editableText.toString(),
+                    ddCaliber.editableText.toString(),
+                    ddMetrological.editableText.toString(),
+                    ddKind.editableText.toString(),
+                    ddNewOld.editableText.toString()
+                )
+                if (newMeterInfo.isNotEmpty()) {
+                    tvMark2.setText(newMeterInfo[0])
+                    tvSerial2.setText(newMeterInfo[1])
+                    ddCaliber.setText(newMeterInfo[2], false)
+                    ddMetrological.setText(newMeterInfo[3], false)
+                    ddKind.setText(newMeterInfo[4], false)
+                    ddNewOld.setText(newMeterInfo[5], false)
+                }
             }
         }
+
         binding.btCancelNewMeter.setOnClickListener {
             allFieldsChecked()
             with(binding) {
                 cvMain.visibility = View.VISIBLE
                 cvNewMeter.visibility = View.GONE
                 btCancelNewMeter.visibility = View.GONE
-                ddNewOld.setAdapter(
-                    ArrayAdapter(
-                        requireContext(),
-                        R.layout.dropdown_item,
-                        listOf("Nuevo", "Usado")
-                    )
-                )
                 ddNewOld.isEnabled = true
+
+                newMeter = false
+                newMeterInfo = arrayListOf(
+                    tvMark2.editableText.toString(),
+                    tvSerial2.editableText.toString(),
+                    ddCaliber.editableText.toString(),
+                    ddMetrological.editableText.toString(),
+                    ddKind.editableText.toString(),
+                    ddNewOld.editableText.toString()
+                )
+                if (oldMeterInfo.isNotEmpty()) {
+                    tvMark2.setText(oldMeterInfo[0])
+                    tvSerial2.setText(oldMeterInfo[1])
+                    ddCaliber.setText(oldMeterInfo[2], false)
+                    ddMetrological.setText(oldMeterInfo[3], false)
+                    ddKind.setText(oldMeterInfo[4], false)
+                    ddNewOld.setText(oldMeterInfo[5], false)
+                }
+
             }
         }
         Logger.addLogAdapter(AndroidLogAdapter())
@@ -463,24 +498,32 @@ class FragmentMenu1 : Fragment() {
             reloadFields()
         }
         binding.btSave.setOnClickListener { // Show logged info
-            if (textFieldsCheck()) {
-                courseModalArrayList!!.add(
-                    with(binding) {
+            with(binding) {
+                if (!newMeter){
+                    oldMeterInfo = arrayListOf(
+                        tvMark2.editableText.toString(),
+                        tvSerial2.editableText.toString(),
+                        ddCaliber.editableText.toString(),
+                        ddMetrological.editableText.toString(),
+                        ddKind.editableText.toString(),
+                        ddNewOld.editableText.toString()
+                    )
+                }
+                if (textFieldsCheck()) {
+                    val tempBasicInfo = arrayListOf(
+                        binding.tvDate2.editableText.toString(),
+                        binding.tvOperator2.editableText.toString().uppercase(),
+                        binding.tvUser2.editableText.toString().uppercase(),
+                        binding.tvLocation2.editableText.toString().uppercase(),
+                        binding.tvContract2.editableText.toString()
+                    )
+                    tempBasicInfo.addAll(oldMeterInfo)
+
+                    courseModalArrayList!!.add(
+
                         CourseModal(
                             imageString,
-                            arrayListOf(
-                                tvDate2.editableText.toString(),
-                                tvOperator2.editableText.toString().uppercase(),
-                                tvUser2.editableText.toString().uppercase(),
-                                tvLocation2.editableText.toString().uppercase(),
-                                tvContract2.editableText.toString(),
-                                tvMark2.editableText.toString().uppercase(),
-                                tvSerial2.editableText.toString(),
-                                ddCaliber.editableText.toString(),
-                                ddMetrological.editableText.toString(),
-                                ddKind.editableText.toString(),
-                                ddNewOld.editableText.toString()
-                            ),
+                            tempBasicInfo,
                             arrayListOf(
                                 tiLM0.text.toString(),
                                 tiRH0.text.toString(),
@@ -498,21 +541,29 @@ class FragmentMenu1 : Fragment() {
                                 tiQ2TEnvironment0.text.toString(),
                                 tiQ1WorkPressure0.text.toString(),
                                 tiQ2WorkPressure0.text.toString(),
-
                                 tvQ2Aforo.text.toString(),
                                 tvQ1Aforo.text.toString(),
                                 tvResult.text.toString(),
                                 tvQ2Process.text.toString(),
                                 tvQ1Process.text.toString(),
                                 tiLiTableNew0.text.toString()
+                            ),
+                            arrayListOf(
+                                tvMark2.editableText.toString(),
+                                tvSerial2.editableText.toString(),
+                                ddCaliber.editableText.toString(),
+                                ddMetrological.editableText.toString(),
+                                ddKind.editableText.toString(),
+                                ddNewOld.editableText.toString()
                             )
                         )
-                    }
-                )
-                // notifying adapter when new data added.
-                saveData()
-                toast(getString(R.string.registro_guardado))
-            } else toast(getString(R.string.complete_campos))
+
+                    )
+                    // notifying adapter when new data added.
+                    saveData()
+                    toast(getString(R.string.registro_guardado))
+                } else toast(getString(R.string.complete_campos))
+            }
         }
     }
 
