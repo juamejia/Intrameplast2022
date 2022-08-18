@@ -10,6 +10,12 @@ Cuenta con las siguientes funcionalidades:
 
 #### [ -> DESCARGA LA ÚLTIMA VERSIÓN DE LA APLICACIÓN AQUI <-](https://github.com/juamejia/Intrameplast2022/raw/d1ec5ce18716594e7026a489e8e4e21ddc957b6e/app/build/intermediates/apk/debug/app-debug.apk)
 
+### Cómo borrar todos los registros
+https://user-images.githubusercontent.com/96066406/185264982-1e09d033-b865-4228-a4e7-9aaf731242e1.mov
+
+### Cómo exportar todos los registros
+https://user-images.githubusercontent.com/96066406/185264572-35f0b389-7d15-4765-a2e4-8c267b5f7c6d.mov
+
 ### Capturas de pantalla
 | Inicio | Menú de opciones |
 | ------------- | ------------- |
