@@ -2,7 +2,7 @@
 
 
 Esta es la aplicación de pruebas para medidor de METROLÓGIA AGUA Y SERVICIO.
-Cuenta con las siguientes funcionalidades:
+Cuenta con las siguientes funcionalidades:)
 - Pruebas de funcionamiento de un medidor de agua (determina si es aprobado o rechazado al completar los parametros solicitados).
 - Revisión de registros realizados y sus resultados.
 - Imprimir los registros previamente almacenados.
